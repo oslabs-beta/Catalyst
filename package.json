@@ -6,7 +6,7 @@
   "scripts": {
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
     "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
-    "dev": " npm run dev:electron && npm run dev:react"
+    "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\""
   },
   "repository": {
     "type": "git",
