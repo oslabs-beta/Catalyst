@@ -1,7 +1,6 @@
 import * as React from 'react'
 import * as electron from 'electron'
 import {remote} from 'electron'
-
 // const app = remote.app
 // const BrowserWindow = remote.BrowserWindow
 
