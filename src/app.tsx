@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import {FolderUpload} from './FolderUpload'
 
 
 
 const App = () => {
   return (
-    <h1>
-     lets get eatit
-    </h1>
+    <div>
+      <h1>
+        Testing
+      </h1>
+      <FolderUpload />
+    </div>
+    
   )
 }
 ReactDom.render(<App />,document.getElementById('root'));
