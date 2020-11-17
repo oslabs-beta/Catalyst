@@ -4,8 +4,8 @@
   "description": "Catalyst will simplify the generation of unit tests for React framework with an emphasis on enzyme",
   "main": "./dist/main.js",
   "scripts": {
-    "dev:electron": "NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
-    "dev:react": "NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
+    "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
+    "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
     "dev": "npm run dev:electron & npm run dev:react"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
     "concurrently": "^5.3.0",
+    "cross-env": "^7.0.2",
     "electron": "^11.0.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.3",

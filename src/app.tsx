@@ -6,7 +6,7 @@ import ReactDom from 'react-dom';
 const App = () => {
   return (
     <h1>
-     lets get eatit
+     Hello from react
     </h1>
   )
 }
