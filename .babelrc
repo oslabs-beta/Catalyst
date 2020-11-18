@@ -1,11 +1,15 @@
 {
   "presets": [
-    "@babel/env",
+    "@babel/preset-env",
     "@babel/typescript",
     "@babel/react"
   ],
   "plugins": [
     "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread"
+    "@babel/proposal-object-rest-spread",
+    ["@babel/plugin-transform-runtime",
+    {
+      "regenerator": true
+    }]
   ]
 }

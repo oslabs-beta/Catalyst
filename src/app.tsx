@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div >
       <h1>
-        Testing
+        Hello from React World
       </h1>
       <FolderUpload />
     </div>
