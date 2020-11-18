@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div>
       <h1>
-        testing part 2
+        Hello from React planet
       </h1>
       <FolderUpload />
     </div>
@@ -16,4 +16,3 @@ const App = () => {
   )
 }
 ReactDom.render(<App />,document.getElementById('root'));
-
