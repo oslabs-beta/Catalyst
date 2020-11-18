@@ -6,13 +6,15 @@ import {FolderUpload} from './FolderUpload'
 
 const App = () => {
   return (
-    <div>
+    <div >
       <h1>
-        Hello from React planet
+        Hello from React World
       </h1>
       <FolderUpload />
     </div>
     
   )
 }
-ReactDom.render(<App />,document.getElementById('root'));
+
+
+export default App;
