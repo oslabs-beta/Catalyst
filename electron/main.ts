@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, REACT_PERF} from 'electron-devtools-installer';
+import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 
 // keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is garbage collected
@@ -46,7 +46,7 @@ function createWindow() {
 app.on('ready', () => {
   // calling installExtension func after the ready event was emitted by app
   // on the different extensions by looping through array of them
-  [REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS, REACT_PERF].forEach(extension => {
+  [REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS].forEach(extension => {
     installExtension(extension)
     .then((name) => console.log(`Added Extension: ${name}`))
     .catch((err) => console.log('An error occurred: ', err));
