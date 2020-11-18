@@ -6,7 +6,7 @@ import {FolderUpload} from './FolderUpload'
 
 const App = () => {
   return (
-    <div>
+    <div >
       <h1>
         Testing
       </h1>
@@ -15,5 +15,6 @@ const App = () => {
     
   )
 }
-ReactDom.render(<App />,document.getElementById('root'));
 
+
+export default App;
