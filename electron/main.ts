@@ -55,4 +55,5 @@ app.on('ready', () => {
   createWindow();
 });
 
+
 app.allowRendererProcessReuse = true;
