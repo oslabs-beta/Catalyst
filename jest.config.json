@@ -1,0 +1,17 @@
+{
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js"
+  ],
+  "transform": {
+    "\\.(ts|tsx)$": "ts-jest"
+  },
+  "testRegex": "/__tests__/.*\\.(ts|tsx|js)$",
+  "setupFilesAfterEnv": [
+    "./src/setupEnzyme.ts"
+  ],
+  "snapshotSerializers": [
+    "enzyme-to-json/serializer"
+  ]
+}
