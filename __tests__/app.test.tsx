@@ -1,6 +1,6 @@
 import { shallow, mount, render } from 'enzyme';
 import * as React from 'react';
-import App from '../src/app';
+import { App } from '../src/app';
 import { FolderUpload } from '../src/FolderUpload'
 
 const wrapper = shallow(<App />);
