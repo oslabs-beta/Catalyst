@@ -76,7 +76,7 @@ export const FolderUpload: React.FC = () => {
             const rootTree = new FileTree(projectDirectory, "root")
 
             // will return an array of FileTree objects along with any children associated with it 
-            const fileTree = rootTree.createTree(projectDirectory)
+            const fileTree = rootTree.createTree(projectDirectory);
             console.log(fileTree)
         }
     }
