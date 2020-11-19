@@ -1,8 +1,6 @@
 import * as React from 'react'
 import {remote} from 'electron'
 import * as electronFs from 'fs'
-import { BrowserWindow } from 'electron';
-
 
 
 
