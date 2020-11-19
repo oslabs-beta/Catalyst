@@ -1,16 +1,16 @@
-// import * from '../constants/actionTypes';
+// import { CONSTRUCT_FILETREE } from '../constants/actionTypes';
 
 
-/* interface IncrementAction {
-  type: typeof Increment_COUNTER
-};
+// interface IncrementAction {
+//   type: typeof Increment_COUNTER
+// };
 
-interface DecrementAction {
-  type: typeof DECREMENT_COUNTER
-};
+// interface DecrementAction {
+//   type: typeof DECREMENT_COUNTER
+// };
 
-export type ActionTypes = IncrementAction | DecrementAction
- */
+// export type ActionTypes = IncrementAction | DecrementAction
+//  */
 
  
 /* // const SetAge = (payload: number) => {
@@ -18,4 +18,4 @@ export type ActionTypes = IncrementAction | DecrementAction
     type: bindAction.SET_AGE,
     payload 
   }
-} */
+}

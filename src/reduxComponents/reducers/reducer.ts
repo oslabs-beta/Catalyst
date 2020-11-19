@@ -1,7 +1,5 @@
 const initialState = {
-  // describe: ""
-  // state bois goes here
-  // 
+  fileTree: null
 };
 
 export const reducer = (state: any = initialState, action: any) => {
