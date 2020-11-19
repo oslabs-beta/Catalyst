@@ -34,7 +34,6 @@ function createWindow() {
   }
 
 
-
   // emitted when the window is closed
   mainWindow.on('closed', () => {
     // derefernece the window object, normally windows are stored in an array if app
