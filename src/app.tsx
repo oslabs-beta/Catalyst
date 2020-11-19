@@ -8,7 +8,7 @@ export const App: React.FC = () => {
   return (
     <div >
       <h1>
-        Hello from Add World
+        Hello from Run World
       </h1>
       <FolderUpload />
     </div>
