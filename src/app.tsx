@@ -11,7 +11,7 @@ import { RootState } from './reduxComponents/reducers/combineReducers';
 export const App: React.FC = () => {
   const [checker, updateChecker] = useState(1)
   const dispatch = useDispatch()
-  const counterInStore = useSelector((state) => state.counter)
+  const counterInStore = useSelector((state:any) => state.counter)
   const setAge = (checker:any) => dispatch(SetAge(checker))
 
 
