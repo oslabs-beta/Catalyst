@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import {FolderUpload} from './components/FolderUpload'
 import {useSelector, useDispatch} from 'react-redux'
 import {SetAge} from './reduxComponents/actions/actions'
-import { RootState } from './reduxComponents/reducers/combineReducers';
 
 
 

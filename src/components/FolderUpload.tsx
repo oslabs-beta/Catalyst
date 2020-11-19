@@ -4,6 +4,7 @@ import * as electronFs from 'fs'
 
 
 
+
 class FileTree {
     filepath: string
     name: string
@@ -41,7 +42,6 @@ class FileTree {
         })
         return treeElements
     }
-
 }
 
 export const FolderUpload: React.FC = () => {
