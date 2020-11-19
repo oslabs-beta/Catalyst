@@ -1,11 +1,10 @@
 import * as React from 'react'
 import * as electron from 'electron'
 import {remote} from 'electron'
-import fs from 'fs'
+import * as electronFs from 'fs'
 
 
-// allows electron to use node module fs 
-const electronFs = remote.require('fs')
+
 
 class FileTree {
     filepath: string
