@@ -1,11 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-<<<<<<< HEAD
-import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
-=======
 import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS} from 'electron-devtools-installer';
->>>>>>> dba676fc6fc10b6d65e51559a18b26f3e5372184
 
 // keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is garbage collected
