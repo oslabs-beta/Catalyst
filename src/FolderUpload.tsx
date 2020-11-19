@@ -4,7 +4,7 @@ import {remote} from 'electron'
 import * as electronFs from 'fs'
 
 
-// allows electron to use node module fs 
+
 
 class FileTree {
     filepath: string

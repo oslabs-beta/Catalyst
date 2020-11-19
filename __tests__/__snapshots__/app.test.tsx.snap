@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Hello, Enzyme! renders 1`] = `
+exports[`Testing app component matches snapshot 1`] = `
 <div>
   <h1>
     Hello from React World
