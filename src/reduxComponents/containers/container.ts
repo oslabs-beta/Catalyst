@@ -1,4 +1,4 @@
-import { App as Component } from '../app';
+import { App as Component } from '../../app';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Dispatch } from 'react';

@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as url from 'url';
 import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS} from 'electron-devtools-installer';
 
+
 // keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is garbage collected
 
