@@ -4,11 +4,11 @@ import {FolderUpload} from './FolderUpload'
 
 
 
-const App = () => {
+export const App = () => {
   return (
-    <div>
+    <div >
       <h1>
-        Hello from Test planet
+        Hello from React World
       </h1>
       <FolderUpload />
     </div>
@@ -17,4 +17,3 @@ const App = () => {
 };
 
 
-ReactDom.render(<App />,document.getElementById('root'));
