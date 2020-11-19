@@ -1,5 +1,5 @@
 import React from 'react';
-import { FolderUpload } from './Components/FolderUpload'
+import { FolderUpload } from './components/FolderUpload'
 
 
 // interface here and then pass interface prop into React.FC
