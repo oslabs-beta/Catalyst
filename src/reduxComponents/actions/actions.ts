@@ -1,4 +1,4 @@
-// import * from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 
 
 /* interface IncrementAction {
@@ -13,9 +13,7 @@ export type ActionTypes = IncrementAction | DecrementAction
  */
 
  
-/* // const SetAge = (payload: number) => {
-  return {
-    type: bindAction.SET_AGE,
-    payload 
-  }
-} */
+export const SetAge = (incomingAge: any) => ({
+    type: types.INCREMENT_COUNTER,
+    payload :incomingAge
+})
