@@ -8,7 +8,7 @@ const initialState = {
   // state bois goes here
   // 
   counter : 0,
-  fileTree: null
+  fileTree: []
 };
 
 export const reducer = (state: any = initialState, action: any) => {
