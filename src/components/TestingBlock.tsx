@@ -12,12 +12,11 @@ const mapDispatchToProps = {
 const TestingBlock = (props: any) => {
   return (
     <div>
+      {/* <p> and button should be on same line */}
       <p>The Component Should...</p>
-<<<<<<< HEAD
-      <input>E.g. Button renders correctly...</input>
-=======
-      <button>X</button>
-      <input>E.g. Button renders correctly...</input>
+      <button className="exitButton">X</button>
+      <input type="text" placeholder="E.g. Button renders correctly..."/>
+      {/* dropdown and number input should be on same line */}
       <label>What type of test would you like to add?</label>
       <select id="testTypes">
         <option value="shallow">Shallow</option>
@@ -26,7 +25,8 @@ const TestingBlock = (props: any) => {
       </select>
       <label>How many 'it' statements would you like?</label>
       <input type="number" id="quantity" name="quantity" min="1" max="10"></input>
->>>>>>> e97b796ad50abb1a0e7e1068e078892eba3f50c1
+      {/* button to add expect statement, dropdowns to hold 'toBe', 'toEqual', etc */}
+      <button>Add expect</button>
     </div>
   )
 
