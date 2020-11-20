@@ -35,7 +35,7 @@ export const FileTree: React.FC = () => {
           else{
             return (
               <li key={id}>
-                <a onClick ={setFileView} style = {{margin:"none", outline:"none"}} id = {file.filepath} key={id}>{file.name}</a>
+                <a onClick ={setFileView} id = {file.filepath} key={id}>{file.name}</a>
                   {file.children.length > 0 && traverseFileTree(file.children)}
               </li>
             )
