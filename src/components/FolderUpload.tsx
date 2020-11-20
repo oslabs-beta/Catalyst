@@ -48,7 +48,6 @@ class FileTree {
 
 export const FolderUpload: React.FC = () => {
     const dispatch = useDispatch();
-    const importedFileTree = useSelector((state:any) => state.fileTree);
     const constructFileTree = (files: any) => dispatch(ConstructFileTree(files));
 
     const dialog = remote.dialog

@@ -1,14 +1,28 @@
 import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { ConstructFileTree } from '../reduxComponents/actions/actions'
+
 
 export const FileTree: React.FC = () => {
+
   const fileTree = useSelector((state:any) => state.fileTree)
-  if(fileTree && fileTree.length !== 0){
-    let fileTreeComp = fileTree.map((el: any, id: any) => {
-      return(<div id={id}>{el.name}</div>);
-    });
-    return(<div>{fileTreeComp}</div>)
-  }
-  return(<div></div>);
-}
+
+  const traverseFileTree = (files: any) => {
+    return (
+      <ul> 
+        {files.map((file: any, id: any) => {
+          return (
+            <li key={id}>
+              <span>{file.name}</span>
+                {file.children.length > 0 && traverseFileTree(file.children)}
+            </li>
+          )
+        })}
+      </ul>
+    )
+  };
+
+  return (
+    fileTree ? traverseFileTree(fileTree) : <React.Fragment></React.Fragment>
+  )
+
+};
