@@ -23,3 +23,8 @@ export const ConstructFileTree = (files: any) => ({
     type: types.CONSTRUCT_FILETREE,
     payload: files
 });
+
+export const SetFileView = (filePath: any) =>({
+    type:types.SET_FILE_VIEW,
+    payload: filePath
+})
