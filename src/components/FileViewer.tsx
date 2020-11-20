@@ -3,7 +3,7 @@ import fs from 'fs'
 
 export const FileViewer: React.FC = () =>{
 
-  let fileContent = fs.readFileSync('C:/Users/Danny/Documents/Codesmith/Projects/Catalyst/src/components/TestingBlock.tsx')
+  let fileContent = fs.readFileSync()
   // console.log('this is it', fi)
   let x: any = fileContent.toString()
   let counter = 0 
