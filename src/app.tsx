@@ -3,7 +3,6 @@ import {FolderUpload} from './components/FolderUpload'
 import {useSelector, useDispatch} from 'react-redux'
 import {SetAge} from './reduxComponents/actions/actions'
 import {FileTree} from './components/FileTree'
-import TestBuilder from './components/TestBuilder';
 
 
 // interface here and then pass interface prop into React.FC
@@ -27,7 +26,8 @@ export const App: React.FC = () => {
 
   return (
 
-
+  
+ 
 
 
     <div >
@@ -36,9 +36,9 @@ export const App: React.FC = () => {
       </h1>
       <FolderUpload />
       <FileTree />
-      {counterInStore}
+      {/* {counterInStore}
       <button onClick = {clicked}>Test</button>
-      <TestBuilder/>
+      <TestBuilder/> */}
     </div>
     
   )
