@@ -12,6 +12,8 @@ const mapDispatchToProps = {
 const TestingBlock = (props: any) => {
   return (
     <div>
+      <p>The Component Should...</p>
+      <input>E.g. Button renders correctly...</input>
     </div>
   )
 
