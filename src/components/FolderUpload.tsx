@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {remote} from 'electron';
 import * as electronFs from 'fs';
-import {useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { ConstructFileTree } from '../reduxComponents/actions/actions';
 
 
@@ -48,6 +48,7 @@ class FileTree {
 
 export const FolderUpload: React.FC = () => {
     const dispatch = useDispatch();
+    // creates dispatch that will send file path as an action payload to reducer
     const constructFileTree = (files: any) => dispatch(ConstructFileTree(files));
 
     const dialog = remote.dialog
@@ -82,6 +83,7 @@ export const FolderUpload: React.FC = () => {
             // will return an array of FileTree objects along with any children associated with it 
             const fileTree = rootTree.createTree(projectDirectory)
             console.log(fileTree)
+            // dispatches fileTree to reducer
             constructFileTree(fileTree);
         }
     }

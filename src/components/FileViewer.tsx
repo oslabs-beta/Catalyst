@@ -3,8 +3,7 @@ import fs from 'fs'
 
 export const FileViewer: React.FC = () =>{
 
-  let fileContent = fs.readFileSync('C:/Users/Danny/Documents/Codesmith/Projects/Catalyst/src/components/TestingBlock.tsx')
-  // console.log('this is it', fi)
+  /* let fileContent = fs.readFileSync();
   let x: any = fileContent.toString()
   let counter = 0 
   for(let space = 0; space < x.length -1; space++){
@@ -20,17 +19,17 @@ export const FileViewer: React.FC = () =>{
       <p>{id}</p> <p style = {{textIndent:` ${tabs}px`, color: `${color}`}}>{ele}</p>
     </div>
     
-  })
-  console.log(counter)
-  console.log(x)
-  // fs.writeFileSync('C:/Users/Danny/Documents/Codesmith/Projects/Catalyst/tester.txt', readMe)
+  }) */
+  // console.log(counter)
+  // console.log(x)
 
   return(
     <div>
-      <code>
+      fileViewer
+      {/* <code>
         {tester}
         <p style = {{tabSize : '5'}}>hey</p>
-      </code>
+      </code> */}
     </div>
   )
 }
