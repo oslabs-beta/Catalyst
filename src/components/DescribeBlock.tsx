@@ -14,10 +14,10 @@ const DescribeBlock = (props: any) => {
   return (
     <div>
       <p>Describe Block</p>
-      <button>X</button>
-      <input>What functionality should the component have?</input>
+      <button className="exitButton">X</button>
+      <input type="text" placeholder="What functionality should the component have?"/>
       <TestingBlock/>
-      <button>+ It Statement</button>
+      <button>Nest Describe Block</button>
     </div>
   )
 
