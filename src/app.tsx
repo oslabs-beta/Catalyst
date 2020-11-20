@@ -1,44 +1,24 @@
-import React, {useState} from 'react'
+import React from 'react'
+import {useSelector} from 'react-redux'
+import { MainContent } from './components/MainContent'
 import {FolderUpload} from './components/FolderUpload'
-import {useSelector, useDispatch} from 'react-redux'
-import {SetAge} from './reduxComponents/actions/actions'
-import {FileTree} from './components/FileTree'
-
-
-// interface here and then pass interface prop into React.FC
+import './app.scss'
 
 export const App: React.FC = () => {
-  const [checker, updateChecker] = useState(1)
-  const dispatch = useDispatch()
-  const counterInStore = useSelector((state:any) => state.counter)
-  const setAge = (checker:any) => dispatch(SetAge(checker))
+
   const fileTree = useSelector((state: any) => state.fileTree)
 
-  function clicked(){
-    updateChecker(checker +1)
-    console.log(checker)
-    setAge(checker)
 
-  }
+  return(
 
+    fileTree.length ?
 
+    <MainContent />
 
+    :
 
-  return (
+    <FolderUpload />
 
-
-
-
-    <div >
-      <h1>
-        Hello from Run Planet
-      </h1>
-      <FolderUpload />
-      <FileTree />
-      {counterInStore}
-      <button onClick = {clicked}>Test</button>
-    </div>
-    
   )
 };
 
