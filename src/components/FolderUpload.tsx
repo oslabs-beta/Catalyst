@@ -26,7 +26,7 @@ class FileTree {
 
         // readdirSync will return all the names of the files in the directory as an array 
         electronFs.readdirSync(directory).forEach((fileName: string) =>{
-            if(fileName !== ".git" && fileName !== "node_modules" && fileName !== "dist" && fileName !== ".DS_Store" && fileName !== ".eslintrc" && fileName !== "README.md" && fileName !== "package-lock.json" && fileName !== "package.json" && fileName !== ".gitignore" && fileName !== "build" && fileName !== ".vscode" && fileName !== "webpack.config")
+            if(fileName !== ".git" && fileName !== "node_modules" && fileName !== "dist" && fileName!== "assets" && fileName !== ".DS_Store" && fileName !== ".eslintrc" && fileName !== "README.md" && fileName !== "package-lock.json" && fileName !== "package.json" && fileName !== ".gitignore" && fileName !== "build" && fileName !== ".vscode" && fileName !== "webpack.config")
             {
                 let fileInfo = new FileTree(directory + "/" + fileName, fileName)
 
