@@ -28,3 +28,13 @@ export const SetFileView = (filePath: any) =>({
     type:types.SET_FILE_VIEW,
     payload: filePath
 })
+export const toggleFolderCollapse = (filePath: any) => ({
+    type: types.TOGGLE_FOLDER_COLLAPSE,
+    payload: filePath
+  });
+  
+export const highlightFile = (fileName: string) => ({
+    type: types.HIGHLIGHT_FILE,
+    payload: fileName
+  });
+   
