@@ -9,7 +9,7 @@ import {ExpectStatement} from './ExpectStatement'
 
 export const ItStatement: React.FC = () =>{
   // let aa = 1 
-  let x = {0 :<ExpectStatement/>}
+  let x = {0 :<ExpectStatement id = {"0"}/>}
   const dispatch = useDispatch()
   let [arrayOfExpect,updateArray] = useState([x[0]])
   let index = useSelector((state: any) => state.keyOfExpect)
@@ -22,7 +22,7 @@ export const ItStatement: React.FC = () =>{
   // not real error Typescript handles weirdly 
 
   function addExpect(){
-    x[index] = <ExpectStatement/>
+    x[index] = <ExpectStatement id = {`${index}`}/>
     updateArray(arrayOfExpect.concat(x[index]))
     console.log(arrayOfExpect)
     updateIndex()
