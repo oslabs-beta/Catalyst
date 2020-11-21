@@ -15,8 +15,8 @@ export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
 
     case types.CONSTRUCT_FILETREE:
-      console.log('about to construct file');
-      console.log('in reducer with directory imported', action.payload);
+      // console.log('about to construct file');
+      // console.log('in reducer with directory imported', action.payload);
       return {
         ...state,
         fileTree: action.payload
