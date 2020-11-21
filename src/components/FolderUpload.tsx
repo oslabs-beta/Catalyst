@@ -3,7 +3,7 @@ import {remote} from 'electron';
 import * as electronFs from 'fs';
 import { useDispatch} from 'react-redux';
 import { ConstructFileTree } from '../reduxComponents/actions/actions';
-import catalystLogo from '../../assets/Catalystfull-02.png'
+import catalystLogo from '../../assets/catalyst_icons/Catalystfull-02.png';
 
 
 

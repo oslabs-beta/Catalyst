@@ -13,11 +13,6 @@ import * as types from '../constants/actionTypes';
 //  */
 
  
-export const SetAge = (incomingAge: any) => ({
-    type: types.INCREMENT_COUNTER,
-    payload :incomingAge
-});
-
 
 export const ConstructFileTree = (files: any) => ({
     type: types.CONSTRUCT_FILETREE,

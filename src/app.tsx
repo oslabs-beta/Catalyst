@@ -1,4 +1,5 @@
 import React from 'react'
+import {useSelector} from 'react-redux'
 import { MainContent } from './components/MainContent'
 import {FolderUpload} from './components/FolderUpload'
 
@@ -7,7 +8,6 @@ import './stylesheets/styles';
 
 
 // interface here and then pass interface prop into React.FC
-import './app.scss'
 
 export const App: React.FC = () => {
 
@@ -15,7 +15,7 @@ export const App: React.FC = () => {
 
 
   return(
-
+    
     fileTree.length ?
 
     <MainContent />
