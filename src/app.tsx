@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {SetAge} from './reduxComponents/actions/actions'
 import {FileTree} from './components/FileTree'
 import TestBuilder from './components/TestBuilder';
+import './stylesheets/styles.scss'
 
 
 // interface here and then pass interface prop into React.FC
