@@ -27,10 +27,7 @@ export const FileViewer: React.FC = () =>{
       </div>
       
     })
-    console.log(counter)
-    console.log(x)
     return tester
-    // fs.writeFileSync('C:/Users/Danny/Documents/Codesmith/Projects/Catalyst/tester.txt', readMe)
   }
   
 
