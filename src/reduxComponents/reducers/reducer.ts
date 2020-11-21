@@ -9,7 +9,8 @@ const initialState = {
   // 
   counter : 0,
   fileTree: [],
-  fileToView: ''
+  fileToView: '',
+  keyOfExpect: 1
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -33,6 +34,12 @@ export const reducer = (state: any = initialState, action: any) => {
       return{
         ...state,
         fileToView: action.payload
+      }
+
+    case types.UPDATE_KEY:
+      return{
+        ...state,
+        keyOfExpect: state.keyOfExpect+1
       }
 
 

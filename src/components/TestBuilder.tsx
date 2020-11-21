@@ -1,16 +1,7 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import DescribeBlock from './DescribeBlock';
+import {DescribeBlock} from './DescribeBlock';
 
-const mapStateToProps = (state: any) => ({
-
-})
-
-const mapDispatchToProps = {
-
-}
-
-const TestBuilder = (props: any) => {
+export const TestBuilder: React.FC = () => {
   return (
     <div>
       <button>New Test</button>
@@ -25,5 +16,3 @@ const TestBuilder = (props: any) => {
     </div>
   )
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(TestBuilder)

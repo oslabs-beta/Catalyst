@@ -28,3 +28,8 @@ export const SetFileView = (filePath: any) =>({
     type:types.SET_FILE_VIEW,
     payload: filePath
 })
+
+export const UpdateKey = () =>({
+    type: types.UPDATE_KEY,
+    payload: ''
+})
