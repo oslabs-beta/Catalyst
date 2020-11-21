@@ -1,8 +1,9 @@
 import React from 'react'
 import { MainContent } from './components/MainContent'
 import {FolderUpload} from './components/FolderUpload'
-import {useSelector, useDispatch} from 'react-redux'
-import './stylesheets/styles.scss'
+
+import './stylesheets/styles';
+
 
 
 // interface here and then pass interface prop into React.FC
