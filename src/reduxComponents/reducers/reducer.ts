@@ -8,7 +8,8 @@ const initialState = {
   // state bois goes here
   // 
   counter : 0,
-  fileTree: null
+  fileTree: [],
+  fileToView: ''
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -27,6 +28,12 @@ export const reducer = (state: any = initialState, action: any) => {
         ...state,
         fileTree: action.payload
       };
+
+    case types.SET_FILE_VIEW:
+      return{
+        ...state,
+        fileToView: action.payload
+      }
 
 
 
