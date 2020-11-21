@@ -1,16 +1,10 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import TestingBlock from './TestingBlock';
+import { TestingBlock } from './TestingBlock';
 
-const mapStateToProps = (state: any) => ({
 
-})
 
-const mapDispatchToProps = {
-
-}
-
-const DescribeBlock = (props: any) => {
+export const DescribeBlock = (props: any) => {
   return (
     <div>
       <p>Describe Block</p>
@@ -23,5 +17,3 @@ const DescribeBlock = (props: any) => {
 
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(DescribeBlock)
