@@ -1,11 +1,12 @@
 @import 'components/all';
 
+$primary: #1c768f;
+$secondary: #032539;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
+
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-.exitButton {
-  background: brown;
+  font-family: 'Nunito Sans', sans-serif;
 }
