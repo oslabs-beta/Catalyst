@@ -1,0 +1,39 @@
+$primary: #1c768f;
+$secondary: #032539;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
+.folderupload {
+  border-radius: 5em;
+  padding: .5em
+}
+
+.frontheader {
+  border: 1px solid red;
+  height: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frontpage {
+  border: 1px solid green;
+  height: 35em;
+  padding: 0;
+  margin: 0;
+}
+
+.frontbody {
+  border: 1px solid black;
+  height: 25em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  // width: 15em;
+}
+
+.catalystlogo {
+  width: 30em;
+  height: auto;
+}

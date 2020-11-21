@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import * as electronFs from 'fs';
-import { electron, NoEmitOnErrorsPlugin } from 'webpack';
 import { SetFileView } from '../reduxComponents/actions/actions';
 
 export const FileTree: React.FC = () => {
