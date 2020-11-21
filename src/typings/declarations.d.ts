@@ -11,3 +11,8 @@ declare module '*.css' {
 declare module '*.scss' {
 
 }
+
+declare module '*.png' {
+  const png: any;
+  export default png;
+}

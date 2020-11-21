@@ -3,7 +3,7 @@ import {remote} from 'electron';
 import * as electronFs from 'fs';
 import { useDispatch} from 'react-redux';
 import { ConstructFileTree } from '../reduxComponents/actions/actions';
-
+import catalystLogo from '../../assets/Catalystfull-02.png'
 
 
 
@@ -90,8 +90,14 @@ export const FolderUpload: React.FC = () => {
 
 
     return(
-        <div>
-            <button onClick = {uploadFolder}>Upload Project</button>
+        <div className="frontpage">
+            <div className="frontheader">
+                <img className ="catalystlogo" src={catalystLogo}/>
+            </div>
+            <div className="frontbody">
+                <h2>Choose a Project Directory to Upload</h2>
+                <button className="folderupload" onClick = {uploadFolder}>Upload Project</button>
+            </div>
         </div>
     )
 }
