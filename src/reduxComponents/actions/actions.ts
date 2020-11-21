@@ -23,3 +23,14 @@ export const ConstructFileTree = (files: any) => ({
     type: types.CONSTRUCT_FILETREE,
     payload: files
 });
+
+export const toggleFolderCollapse = (filePath: any) => ({
+    type: types.TOGGLE_FOLDER_COLLAPSE,
+    payload: filePath
+  });
+  
+export const highlightFile = (fileName: string) => ({
+    type: types.HIGHLIGHT_FILE,
+    payload: fileName
+  });
+   
