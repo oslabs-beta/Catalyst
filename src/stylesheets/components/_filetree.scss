@@ -3,6 +3,10 @@
   text-decoration: underline;
 }
 
+.directory:hover {
+  cursor: pointer;
+}
+
 .FileTree li {
   list-style-type: none;
 }
