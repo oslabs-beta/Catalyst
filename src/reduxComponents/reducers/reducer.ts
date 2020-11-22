@@ -4,19 +4,16 @@ import * as types from '../constants/actionTypes'
 
 
 const initialState = {
-  // describe: ""
-  // state bois goes here
-  // 
+
   fileTree: [],
-  fileToView: ''
+  fileToView: '',
+  toggleFolder: {},
 };
 
 export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
 
     case types.CONSTRUCT_FILETREE:
-      // console.log('about to construct file');
-      // console.log('in reducer with directory imported', action.payload);
       return {
         ...state,
         fileTree: action.payload
@@ -28,8 +25,17 @@ export const reducer = (state: any = initialState, action: any) => {
         fileToView: action.payload
       }
 
+    
+    case types.TOGGLE_FOLDER:
+      // creating an object that will hold the file path of each directory and will toggle from T to F
+      // important as we can now keep track of whether that specifc directory/filepath has been clicked or not
+      const toggleFolder = {...state.toggleFolder};
+      toggleFolder[action.payload] = !toggleFolder[action.payload];
 
-
+      return {
+        ...state,
+        toggleFolder
+      }
 
 
 

@@ -1,25 +1,19 @@
 import * as types from '../constants/actionTypes';
 
 
-// interface IncrementAction {
-//   type: typeof Increment_COUNTER
-// };
 
-// interface DecrementAction {
-//   type: typeof DECREMENT_COUNTER
-// };
 
-// export type ActionTypes = IncrementAction | DecrementAction
-//  */
-
- 
-
-export const ConstructFileTree = (files: any) => ({
+export const ConstructFileTree = (files: []) => ({
     type: types.CONSTRUCT_FILETREE,
     payload: files
 });
 
-export const SetFileView = (filePath: any) =>({
+export const SetFileView = (filePath: string) =>({
     type:types.SET_FILE_VIEW,
     payload: filePath
-})
+});
+
+export const ToggleFolder = (filePath: string) => ({
+    type: types.TOGGLE_FOLDER,
+    payload: filePath
+});

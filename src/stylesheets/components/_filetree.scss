@@ -2,3 +2,13 @@
   cursor: pointer; 
   text-decoration: underline;
 }
+
+.FileTree li {
+  list-style-type: none;
+}
+
+.FileTree span img {
+  width: 1rem;
+  height: 1rem;
+  margin-right:0.25rem;
+}
