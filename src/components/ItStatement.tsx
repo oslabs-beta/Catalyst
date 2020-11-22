@@ -15,14 +15,11 @@ export const ItStatement: React.FC = () =>{
   let index = useSelector((state: any) => state.keyOfExpect)
   let updateIndex = () => dispatch(UpdateKey())
 
-  useEffect(() =>{
-    console.log('hey')
-  }, [arrayOfExpect])
 
   // not real error Typescript handles weirdly 
 
   function addExpect(){
-    x[index] = <ExpectStatement id = {`${index}`}/>
+    x[index] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>
     updateArray(arrayOfExpect.concat(x[index]))
     console.log(arrayOfExpect)
     updateIndex()

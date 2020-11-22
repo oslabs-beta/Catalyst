@@ -66,7 +66,7 @@ export const FolderUpload: React.FC = () => {
             message: 'Choose a Project to Create Tests for:'
         })
 
-        console.log('this is the project',Project)
+        // console.log('this is the project',Project)
         // if the user cancels the action then undefined will be returned
         // if the user successfully completes the action then a string array will be returned
          // Project is an object that holds canceled (boolean to check if it was cancelled) and filePaths (array of filepaths)
@@ -82,7 +82,7 @@ export const FolderUpload: React.FC = () => {
 
             // will return an array of FileTree objects along with any children associated with it 
             const fileTree = rootTree.createTree(projectDirectory)
-            console.log(fileTree)
+            // console.log(fileTree)
             // dispatches fileTree to reducer
             constructFileTree(fileTree);
         }
