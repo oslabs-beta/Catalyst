@@ -1,15 +1,22 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { toggleFolderCollapse, highlightFile } from '../reduxComponents/actions/actions'
 import * as electronFs from 'fs';
-import { SetFileView } from '../reduxComponents/actions/actions';
+import { SetFileView, ToggleFolder } from '../reduxComponents/actions/actions';
+import FILE_ICONS from '../icons/icons'; 
+
+
 
 export const FileTree: React.FC = () => {
   const dispatch = useDispatch()
   // obtains the filetree from the store
-  const fileTree = useSelector((state:any) => state.fileTree)
+  const fileTree = useSelector((state: any) => state.fileTree)
+  // obtains the folder status from the store
+  const isOpen = useSelector((state:any) => state.toggleFolder);
   // dispatches an action to set the file that will be viewed
-  const setFileInRedux = (checker:any) => dispatch(SetFileView(checker))
+  const setFileInRedux = (checker:any) => dispatch(SetFileView(checker));
+   // dispatches an action to set the folder to open or not
+  const toggleFolder = (filePath: string) => dispatch(ToggleFolder(filePath));
 
   // onclick function to set invoke the function to dispatch an action
   function setFileView(event:any){
@@ -17,25 +24,37 @@ export const FileTree: React.FC = () => {
     setFileInRedux(event.target.id)
   }
 
-  const handleToggleFolderClick = (filePath: any) => {
-    dispatch(toggleFolderCollapse(filePath));
+  // func will strip extension ending from files which will be used as the key for the imported object that holds images for 
+  // those specific file icons
+  const extensionGrabber = (ext:string) => {
+    if (ext.split('.')[1] === undefined) {
+      return 'folder';
+    }
+    return ext.split('.')[1];
   };
 
-  const handleHighlightFileClick = (fileName: string) => {
-    dispatch(highlightFile(fileName));
-  };
+  // sending filepath to reducer to keep track of which folder is clicked on. if set to a global state then it will 
+  // toggle true and false on each click of the directory
+  const handleToggle = (filePath:string) => {
+    toggleFolder(filePath);
+  }
 
-  const traverseFileTree = (files: any) => {
+  const traverseFileTree = (files: []) => {
     return (
-      <ul className = "FileTree"> 
-        {files.map((file: any, id: any) => {
+      <ul className = "FileTree" > 
+        {files.map((file: any, id: number) => {
 
-          let checker = electronFs.statSync(file.filepath)
+          let extension = extensionGrabber(file.name);
+          let checker = electronFs.statSync(file.filepath);
+
           if(checker.isDirectory()){
+
             return (
               <li key={id}>
-                <span key={id}>{file.name}</span>
-                  {file.children.length > 0 && traverseFileTree(file.children)}
+                <span className='directory' key={id} onClick={() => handleToggle(file.filepath)}><span>{FILE_ICONS[extension]}</span>{file.name}</span>
+                  {/* {file.children.length > 0 && traverseFileTree(file.children)} */}
+                  {/* if isOpen is true then will render closed folders. can edit as necessary */}
+                  {!isOpen[file.filepath] && traverseFileTree(file.children)}
               </li>
             )
           }
@@ -43,7 +62,7 @@ export const FileTree: React.FC = () => {
           else{
             return (
               <li key={id}>
-                <a onClick ={setFileView} id = {file.filepath} key={id}>{file.name}</a>
+                <a onClick ={setFileView} id = {file.filepath} key={id}><span id='icon'>{FILE_ICONS[extension]}</span>{file.name}</a>
                   {file.children.length > 0 && traverseFileTree(file.children)}
               </li>
             )
@@ -61,3 +80,6 @@ export const FileTree: React.FC = () => {
   )
 
 };
+
+
+
