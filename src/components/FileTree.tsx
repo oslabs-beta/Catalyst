@@ -47,6 +47,7 @@ export const FileTree: React.FC = () => {
           let checker = electronFs.statSync(file.filepath);
 
           if(checker.isDirectory()){
+
             return (
               <li key={id}>
                 <span className='directory' key={id} onClick={() => handleToggle(file.filepath)}><span>{FILE_ICONS[extension]}</span>{file.name}</span>

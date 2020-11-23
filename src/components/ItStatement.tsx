@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKey, AddItStatements } from '../reduxComponents/actions/actions';
+import { UpdateKey, UpdateData } from '../reduxComponents/actions/actions';
 import {ExpectStatement} from './ExpectStatement'
 
 
@@ -8,37 +8,57 @@ import {ExpectStatement} from './ExpectStatement'
 
 
 export const ItStatement: React.FC = () =>{
-  /* // let aa = 1 
-  let x = {0 :<ExpectStatement id = {"0"}/>}
   const dispatch = useDispatch()
-  let [arrayOfExpect,updateArray] = useState([x[0]])
   let index = useSelector((state: any) => state.keyOfExpect)
   let updateIndex = () => dispatch(UpdateKey())
+  const data = useSelector((state: any) => state.allData)
+  let updateData = (data:any) => dispatch(UpdateData(data))
+  let [arrayOfExpect,updateArray] = useState([])
+  
+
+  useEffect(() =>{
+    // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
+    let x: {[k:string]:any}= {}
+    x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`} />
+    updateArray(arrayOfExpect.concat(x[`${index}`]))
+    updateIndex()
+  }, [])
+  
+  
+  
+  
 
 
   // not real error Typescript handles weirdly 
 
   function addExpect(){
+    // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
+    let x: {[k:string]:any} = {}
     x[index] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>
     updateArray(arrayOfExpect.concat(x[index]))
-    console.log(arrayOfExpect)
+    let newExpect:{[k:string]: any} = {}
+    newExpect[`firstInput${index}`] = 'type'
+    newExpect['testTypes'] = 'equal'
+    newExpect[`lastInput${index}`] = ''
+    data[index] = newExpect
+    updateData(data)
     updateIndex()
-  } */
+
+  }
 
   // have access to empty object to hold itStatements
-  const initialItStatements = useSelector((state: any) => state.itStatements);
-  const dispatch = useDispatch();
-  const statementIndex = useSelector((state: any) => state.keyOfExpect);
-  // func that will dispatch additional it statements to store
-  const addItStatement = (statements:any) => dispatch(AddItStatements(statements));
+  // const initialItStatements = useSelector((state: any) => state.itStatements);
+  // const statementIndex = useSelector((state: any) => state.keyOfExpect);
+  // // func that will dispatch additional it statements to store
+  // const addItStatement = (statements:any) => dispatch(AddItStatements(statements));
 
-  const createItStatement = () => {
-    console.log('we are in the clicking part');
-    console.log('this is the state in the handle click', initialItStatements)
-    // let statements = initialItStatements.concat(<ExpectStatement key={statementIndex}/>)
-    // console.log(statements);
-    addItStatement(<ExpectStatement key={statementIndex}/>);
-  };
+  // const createItStatement = () => {
+  //   console.log('we are in the clicking part');
+  //   console.log('this is the state in the handle click', initialItStatements)
+  //   // let statements = initialItStatements.concat(<ExpectStatement key={statementIndex}/>)
+  //   // console.log(statements);
+  //   addItStatement(<ExpectStatement key={statementIndex}/>);
+  // };
 
 
 
@@ -46,18 +66,8 @@ export const ItStatement: React.FC = () =>{
   return(
     <div>
 
-      {/* {initialItStatements.map((statement:any) => {
-        <ExpectStatement
-          key={statementIndex}
-        />
-      })} */}
-      initialItStatements ? 
-      {initialItStatements.map((statements:any) => {
-        {statements}
-      })} : <p>nothing here</p>
-
-
-      <button onClick = {createItStatement}>Add expect </button>
+      {arrayOfExpect}
+      <button onClick = {addExpect}>Add expect </button>
     </div>
   )
 

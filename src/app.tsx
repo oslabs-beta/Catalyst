@@ -2,7 +2,6 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 import { MainContent } from './components/MainContent'
 import {FolderUpload} from './components/FolderUpload'
-import {ItStatement} from './components/ItStatement';
 
 import './stylesheets/styles';
 
@@ -16,15 +15,13 @@ export const App: React.FC = () => {
 
 
   return(
+    fileTree.length ?
+
+
+    <MainContent />
+    :
+    <FolderUpload />
     
-    // fileTree.length ?
-
-    // <MainContent />
-
-    // :
-
-    // <FolderUpload />
-    <ItStatement />
 
   )
 };

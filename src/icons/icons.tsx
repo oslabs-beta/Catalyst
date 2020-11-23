@@ -28,7 +28,10 @@ import folderIcon from '../../assets/icons/default_folder.svg';
 
 
 
-const FILE_ICONS = {
+// type Keys = keyof typeof FILE_ICONS;
+
+
+const FILE_ICONS: {[k:string]: JSX.Element} = {
   tsx: <img src={tsxLogo} />,
   jsx: <img src={tsxLogo} />,
   js: <img src={jsLogo} />,
@@ -40,6 +43,8 @@ const FILE_ICONS = {
   env: < img src={configLogo} />,
   folder: < img src={folderIcon} />
 };
+
+
 
 export default FILE_ICONS;
 

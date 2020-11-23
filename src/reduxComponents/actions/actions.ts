@@ -8,7 +8,7 @@ export const ConstructFileTree = (files: []) => ({
     payload: files
 });
 
-export const SetFileView = (filePath: string) =>({
+export const SetFileView = (filePath: any) => ({
     type:types.SET_FILE_VIEW,
     payload: filePath
 });
@@ -18,12 +18,12 @@ export const ToggleFolder = (filePath: string) => ({
     payload: filePath
 });
 
-export const UpdateKey = () =>({
+export const UpdateKey = () => ({
     type: types.UPDATE_KEY,
     payload: ''
 })
 
-export const AddItStatements = (statements:any) => ({
-    type: types.ADD_IT_STATEMENTS,
-    payload: statements
-});
+export const UpdateData = (data:any) => ({
+    type: types.UPDATE_DATA,
+    payload: data
+})
