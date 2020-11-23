@@ -15,14 +15,13 @@ export const App: React.FC = () => {
 
 
   return(
-    
     fileTree.length ?
 
+
     <MainContent />
-
     :
-
     <FolderUpload />
+    
 
   )
 };

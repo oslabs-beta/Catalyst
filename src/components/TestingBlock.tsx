@@ -1,9 +1,7 @@
 import * as React from 'react';
 
 
-
-
-export const TestingBlock = (props: any) => {
+export const TestingBlock: React.FC = () => {
   return (
     <div>
       {/* <p> and button should be on same line */}
@@ -25,5 +23,3 @@ export const TestingBlock = (props: any) => {
   )
 
 }
-
-

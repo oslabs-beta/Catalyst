@@ -1,11 +1,11 @@
 import React from 'react'
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import fs from 'fs'
+
 
 export const FileViewer: React.FC = () =>{
   let fileViewPath: string
-  fileViewPath = useSelector((state: any) => state.fileToView)
-
+  fileViewPath = useSelector((state: any) => state.fileToView);
 
 
   function pathToText(){
@@ -22,7 +22,7 @@ export const FileViewer: React.FC = () =>{
     let color = 'blue'
     // move all in line styles into the css file
     let tester = x.split('\n').map((ele: string, id:number) =>{
-      return <div style ={{display: 'flex', flexDirection: 'row'}}>
+      return <div key={id} >
         <p>{id}</p> <p style = {{textIndent:` ${tabs}px`, color: `${color}`}}>{ele}</p>
       </div>
       
@@ -33,11 +33,8 @@ export const FileViewer: React.FC = () =>{
 
   return(
       fileViewPath === '' ?
-      <div>
-
-      </div>
+      <React.Fragment></React.Fragment>
       :
-      
       <div>
         <code>
           {pathToText()}
