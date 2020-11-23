@@ -13,8 +13,6 @@ export const MainContent: React.FC = () =>{
       <div>
         <FileViewer />
       </div>
-      
-
     </div>
   )
 }
