@@ -29,7 +29,6 @@ export const TestBuilder: React.FC = () => {
     // updates the index of the it and describe because each has been added to the store
     updateDescribeIndex()
     updateItIndex()
-
   },[])
 
   function addDescribe(){

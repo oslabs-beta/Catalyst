@@ -45,3 +45,8 @@ export const UpdateKeyOfItObj = () => ({
 export const UpdateKeyOfExpectsObj = () => ({
     type: types.UPDATE_KEY_OF_EXPECTS_OBJ,
 })
+
+export const UpdateItObj = (data:any) =>({
+    type: types.UPDATE_IT_OBJ,
+    payload: data
+})

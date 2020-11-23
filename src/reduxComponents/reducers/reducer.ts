@@ -79,7 +79,12 @@ export const reducer = (state: any = initialState, action: any) => {
         itStatements: itStatements,
         keyOfExpect: state.keyOfExpect + 1
       };
-
+    
+    case types.UPDATE_IT_OBJ:
+      return {
+        ...state,
+        its: action.payload
+      }
 
     case types.UPDATE_KEY_OF_DESCRIBE: 
     return {
