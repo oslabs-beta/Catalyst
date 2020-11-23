@@ -10,6 +10,7 @@ interface Props{
 //   key: number
 // }
 
+type htmlElement = HTMLSelectElement | HTMLInputElement
 
 export const ExpectStatement: React.FC<Props> = ({id}: Props) =>{
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ export const ExpectStatement: React.FC<Props> = ({id}: Props) =>{
 
   let [inputNeeded , updateInput] = useState(false)
 
-  function handleChange(event: Event){
+  function handleChange(event: React.ChangeEvent<htmlElement>){
     // obtains the element that is needed
     let block = document.getElementById(id)
 
