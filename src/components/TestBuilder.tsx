@@ -3,7 +3,7 @@ import { DescribeBlock } from './DescribeBlock';
 
 
 
-export const TestBuilder = (props: any) => {
+export const TestBuilder:React.FC = () => {
   return (
     <div className="testBuilder">
       <button className="mainButton newTest">New Test</button>
@@ -18,4 +18,3 @@ export const TestBuilder = (props: any) => {
     </div>
   )
 };
-

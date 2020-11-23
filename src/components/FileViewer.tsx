@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import fs from 'fs'
 
+
 export const FileViewer: React.FC = () =>{
   let fileViewPath: string
   fileViewPath = useSelector((state: any) => state.fileToView);

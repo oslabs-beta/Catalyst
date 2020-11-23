@@ -17,3 +17,13 @@ export const ToggleFolder = (filePath: string) => ({
     type: types.TOGGLE_FOLDER,
     payload: filePath
 });
+
+export const UpdateKey = () =>({
+    type: types.UPDATE_KEY,
+    payload: ''
+})
+
+export const AddItStatements = (statements:any) => ({
+    type: types.ADD_IT_STATEMENTS,
+    payload: statements
+});
