@@ -5,7 +5,7 @@ import { UpdateData} from '../reduxComponents/actions/actions';
 interface Props{
   id: string
 }
-
+ 
 // interface Props {
 //   key: number
 // }
