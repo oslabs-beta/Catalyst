@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKey, UpdateData } from '../reduxComponents/actions/actions';
+import { UpdateKeyOfExpect, UpdateData } from '../reduxComponents/actions/actions';
 import {ExpectStatement} from './ExpectStatement'
 
 
@@ -10,8 +10,7 @@ import {ExpectStatement} from './ExpectStatement'
 export const ItStatement: React.FC = () =>{
   const dispatch = useDispatch()
   let index = useSelector((state: any) => state.keyOfExpect)
-  let updateIndex = () => dispatch(UpdateKey())
-  const data = useSelector((state: any) => state.allData)
+  const data = useSelector((state: any) => state.expects)
   let updateData = (data:any) => dispatch(UpdateData(data))
   let [arrayOfExpect,updateArray] = useState([])
   
@@ -21,7 +20,6 @@ export const ItStatement: React.FC = () =>{
     let x: {[k:string]:any}= {}
     x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`} />
     updateArray(arrayOfExpect.concat(x[`${index}`]))
-    updateIndex()
   }, [])
   
   
@@ -29,20 +27,21 @@ export const ItStatement: React.FC = () =>{
   
 
 
-  // not real error Typescript handles weirdly 
 
   function addExpect(){
     // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
     let x: {[k:string]:any} = {}
-    x[index] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>
+    x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>
     updateArray(arrayOfExpect.concat(x[index]))
     let newExpect:{[k:string]: any} = {}
     newExpect[`firstInput${index}`] = 'type'
     newExpect['testTypes'] = 'equal'
     newExpect[`lastInput${index}`] = ''
+    console.log(newExpect)
     data[index] = newExpect
     updateData(data)
     updateIndex()
+    console.log('hey')
 
   }
 
@@ -65,7 +64,6 @@ export const ItStatement: React.FC = () =>{
   
   return(
     <div>
-
       {arrayOfExpect}
       <button onClick = {addExpect}>Add expect </button>
     </div>

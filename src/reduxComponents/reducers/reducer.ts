@@ -9,7 +9,14 @@ const initialState = {
   fileToView: '',
   keyOfExpect: 0,
   toggleFolder: {},
-  allData: {0:{firstInput0: 'type', testTypes:"equal", lastInput0: ''}}
+  expects: {},
+  keyOfExpectsObj: 0,
+  keyOfDescribe:0,
+  describes: {},
+  keyOfIt:0,
+  its: {},
+  keyOfItsObj: 0, 
+  arrOfItStatements: []
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -44,17 +51,23 @@ export const reducer = (state: any = initialState, action: any) => {
       }
 
 
-    case types.UPDATE_KEY:
+    case types.UPDATE_KEY_OF_EXPECT:
       return{
         ...state,
         keyOfExpect: state.keyOfExpect + 1
+      }
+
+      case types.UPDATE_KEY_OF_IT:
+      return{
+        ...state,
+        keyOfIt: state.keyOfIt + 1
       }
 
     
     case types.UPDATE_DATA:
       return{
         ...state,
-        allData: action.payload
+        expects: action.payload
       }
 
     case types.ADD_IT_STATEMENTS:
@@ -68,9 +81,26 @@ export const reducer = (state: any = initialState, action: any) => {
       };
 
 
+    case types.UPDATE_KEY_OF_DESCRIBE: 
+    return {
+      ...state,
+      keyOfDescribe: state.keyOfDescribe + 1
+    };
+
+    case types.UPDATE_KEY_OF_EXPECTS_OBJ: 
+    return {
+      ...state, 
+      keyOfExpectsObj: state.keyOfExpectsObj + 1
+    };
+
+    case types.UPDATE_KEY_OF_ITS_OBJ: 
+    return {
+      ...state, 
+      keyOfItsObj: state.keyOfItsObj + 1
+    };
 
     default: 
       return state;
-
+    
   }
 }
