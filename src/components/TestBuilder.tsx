@@ -1,16 +1,16 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import DescribeBlock from './DescribeBlock';
+import { DescribeBlock } from './DescribeBlock';
 
-const mapStateToProps = (state: any) => ({
+export const TestBuilder: React.FC = () => {
 
-})
+  function getAllData(){
+   
+  }
 
-const mapDispatchToProps = {
 
-}
 
-const TestBuilder = (props: any) => {
+
+
   return (
     <div className="testBuilder">
       <button className="mainButton newTest">New Test</button>
@@ -21,9 +21,7 @@ const TestBuilder = (props: any) => {
         <input/>
         <DescribeBlock/>
       </form>
-      <button>Submit</button>
+      <button onClick = {getAllData}>Submit</button>
     </div>
   )
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(TestBuilder)

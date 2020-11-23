@@ -15,4 +15,4 @@ describe('Testing app component', () => {
   it('render FolderUpload component', () => {
     expect(wrapper.children(FolderUpload).length).toEqual(1);
   })
-});
+}); 
