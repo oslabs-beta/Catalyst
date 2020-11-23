@@ -10,21 +10,19 @@ const initialState = {
   counter : 0,
   fileTree: [],
   fileToView: '',
-  keyOfExpect: 1
+  keyOfExpect: 0,
+  allData: {0:{firstInput0: 'type', testTypes:"equal", lastInput0: ''}}
 };
 
 export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
     case types.INCREMENT_COUNTER:
-      // console.log('working in reducer')
       return{
         ...state,
         counter: action.payload
       };
 
     case types.CONSTRUCT_FILETREE:
-      // console.log('about to construct file');
-      // console.log('in reducer with directory imported', action.payload);
       return {
         ...state,
         fileTree: action.payload
@@ -42,6 +40,12 @@ export const reducer = (state: any = initialState, action: any) => {
         keyOfExpect: state.keyOfExpect+1
       }
 
+    
+    case types.UPDATE_DATA:
+      return{
+        ...state,
+        allData: action.payload
+      }
 
 
 

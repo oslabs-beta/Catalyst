@@ -2,6 +2,15 @@ import * as React from 'react';
 import {DescribeBlock} from './DescribeBlock';
 
 export const TestBuilder: React.FC = () => {
+
+  function getAllData(){
+   
+  }
+
+
+
+
+
   return (
     <div>
       <button>New Test</button>
@@ -12,7 +21,7 @@ export const TestBuilder: React.FC = () => {
         <input></input>
         <DescribeBlock/>
       </form>
-      <button>Submit</button>
+      <button onClick = {getAllData}>Submit</button>
     </div>
   )
 };

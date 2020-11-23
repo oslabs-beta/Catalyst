@@ -24,12 +24,17 @@ export const ConstructFileTree = (files: any) => ({
     payload: files
 });
 
-export const SetFileView = (filePath: any) =>({
+export const SetFileView = (filePath: any) => ({
     type:types.SET_FILE_VIEW,
     payload: filePath
 })
 
-export const UpdateKey = () =>({
+export const UpdateKey = () => ({
     type: types.UPDATE_KEY,
     payload: ''
+})
+
+export const UpdateData = (data:any) => ({
+    type: types.UPDATE_DATA,
+    payload: data
 })
