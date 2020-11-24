@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { UpdateData,  UpdateKeyOfExpect, deleteExpect} from '../reduxComponents/actions/actions';
-import { ItStatement } from './ItStatement';
+
 
 interface Props{
   id: string,
@@ -10,6 +10,7 @@ interface Props{
  
 
 export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
+  
   const dispatch = useDispatch()
   const data = useSelector((state: any) => state.expects)
   const index = useSelector((state: any) => state.keyOfExpect)
@@ -39,6 +40,8 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     // }
     if(remove(parseInt(id))){
       deleteExpectFromStore(id)
+      document.getElementById(`expect-block ${id}`)?.remove()
+      // console.log(ReactDOM.findDOMNode(document.getElementById(`expect-block ${id}`)))
     }
     else{
       console.log('can\'t remove')
@@ -104,24 +107,13 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
       updateData(data)
     }
     
-    
-
-    // use this later to get the values out of the boxes
-    // let x = document.getElementsByClassName('inputbox')
-    // for(let y of x){
-    //  console.log(y)
-    // }
-    
-
-    
-    // console.log(x)
   }
   
   
 
 
   return(
-    <div className = {`expect-block ${id}`} >
+    <div className = {`expect-block ${id}`}  id = {`expect-block ${id}`}>
       <button onClick = {removeExpect}>Delete Expect</button>
       <div id = {`${id}`}>
         <p>expect wrapper  
