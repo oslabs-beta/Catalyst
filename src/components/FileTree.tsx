@@ -1,6 +1,5 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { toggleFolderCollapse, highlightFile } from '../reduxComponents/actions/actions'
 import * as electronFs from 'fs';
 import { SetFileView, ToggleFolder } from '../reduxComponents/actions/actions';
 import FILE_ICONS from '../icons/icons'; 
