@@ -52,3 +52,17 @@ export const UpdateComponentName = (name:any) =>({
     type: types.UPDATE_COMPONENT_NAME,
     payload: name
 })
+
+export const ClearFile = () =>({
+    type: types.CLEAR_FILE
+})
+
+export const deleteExpect = (data: any) => ({
+    type: types.DELETE_EXPECT,
+    payload: data
+})
+
+export const removeFromIt = (data: any) => ({
+    types: types.REMOVE_FROM_IT,
+    payload: data
+})

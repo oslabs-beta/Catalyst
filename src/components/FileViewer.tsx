@@ -1,11 +1,19 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {ClearFile} from '../reduxComponents/actions/actions'
 import fs from 'fs'
 
 
 export const FileViewer: React.FC = () =>{
   let fileViewPath: string
+  const dispatch = useDispatch()
   fileViewPath = useSelector((state: any) => state.fileToView);
+  const clearFileInStore = () => dispatch(ClearFile())
+
+  function clearFile(){
+    clearFileInStore()
+  }
+
 
 
   function pathToText(){
@@ -18,12 +26,27 @@ export const FileViewer: React.FC = () =>{
         counter++
       }
     }
-    let tabs = 50
-    let color = 'blue'
+
+
     // move all in line styles into the css file
     let tester = x.split('\n').map((ele: string, id:number) =>{
-      return <div key={id} >
-        <p>{id}</p> <p style = {{textIndent:` ${tabs}px`, color: `${color}`}}>{ele}</p>
+      let start = 0
+      while(ele[start] === ' '){
+        start++
+      }
+      let spaces= ''
+      for(let i = 0; i < Math.floor(start/2); i++){
+        spaces+= '\t'
+      }
+      let begin = 5-id.toString().length
+      let beginSpaces = id.toString()
+      while(begin > 0){
+        beginSpaces += ' '
+        begin--
+      }
+      console.log(begin)
+      return <div key={id} className = 'codeLine'>
+        <pre>{beginSpaces}{spaces}{ele} </pre>
       </div>
       
     })
@@ -35,7 +58,10 @@ export const FileViewer: React.FC = () =>{
       fileViewPath === '' ?
       <React.Fragment></React.Fragment>
       :
-      <div>
+      <div className = 'codeBlock'>
+        <div className ='buttonHolder'>
+          <button onClick = {clearFile} className = 'clearFile'>X</button>
+        </div>
         <code>
           {pathToText()}
         </code>

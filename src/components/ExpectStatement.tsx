@@ -1,19 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { UpdateData,  UpdateKeyOfExpect} from '../reduxComponents/actions/actions';
+import { UpdateData,  UpdateKeyOfExpect, deleteExpect} from '../reduxComponents/actions/actions';
+import { ItStatement } from './ItStatement';
 
 interface Props{
   id: string,
-  
+  remove: () => boolean
 }
  
 
-export const ExpectStatement: React.FC<Props> = ({id}) =>{
+export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   const dispatch = useDispatch()
   const data = useSelector((state: any) => state.expects)
   const index = useSelector((state: any) => state.keyOfExpect)
+  const allIts = useSelector((state:any) => state.its)
+
   let updateData = (data:any) => dispatch(UpdateData(data))
   let updateExpectKey = () => dispatch( UpdateKeyOfExpect())
+  let deleteExpectFromStore = (data:any) => dispatch(deleteExpect(data))
 
   let [inputNeeded , updateInput] = useState(false)
 
@@ -28,7 +32,14 @@ export const ExpectStatement: React.FC<Props> = ({id}) =>{
   },[])
 
 
-
+  function removeExpect(){
+    // checks to see if the it block has at least on element
+    // if(allIts[`${id}`].length >1){
+    //   deleteExpectFromStore(id)
+    // }
+    remove()
+    // deleteExpectFromStore(id)
+  }
 
 
 
@@ -107,6 +118,7 @@ export const ExpectStatement: React.FC<Props> = ({id}) =>{
 
   return(
     <div className = {`expect-block ${id}`} >
+      <button onClick = {removeExpect}>Delete Expect</button>
       <div id = {`${id}`}>
         <p>expect wrapper  
           
@@ -129,4 +141,4 @@ export const ExpectStatement: React.FC<Props> = ({id}) =>{
       {/* <button>Remove Expect</button> */}
     </div>
   )
-  }
+}
