@@ -17,7 +17,7 @@ const initialState = {
   keyOfDescribe:0,
   keyOfIt:0,
   keyOfExpect: 0,
-
+  componentObj: {}
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -85,7 +85,15 @@ export const reducer = (state: any = initialState, action: any) => {
         describes: action.payload
       }
 
-    default: 
+      
+      case types.UPDATE_COMPONENT_NAME:
+        return{
+          ...state,
+          componentObj: action.payload
+        }
+        
+
+        default: 
       return state;
     
   }
