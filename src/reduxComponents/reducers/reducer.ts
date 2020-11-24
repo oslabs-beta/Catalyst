@@ -85,6 +85,12 @@ export const reducer = (state: any = initialState, action: any) => {
         describes: action.payload
       }
 
+    case types.CLEAR_FILE:
+      return{
+        ...state,
+        fileToView: ''
+      }
+
     default: 
       return state;
     

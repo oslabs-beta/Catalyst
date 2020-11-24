@@ -48,3 +48,7 @@ export const UpdateDescribe = (data:any) =>({
     type: types.UPDATE_DESCRIBE,
     payload: data
 })
+
+export const ClearFile = () =>({
+    type: types.CLEAR_FILE
+})

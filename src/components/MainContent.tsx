@@ -14,7 +14,7 @@ export const MainContent: React.FC = () =>{
       <div>
         <TestBuilder/>
       </div>
-      <div>
+      <div className = 'fileViewer'>
         <FileViewer />
       </div>
     </div>
