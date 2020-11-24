@@ -5,7 +5,7 @@ import { ItStatement } from './ItStatement';
 
 interface Props{
   id: string,
-  remove: () => boolean
+  remove: (x:number) => boolean
 }
  
 
@@ -37,8 +37,12 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     // if(allIts[`${id}`].length >1){
     //   deleteExpectFromStore(id)
     // }
-    remove()
-    // deleteExpectFromStore(id)
+    if(remove(parseInt(id))){
+      deleteExpectFromStore(id)
+    }
+    else{
+      console.log('can\'t remove')
+    }
   }
 
 

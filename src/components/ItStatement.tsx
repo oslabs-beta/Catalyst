@@ -67,13 +67,13 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
     updateIts(itObject)
   }
 
-  function removeExpect(){
+  function removeExpect(removeId:number){
     console.log('trying to remove')
-    // if(itObject[`${itProp}`].length >1){
-      
-    // }
-    console.log('should be the it block',itObject[`${itProp}`])
-    return true
+    if(Object.keys(itObject[`${itProp}`]).length >1){
+      delete itObject[`${itProp}`][`${removeId}`]
+      return true
+    }
+    return false
   }
 
 
