@@ -7,27 +7,21 @@ const initialState = {
 
   fileTree: [],
   fileToView: '',
-  keyOfExpect: 0,
   toggleFolder: {},
-  expects: {},
-  keyOfExpectsObj: 0,
-  keyOfDescribe:0,
+
+  
   describes: {},
-  keyOfIt:0,
   its: {},
-  keyOfItsObj: 0, 
-  arrOfItStatements: [],
-  componentName: '',
+  expects: {},
+  
+  keyOfDescribe:0,
+  keyOfIt:0,
+  keyOfExpect: 0,
   componentObj: {}
 };
 
 export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
-    case types.INCREMENT_COUNTER:
-      return{
-        ...state,
-        counter: action.payload
-      };
 
     case types.CONSTRUCT_FILETREE:
       return {
@@ -72,16 +66,7 @@ export const reducer = (state: any = initialState, action: any) => {
         expects: action.payload
       }
 
-    case types.ADD_IT_STATEMENTS:
-      const itStatements = [...state.itStatements, action.payload];
-      console.log('this is the itStatements in reducer', itStatements);
 
-      return {
-        ...state, 
-        itStatements: itStatements,
-        keyOfExpect: state.keyOfExpect + 1
-      };
-    
     case types.UPDATE_IT_OBJ:
       return {
         ...state,
@@ -94,22 +79,10 @@ export const reducer = (state: any = initialState, action: any) => {
       keyOfDescribe: state.keyOfDescribe + 1
     };
 
-    case types.UPDATE_KEY_OF_EXPECTS_OBJ: 
-    return {
-      ...state, 
-      keyOfExpectsObj: state.keyOfExpectsObj + 1
-    };
-
-    case types.UPDATE_KEY_OF_ITS_OBJ: 
-    return {
-      ...state, 
-      keyOfItsObj: state.keyOfItsObj + 1
-    };
-
     case types.UPDATE_DESCRIBE:
       return{
         ...state,
-        describe: action.payload
+        describes: action.payload
       }
 
       

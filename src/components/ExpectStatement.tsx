@@ -7,10 +7,6 @@ interface Props{
   
 }
  
-// interface Props {
-//   key: number
-// }
-
 
 export const ExpectStatement: React.FC<Props> = ({id}) =>{
   const dispatch = useDispatch()

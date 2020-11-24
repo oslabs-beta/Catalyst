@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKeyOfExpect, UpdateData, UpdateItObj } from '../reduxComponents/actions/actions';
+import { UpdateData, UpdateItObj } from '../reduxComponents/actions/actions';
 import {ExpectStatement} from './ExpectStatement'
 
 
@@ -48,31 +48,19 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
 
     x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>
     updateArray(arrayOfExpect.concat(x[index]))
+    // create an object in to be passed into the store 
     let newExpect:{[k:string]: any} = {}
     newExpect[`firstInput${index}`] = 'type'
     newExpect['testTypes'] = 'equal'
     newExpect[`lastInput${index}`] = ''
-    console.log(newExpect)
+    // add the key value pair to the expect object in the store 
     data[index] = newExpect
     updateData(data)
+    // updates the it object associated with the component to hold the key value of the child 
     updateIts(itObject)
 
 
   }
-
-  // have access to empty object to hold itStatements
-  // const initialItStatements = useSelector((state: any) => state.itStatements);
-  // const statementIndex = useSelector((state: any) => state.keyOfExpect);
-  // // func that will dispatch additional it statements to store
-  // const addItStatement = (statements:any) => dispatch(AddItStatements(statements));
-
-  // const createItStatement = () => {
-  //   console.log('we are in the clicking part');
-  //   console.log('this is the state in the handle click', initialItStatements)
-  //   // let statements = initialItStatements.concat(<ExpectStatement key={statementIndex}/>)
-  //   // console.log(statements);
-  //   addItStatement(<ExpectStatement key={statementIndex}/>);
-  // };
 
 
 

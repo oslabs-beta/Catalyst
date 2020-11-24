@@ -38,14 +38,6 @@ export const UpdateKeyOfIt = () => ({
     payload: ''
 });
 
-export const UpdateKeyOfItObj = () => ({
-    type: types.UPDATE_KEY_OF_ITS_OBJ,
-})
-
-export const UpdateKeyOfExpectsObj = () => ({
-    type: types.UPDATE_KEY_OF_EXPECTS_OBJ,
-})
-
 export const UpdateItObj = (data:any) =>({
     type: types.UPDATE_IT_OBJ,
     payload: data
@@ -56,11 +48,7 @@ export const UpdateDescribe = (data:any) =>({
     payload: data
 })
 
-export const UpdateComponentName = (name:string) =>({
+export const UpdateComponentName = (name:any) =>({
     type: types.UPDATE_COMPONENT_NAME,
     payload: name
-})
-
-export const AddComponentName = () =>({
-    type: types.ADD_COMPONENT_NAME,
 })
