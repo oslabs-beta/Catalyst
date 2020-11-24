@@ -91,6 +91,21 @@ export const reducer = (state: any = initialState, action: any) => {
         fileToView: ''
       }
 
+    case types.DELETE_EXPECT:
+      let expects = state.expects
+      let id = action.payload.toString()
+      delete expects[`${id}`]
+      return{
+        ...state,
+        expects
+      }
+    
+    case types.REMOVE_FROM_IT:
+      
+      return{
+        ...state
+      }
+
     default: 
       return state;
     

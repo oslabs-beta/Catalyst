@@ -23,6 +23,11 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
   const updateItKey = () => dispatch(UpdateKeyOfIt())
   const updateGlobalDescribe = (data:any) => dispatch(UpdateDescribe(data))
 
+  const storeval: {[k:string]:any}= {}
+  storeval[`${index}`]  = ''
+
+
+  
   useEffect(async():Promise<void> =>{
     let itComponent: {[k:string]:any}= {}
     // creates a key value pair that will hold the index and the component 
@@ -40,7 +45,9 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
     let itComponent: {[k:string]:any}= {}
     itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`}/>)
     // add the index of the created it component to the object holding all describe blocks
-    globalDescribeObj[`${describeProp}`] = globalDescribeObj[`${describeProp}`].concat(index)
+    // globalDescribeObj[`${describeProp}`] = globalDescribeObj[`${describeProp}`].concat(index)
+    console.log(globalDescribeObj[`${describeProp}`] )
+    globalDescribeObj[`${describeProp}`][index] = ''
     // updates the describe element in the store
     updateGlobalDescribe(globalDescribeObj)
     // updates the array to be displayed

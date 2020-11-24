@@ -10,3 +10,5 @@ export const UPDATE_KEY_OF_IT = 'UPDATE_KEY_OF_IT';
 export const UPDATE_IT_OBJ = 'UPDATE_IT_OBJ'
 export const UPDATE_DESCRIBE = 'UPDATE_DESCRIBE'
 export const CLEAR_FILE = 'CLEAR_FILE'
+export const DELETE_EXPECT = 'DELETE_EXPECT'
+export const REMOVE_FROM_IT = 'REMOVE_FROM_IT'
