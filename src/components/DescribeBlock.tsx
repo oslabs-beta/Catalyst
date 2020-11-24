@@ -2,8 +2,7 @@ import  React, {useState, useEffect} from 'react';
 import { ItStatement } from './ItStatement';
 import { TestingBlock } from './TestingBlock';
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKeyOfItObj, UpdateKeyOfIt, UpdateDescribe } from '../reduxComponents/actions/actions';
-import { createImportSpecifier } from 'typescript';
+import { UpdateKeyOfIt, UpdateDescribe } from '../reduxComponents/actions/actions';
 
 interface Props{
   describeProp:string
@@ -14,9 +13,6 @@ interface Props{
 
 export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
 
-  const describeBlocks = useSelector((state: any) => state.describe);
-  const describeIndex = useSelector((state: any) => state.describeCounter);
-  const itStatementIndex = useSelector((state: any) => state.keysOfItsObj);
   const globalDescribeObj = useSelector((state:any) => state.describes)
   const index = useSelector((state: any) => state.keyOfIt)
   let [arrayOfIt, updateItArray] = useState([])
@@ -24,14 +20,16 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
 
   const dispatch = useDispatch();
 
-  const updateItObjIndex = () => dispatch(UpdateKeyOfItObj());
   const updateItKey = () => dispatch(UpdateKeyOfIt())
   const updateGlobalDescribe = (data:any) => dispatch(UpdateDescribe(data))
 
   useEffect(async():Promise<void> =>{
     let itComponent: {[k:string]:any}= {}
+    // creates a key value pair that will hold the index and the component 
     itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`}/>)
+    // update the array to be displayed with the component that was created
     updateItArray(arrayOfIt.concat(itComponent[`${index}`]))
+    // update the key value of the it statements
     updateItKey()
   }, [])
 
@@ -41,9 +39,13 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
   async function addIt(){
     let itComponent: {[k:string]:any}= {}
     itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`}/>)
+    // add the index of the created it component to the object holding all describe blocks
     globalDescribeObj[`${describeProp}`] = globalDescribeObj[`${describeProp}`].concat(index)
+    // updates the describe element in the store
     updateGlobalDescribe(globalDescribeObj)
+    // updates the array to be displayed
     updateItArray(arrayOfIt.concat(itComponent[`${index}`]))
+    // increment the number of it statements since one was added 
     updateItKey()
   }
 
