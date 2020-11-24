@@ -20,19 +20,22 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
   let updateData = (data:any) => dispatch(UpdateData(data))
   let [arrayOfExpect,updateArray] = useState([])
   const globalItInput = useSelector((state: any) => state.itInputObj);
+  const updateItGlobal = (data:any) => dispatch(UpdateItStatement(data));
 
   const itKey = useSelector((state:any) => state.keyOfIt)
-
-  const itInput = (data:any) => dispatch(UpdateItStatement(data));
-  
+  const storeval: {[k:string]:any}= {}
+  storeval[`${index}`]  = ''
 
   useEffect(() =>{
     // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
     let x: {[k:string]:any}= {}
-    x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`} />
+    x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`}  remove = {removeExpect}/>
     updateArray(arrayOfExpect.concat(x[`${index}`]))
+
+
     // subtract one because the other file is rendering first
-    itObject[`${itKey}`] = [index]
+    // itObject[`${itKey}`] = [index]
+    itObject[`${itKey}`] = storeval
     updateIts(itObject)
 
   }, [])
@@ -44,9 +47,10 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
   function addExpect(){
     // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
     let x: {[k:string]:any} = {}
-    itObject[`${itProp}`] = itObject[`${itProp}`].concat(index)
+    // itObject[`${itProp}`] = itObject[`${itProp}`].concat(index)
+    itObject[`${itProp}`][index] = ''
 
-    x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>
+    x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`} remove = {removeExpect}/>
     updateArray(arrayOfExpect.concat(x[index]))
     // create an object in to be passed into the store 
     let newExpect:{[k:string]: any} = {}
@@ -55,17 +59,26 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
     newExpect[`lastInput${index}`] = ''
     // add the key value pair to the expect object in the store 
     data[index] = newExpect
+
+    // let storeval: {[k:string]:any}= {}
+    // storeval[`${index}`]  = ''
     updateData(data)
     // updates the it object associated with the component to hold the key value of the child 
     updateIts(itObject)
-
-
   }
 
+  function removeExpect(){
+    console.log('trying to remove')
+    // if(itObject[`${itProp}`].length >1){
+      
+    // }
+    console.log('should be the it block',itObject[`${itProp}`])
+    return true
+  }
 
   const updateItStatement =  (input:any) => {
     globalItInput[itProp] = input; 
-    itInput(globalItInput);
+    updateItGlobal(globalItInput);
   };
   
   return(

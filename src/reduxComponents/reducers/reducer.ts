@@ -86,19 +86,41 @@ export const reducer = (state: any = initialState, action: any) => {
       }
 
       
-      case types.UPDATE_COMPONENT_NAME:
-        return{
-          ...state,
-          componentObj: action.payload
-        }
+    case types.UPDATE_COMPONENT_NAME:
+      return{
+        ...state,
+        componentObj: action.payload
+      }
         
-        case types.UPDATE_IT_STATEMENT:
+    case types.UPDATE_IT_STATEMENT:
           return{
             ...state,
             itInputObj: action.payload
           }
 
-        default: 
+
+    case types.CLEAR_FILE:
+      return{
+        ...state,
+        fileToView: ''
+      }
+
+    case types.DELETE_EXPECT:
+      let expects = state.expects
+      let id = action.payload.toString()
+      delete expects[`${id}`]
+      return{
+        ...state,
+        expects
+      }
+    
+    case types.REMOVE_FROM_IT:
+      
+      return{
+        ...state
+      }
+
+    default: 
       return state;
     
   }

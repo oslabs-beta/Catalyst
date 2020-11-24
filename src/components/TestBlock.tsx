@@ -30,8 +30,16 @@ export const TestBlock: React.FC = () => {
   const itInputGlobal = useSelector((state:any) => state.itInputObj);
 
 
+  
+
 
   const handleClick = () => {
+    let test = `describe('${describeInputGlobal[0]}', () => {
+      it('${itInputGlobal[0]}', () => {
+        expect(wrapper${expectGlobal[0].firstInput0}()${expectGlobal[0].testTypes}(${expectGlobal[0].lastInput0})
+      })
+    });`
+    console.log(test)
     // console.log('i was clicked');
     // console.log('expect(wrapper.text()).toEqual("userinput")');
     // console.log('expect(wrapper.find("").toEqual("userinput")');
@@ -49,7 +57,7 @@ export const TestBlock: React.FC = () => {
     // // });
     // console.log('expect(wrapper.text().toMatch("userInput")');
     // console.log('expect(wrapper.find("userInput").toHaveLength("userInput")');
-
+    
     console.log('this is describeGlobal', describeGlobal);
     console.log('this is its global',itsGlobal );
     console.log('this is expects global', expectGlobal);

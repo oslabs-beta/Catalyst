@@ -14,7 +14,8 @@ export const TestBuilder: React.FC = () => {
 
   const [describes, updateDescribes] = useState([]);
 
-
+  const storeval: {[k:string]:any}= {}
+  storeval[`${itIndex}`]  = ''
 
 
   useEffect(() =>{
@@ -24,7 +25,7 @@ export const TestBuilder: React.FC = () => {
     // add the describe block to be mapped later 
     updateDescribes(describes.concat(x[`${describeIndex}`]))
     // adds the initial it statement key to the describe object in store to keep track of children components
-    describesFromStore[`${describeIndex}`] = [itIndex]
+    describesFromStore[`${describeIndex}`] = storeval
     // updates the index of the it and describe because each has been added to the store
     updateDescribeIndex()
   },[])
@@ -35,7 +36,7 @@ export const TestBuilder: React.FC = () => {
     x[describeIndex] = <DescribeBlock key={`${describeIndex}`} id={`${describeIndex}`} itIndex = {itIndex} describeProp = {`${describeIndex}`}/>;
     // adds the describe block to the array of describe blocks to be rendered
     updateDescribes(describes.concat(x[`${describeIndex}`]));
-    describesFromStore[`${describeIndex}`] = [itIndex];
+    describesFromStore[`${describeIndex}`] = storeval;
     updateDescribeIndex();
   }
 
