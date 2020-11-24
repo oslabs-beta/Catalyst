@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { UpdateData} from '../reduxComponents/actions/actions';
+import { UpdateData,  UpdateKeyOfExpect} from '../reduxComponents/actions/actions';
 
 interface Props{
-  id: string
+  id: string,
+  
 }
  
 // interface Props {
@@ -11,14 +12,31 @@ interface Props{
 // }
 
 
-export const ExpectStatement: React.FC<Props> = ({id}: Props) =>{
+export const ExpectStatement: React.FC<Props> = ({id}) =>{
   const dispatch = useDispatch()
-  const data = useSelector((state: any) => state.allData)
+  const data = useSelector((state: any) => state.expects)
+  const index = useSelector((state: any) => state.keyOfExpect)
   let updateData = (data:any) => dispatch(UpdateData(data))
+  let updateExpectKey = () => dispatch( UpdateKeyOfExpect())
 
   let [inputNeeded , updateInput] = useState(false)
 
-  function handleChange(event: Event){
+
+  useEffect(() =>{
+    data[index] = {}
+    data[index][`firstInput${index}`] = 'type'
+    data[index]['testTypes'] = 'equal'
+    data[index][`lastInput${index}`] = ''
+    updateData(data)
+    updateExpectKey()
+  },[])
+
+
+
+
+
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>){
     // obtains the element that is needed
     let block = document.getElementById(id)
 
@@ -112,6 +130,7 @@ export const ExpectStatement: React.FC<Props> = ({id}: Props) =>{
         </select>
         <input id = {'lastInput' + `${id}`}type = 'text' onChange = {handleChange}/>
       </p>
+      {/* <button>Remove Expect</button> */}
     </div>
   )
   }
