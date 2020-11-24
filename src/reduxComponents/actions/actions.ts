@@ -18,12 +18,30 @@ export const ToggleFolder = (filePath: string) => ({
     payload: filePath
 });
 
-export const UpdateKey = () => ({
-    type: types.UPDATE_KEY,
-    payload: ''
+export const UpdateKeyOfExpect = () => ({
+    type: types.UPDATE_KEY_OF_EXPECT,
 })
 
 export const UpdateData = (data:any) => ({
     type: types.UPDATE_DATA,
+    payload: data
+})
+
+export const UpdateKeyOfDesribe = () => ({
+    type: types.UPDATE_KEY_OF_DESCRIBE,
+});
+
+export const UpdateKeyOfIt = () => ({
+    type: types.UPDATE_KEY_OF_IT,
+});
+
+
+export const UpdateItObj = (data:any) =>({
+    type: types.UPDATE_IT_OBJ,
+    payload: data
+})
+
+export const UpdateDescribe = (data:any) =>({
+    type: types.UPDATE_DESCRIBE,
     payload: data
 })

@@ -9,16 +9,16 @@ const initialState = {
   fileToView: '',
   keyOfExpect: 0,
   toggleFolder: {},
-  allData: {0:{firstInput0: 'type', testTypes:"equal", lastInput0: ''}}
+  expects: {},
+  keyOfExpectsObj: 0,
+  keyOfDescribe:0,
+  describes: {},
+  keyOfIt:0,
+  its: {},
 };
 
 export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
-    case types.INCREMENT_COUNTER:
-      return{
-        ...state,
-        counter: action.payload
-      };
 
     case types.CONSTRUCT_FILETREE:
       return {
@@ -31,7 +31,6 @@ export const reducer = (state: any = initialState, action: any) => {
         ...state,
         fileToView: action.payload
       }
-
     
     case types.TOGGLE_FOLDER:
       // creating an object that will hold the file path of each directory and will toggle from T to F
@@ -44,33 +43,46 @@ export const reducer = (state: any = initialState, action: any) => {
       }
 
 
-    case types.UPDATE_KEY:
+    case types.UPDATE_KEY_OF_EXPECT:
       return{
         ...state,
         keyOfExpect: state.keyOfExpect + 1
+      }
+
+      case types.UPDATE_KEY_OF_IT:
+      return{
+        ...state,
+        keyOfIt: state.keyOfIt + 1
       }
 
     
     case types.UPDATE_DATA:
       return{
         ...state,
-        allData: action.payload
+        expects: action.payload
+      }
+    
+    case types.UPDATE_IT_OBJ:
+      return {
+        ...state,
+        its: action.payload
       }
 
-    case types.ADD_IT_STATEMENTS:
-      const itStatements = [...state.itStatements, action.payload];
-      console.log('this is the itStatements in reducer', itStatements);
-
-      return {
-        ...state, 
-        itStatements: itStatements,
-        keyOfExpect: state.keyOfExpect + 1
-      };
+    case types.UPDATE_KEY_OF_DESCRIBE: 
+    return {
+      ...state,
+      keyOfDescribe: state.keyOfDescribe + 1
+    };
 
 
+    case types.UPDATE_DESCRIBE:
+      return{
+        ...state,
+        describe: action.payload
+      }
 
     default: 
       return state;
-
+    
   }
 }
