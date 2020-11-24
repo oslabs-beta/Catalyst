@@ -1,6 +1,7 @@
 import React from 'react'
 import {FileTree} from './FileTree'
 import {FileViewer} from './FileViewer'
+import {TestBuilder} from './TestBuilder'
 import {useSelector, useDispatch} from 'react-redux'
 
 export const MainContent: React.FC = () =>{
@@ -9,11 +10,14 @@ export const MainContent: React.FC = () =>{
 
 
   return(
-    <div style = {{display: 'flex', flexDirection : "row"}}>
-      <div className = 'hey'>
+    <div className="row">
+      <div className = 'left column'>
         <FileTree />
       </div>
-      <div>
+      <div className="middle column">
+        <TestBuilder />
+      </div>
+      <div className="right column">
         <FileViewer />
       </div>
     </div>
