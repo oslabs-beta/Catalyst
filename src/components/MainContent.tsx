@@ -1,7 +1,9 @@
 import React from 'react'
 import {FileTree} from './FileTree'
-import {FileViewer} from './FileViewer'
-import { TestBuilder } from './TestBuilder'
+import {FileViewer} from './FileViewer';
+import { TestBuilder } from './TestBuilder';
+import { TestBlock } from './TestBlock';
+
 
 export const MainContent: React.FC = () =>{
 
@@ -16,6 +18,9 @@ export const MainContent: React.FC = () =>{
       </div>
       <div>
         <FileViewer />
+      </div>
+      <div>
+        <TestBlock />
       </div>
     </div>
   )

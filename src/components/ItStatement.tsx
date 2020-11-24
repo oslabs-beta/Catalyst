@@ -41,7 +41,6 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
   function addExpect(){
     // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
     let x: {[k:string]:any} = {}
-    console.log(itProp)
     itObject[`${itProp}`] = itObject[`${itProp}`].concat(index)
 
     x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>
