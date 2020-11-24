@@ -48,3 +48,17 @@ export const UpdateDescribe = (data:any) =>({
     type: types.UPDATE_DESCRIBE,
     payload: data
 })
+
+export const ClearFile = () =>({
+    type: types.CLEAR_FILE
+})
+
+export const deleteExpect = (data: any) => ({
+    type: types.DELETE_EXPECT,
+    payload: data
+})
+
+export const removeFromIt = (data: any) => ({
+    types: types.REMOVE_FROM_IT,
+    payload: data
+})

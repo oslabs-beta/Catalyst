@@ -5,3 +5,27 @@
  div p {
   margin: 0;
 }
+
+
+.codeLine{
+  display: flex; 
+  flex-direction: row;
+  
+}
+
+.codeLine pre{
+  margin: 0
+}
+
+.codeBlock{
+  padding-left: 5%;
+}
+
+.clearFile{
+  right:0;
+}
+
+.buttonHolder{
+  width:100%;
+  height:5%;
+}
