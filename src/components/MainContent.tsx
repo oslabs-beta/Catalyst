@@ -9,14 +9,14 @@ export const MainContent: React.FC = () =>{
 
 
   return(
-    <div style = {{display: 'flex', flexDirection : "row"}}>
-      <div className = 'hey'>
+    <div className="row">
+      <div className = 'left column'>
         <FileTree />
       </div>
-      <div>
+      <div className="middle column">
         <TestBuilder/>
       </div>
-      <div>
+      <div className="right column">
         <FileViewer />
       </div>
       <div>

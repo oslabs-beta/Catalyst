@@ -1,0 +1,18 @@
+.row {
+  display: grid;
+  grid-template-columns: 300px repeat(2, 1fr);
+  grid-template-rows: 100%;
+  grid-gap: 10px;
+}
+
+.left {
+  border: 1px solid black;
+}
+
+.middle {
+  border: 1px solid red;
+}
+
+.right {
+  border: 1px solid green;
+}

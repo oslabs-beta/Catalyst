@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateData, UpdateItObj } from '../reduxComponents/actions/actions';
+import { UpdateData, UpdateItObj, UpdateItStatement } from '../reduxComponents/actions/actions';
 import {ExpectStatement} from './ExpectStatement'
 
 
@@ -19,8 +19,11 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
   const updateIts = (data: any) => dispatch(UpdateItObj(data))
   let updateData = (data:any) => dispatch(UpdateData(data))
   let [arrayOfExpect,updateArray] = useState([])
+  const globalItInput = useSelector((state: any) => state.itInputObj);
 
   const itKey = useSelector((state:any) => state.keyOfIt)
+
+  const itInput = (data:any) => dispatch(UpdateItStatement(data));
   
 
   useEffect(() =>{
@@ -60,11 +63,16 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
   }
 
 
+  const updateItStatement =  (input:any) => {
+    globalItInput[itProp] = input; 
+    itInput(globalItInput);
+  };
   
   return(
     <div>
-      {arrayOfExpect}
+      <input placeholder='what to test' onChange={(e) => {updateItStatement(e.target?.value)}} />
       <button onClick = {addExpect}>Add expect </button>
+      {arrayOfExpect}
     </div>
   )
 
