@@ -104,6 +104,12 @@ export const reducer = (state: any = initialState, action: any) => {
       keyOfItsObj: state.keyOfItsObj + 1
     };
 
+    case types.UPDATE_DESCRIBE:
+      return{
+        ...state,
+        describe: action.payload
+      }
+
     default: 
       return state;
     

@@ -50,3 +50,8 @@ export const UpdateItObj = (data:any) =>({
     type: types.UPDATE_IT_OBJ,
     payload: data
 })
+
+export const UpdateDescribe = (data:any) =>({
+    type: types.UPDATE_DESCRIBE,
+    payload: data
+})

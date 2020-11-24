@@ -5,7 +5,8 @@ import {ExpectStatement} from './ExpectStatement'
 
 
 interface Props{
-  itProp: string
+  itProp: string,
+  id: any
 }
  
 
@@ -28,7 +29,7 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
     x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`} />
     updateArray(arrayOfExpect.concat(x[`${index}`]))
     // subtract one because the other file is rendering first
-    itObject[`${itKey-1}`] = [index]
+    itObject[`${itKey}`] = [index]
     updateIts(itObject)
 
   }, [])
@@ -42,6 +43,7 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
   function addExpect(){
     // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
     let x: {[k:string]:any} = {}
+    console.log(itProp)
     itObject[`${itProp}`] = itObject[`${itProp}`].concat(index)
 
     x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`}/>

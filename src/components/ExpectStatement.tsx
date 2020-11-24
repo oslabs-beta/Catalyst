@@ -4,7 +4,7 @@ import { UpdateData,  UpdateKeyOfExpect} from '../reduxComponents/actions/action
 
 interface Props{
   id: string,
-
+  
 }
  
 // interface Props {
@@ -23,7 +23,6 @@ export const ExpectStatement: React.FC<Props> = ({id}) =>{
 
 
   useEffect(() =>{
-    console.log(index)
     data[index] = {}
     data[index][`firstInput${index}`] = 'type'
     data[index]['testTypes'] = 'equal'
