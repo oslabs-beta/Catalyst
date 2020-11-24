@@ -16,7 +16,9 @@ const initialState = {
   keyOfIt:0,
   its: {},
   keyOfItsObj: 0, 
-  arrOfItStatements: []
+  arrOfItStatements: [],
+  componentName: '',
+  componentObj: {}
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -110,7 +112,15 @@ export const reducer = (state: any = initialState, action: any) => {
         describe: action.payload
       }
 
-    default: 
+      
+      case types.UPDATE_COMPONENT_NAME:
+        return{
+          ...state,
+          componentObj: action.payload
+        }
+        
+
+        default: 
       return state;
     
   }

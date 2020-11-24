@@ -55,3 +55,12 @@ export const UpdateDescribe = (data:any) =>({
     type: types.UPDATE_DESCRIBE,
     payload: data
 })
+
+export const UpdateComponentName = (name:string) =>({
+    type: types.UPDATE_COMPONENT_NAME,
+    payload: name
+})
+
+export const AddComponentName = () =>({
+    type: types.ADD_COMPONENT_NAME,
+})

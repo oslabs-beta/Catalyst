@@ -12,8 +12,8 @@ let mainWindow: Electron.BrowserWindow | null;
 function createWindow() {
   // create the browser window
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 700,
+    width: 1920,
+    height: 1080,
     webPreferences: {
       nodeIntegration: true,
       // this allows us to access remote in other files of the app
