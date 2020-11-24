@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { DescribeBlock } from './DescribeBlock';
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKeyOfDesribe } from '../reduxComponents/actions/actions';
+import { UpdateKeyOfDesribe} from '../reduxComponents/actions/actions';
 
 
 
@@ -33,6 +33,7 @@ export const TestBuilder: React.FC = () => {
   function addDescribe(){
     let x: {[k:string]: any} = {};
     x[describeIndex] = <DescribeBlock key={`${describeIndex}`} id={`${describeIndex}`} itIndex = {itIndex} describeProp = {`${describeIndex}`}/>;
+    // adds the describe block to the array of describe blocks to be rendered
     updateDescribes(describes.concat(x[`${describeIndex}`]));
     describesFromStore[`${describeIndex}`] = [itIndex];
     updateDescribeIndex();

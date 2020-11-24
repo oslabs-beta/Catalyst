@@ -7,14 +7,19 @@ const initialState = {
 
   fileTree: [],
   fileToView: '',
-  keyOfExpect: 0,
   toggleFolder: {},
-  expects: {},
-  keyOfExpectsObj: 0,
-  keyOfDescribe:0,
+
+  
   describes: {},
-  keyOfIt:0,
   its: {},
+  expects: {},
+  
+  keyOfDescribe:0,
+  keyOfIt:0,
+  keyOfExpect: 0,
+
+  componentObj: {}
+
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -61,7 +66,8 @@ export const reducer = (state: any = initialState, action: any) => {
         ...state,
         expects: action.payload
       }
-    
+
+
     case types.UPDATE_IT_OBJ:
       return {
         ...state,
@@ -74,11 +80,10 @@ export const reducer = (state: any = initialState, action: any) => {
       keyOfDescribe: state.keyOfDescribe + 1
     };
 
-
     case types.UPDATE_DESCRIBE:
       return{
         ...state,
-        describe: action.payload
+        describes: action.payload
       }
 
     default: 
