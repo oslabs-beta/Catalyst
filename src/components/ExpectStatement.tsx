@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { UpdateData,  UpdateKeyOfExpect, deleteExpect} from '../reduxComponents/actions/actions';
-
+import '../stylesheets/components/_expectstatement'
 
 interface Props{
   id: string,
@@ -109,27 +109,25 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
 
 
   return(
-    <div className = {`expect-block ${id}`}  id = {`expect-block ${id}`}>
-      <button onClick = {removeExpect}>Delete Expect</button>
-      <div id = {`${id}`}>
-        <p>expect wrapper  
-          
-          <select id={"firstInput"+`${id}`} onChange = {handleChange}>
-            <option value = '.type'>type</option>
-            <option value = '.text'>text</option>
-            <option value = '.find'>to find</option>
-          </select>  
-        </p>
+    <div className="expectBlock"  id = {`expect-block ${id}`}>
+      <div className="expect1" id = {`${id}`}>
+        <label>expect wrapper</label>
+        <select className="expectdrop1" id={"firstInput"+`${id}`} onChange = {handleChange}>
+          <option value = '.type'>type</option>
+          <option value = '.text'>text</option>
+          <option value = '.find'>to find</option>
+        </select>  
+        <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>
      
-      <p>
-        <select id="testTypes" onChange = {handleChange}>
+      <div className="expect2">
+        <select className="expectdrop2" id="testTypes" onChange = {handleChange}>
             <option value = '.toEqual'>to Equal</option>
             <option value = '.toMatch'>to Match</option>
             <option value = '.toHavelength'>to Have Length</option>
         </select>
         <input id = {'lastInput' + `${id}`}type = 'text' onChange = {handleChange}/>
-      </p>
+      </div>
       {/* <button>Remove Expect</button> */}
     </div>
   )

@@ -1,18 +1,36 @@
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
 .row {
   display: grid;
-  grid-template-columns: 300px repeat(2, 1fr);
+  grid-template-columns: 350px repeat(2, 1fr);
   grid-template-rows: 100%;
-  grid-gap: 10px;
+  height: 95vh;
+  background: $bg;
+  color: $primary;
 }
 
 .left {
-  border: 1px solid black;
+  overflow: scroll;
+  border-right: 1px solid $secondary;
+  h1 {
+    text-align: center;
+  }
 }
 
 .middle {
-  border: 1px solid red;
+  overflow: scroll;
+  border-left: 1px solid $secondary;
+  border-right: 1px solid $secondary;
+  padding: 0em 1.5em;
+  h1 {
+    text-align: center;
+  }
 }
 
 .right {
-  border: 1px solid green;
+  overflow: scroll;
+  border-left: 1px solid $secondary;
 }

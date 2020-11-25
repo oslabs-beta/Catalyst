@@ -80,8 +80,12 @@ export const TestBuilder: React.FC = () => {
       <button className="mainButton newComponent">New Component</button>
       <label>Enter Component Name: </label>
       <input/> */}
-      {describes}
-      <button onClick = {addDescribe}>Add Describe Block</button>
+      <div className="describecards">
+        {describes}
+      </div>
+      <div className="addtestbutton">
+        <button className="adddescribe" onClick = {addDescribe}>+ Describe Block</button>
+      </div>
     </div>
   )
 };

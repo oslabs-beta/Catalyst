@@ -1,0 +1,43 @@
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
+.expectBlock {
+  margin: .5em 0em;
+  padding: .5em;
+  border: .5px solid $fg;
+  background: $bg;
+  border-radius: .5em;
+  .expect1 {
+  }
+  .expect2 {
+    margin-top: .5em;
+  }
+  .expectdrop1 {
+    margin-left: 1em;
+    padding: .25em .5em;
+    border: .5px solid $secondary;
+    border-radius: 1em;
+  }
+  .expectdrop2 {
+    margin-right: 1em;
+    padding: .25em .5em;
+    border: .5px solid $secondary;
+    border-radius: 1em;
+  }
+  input {
+    font-size: 14px;
+    border: .5px solid $secondary;
+    border-radius: .5em;
+    padding: .25em .5em;
+  }
+  .removeexpect {
+    float: right;
+    font-size: 12px;
+    justify-content: center !important;
+    background: $fg;
+    margin: 0em auto;
+    padding: .2em .55em;
+  }
+}
