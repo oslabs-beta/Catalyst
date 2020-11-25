@@ -100,11 +100,11 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
   }
   
   return(
-    <div id = {`it-block ${itProp}`}>
-      <input placeholder='what to test' onChange={(e) => {updateItStatement(e.target?.value)}} />
-      <button onClick = {removeItStatement}> Remove it</button>
+    <div className="itBlock" id = {`it-block ${itProp}`}>
+      <input className="itinput" placeholder='what to test' onChange={(e) => {updateItStatement(e.target?.value)}} />
+      <button className="removeit" onClick = {removeItStatement}>X</button>
       {arrayOfExpect}
-      <button onClick = {addExpect}>Add expect </button>
+      <button className="addexpect" onClick = {addExpect}>+ Expect</button>
     </div>
   )
 }

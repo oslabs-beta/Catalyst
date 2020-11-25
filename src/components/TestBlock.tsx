@@ -111,11 +111,12 @@ export const TestBlock: React.FC = () => {
           // console.log('expect', expect)
           // console.log(expectGlobal[expect])
         
-        finalString += '});\n';
+        
         }
       finalString += '});\n';
     
       }
+      finalString += '});\n';
     }
     
   
