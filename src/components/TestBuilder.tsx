@@ -1,16 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import { DescribeBlock } from './DescribeBlock';
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKeyOfDesribe} from '../reduxComponents/actions/actions';
+import { UpdateItObj, UpdateKeyOfDesribe, UpdateData, UpdateDescribe} from '../reduxComponents/actions/actions';
 
 
 
 export const TestBuilder: React.FC = () => {
   const dispatch = useDispatch()
   const describesFromStore = useSelector((state:any) => state.describes)
+  const itFromStore = useSelector((state:any) => state.its)
+  const expectFromStore = useSelector((state:any) => state.expects)
   const describeIndex = useSelector((state:any) => state.keyOfDescribe)
   const itIndex = useSelector((state:any) => state.keyOfIt)
   const updateDescribeIndex = () => dispatch(UpdateKeyOfDesribe())
+  const updateIt = (data:any) => dispatch(UpdateItObj(data))
+  const updateExpects = (data:any) => dispatch(UpdateData(data))
+  const updateDescribe = (data:any) => dispatch(UpdateDescribe(data))
 
   const [describes, updateDescribes] = useState([]);
 
@@ -21,7 +26,7 @@ export const TestBuilder: React.FC = () => {
   useEffect(() =>{
     let x: {[k:string]:any}= {}
     // create a new Describe block to be rendered. Will be inital describe
-    x[`${describeIndex}`] = <DescribeBlock key ={describeIndex} id={describeIndex} itIndex = {itIndex} describeProp = {`${describeIndex}`}/>
+    x[`${describeIndex}`] = <DescribeBlock key ={describeIndex} id={describeIndex} itIndex = {itIndex} describeProp = {`${describeIndex}`} removeDescribe = {removeDescribe}/>
     // add the describe block to be mapped later 
     updateDescribes(describes.concat(x[`${describeIndex}`]))
     // adds the initial it statement key to the describe object in store to keep track of children components
@@ -32,13 +37,37 @@ export const TestBuilder: React.FC = () => {
 
   function addDescribe(){
     let x: {[k:string]: any} = {};
-    x[describeIndex] = <DescribeBlock key={`${describeIndex}`} id={`${describeIndex}`} itIndex = {itIndex} describeProp = {`${describeIndex}`}/>;
+    x[describeIndex] = <DescribeBlock key={`${describeIndex}`} id={`${describeIndex}`} itIndex = {itIndex} describeProp = {`${describeIndex}`} removeDescribe = {removeDescribe}/>;
     // adds the describe block to the array of describe blocks to be rendered
     updateDescribes(describes.concat(x[`${describeIndex}`]));
     describesFromStore[`${describeIndex}`] = storeval;
     updateDescribeIndex();
   }
 
+
+  function removeDescribe(id: number): boolean{
+    // console.log(id)
+    if(Object.keys(describesFromStore).length > 1){
+      //delete
+      for(let it of Object.keys(describesFromStore[`${id}`])){
+        // console.log(it)
+        for(let expect of Object.keys(itFromStore[`${it}`])){
+          delete expectFromStore[`${expect}`]
+        }
+        delete itFromStore[`${it}`]
+        updateExpects(expectFromStore)
+        updateIt(itFromStore)
+      }
+      delete describesFromStore[`${id}`]
+      updateDescribe(describesFromStore)
+      document.getElementById(`describeBlock${id}`)?.remove()
+      return true
+    }
+    else{
+      console.log('cannot delete describe block')
+      return false
+    }
+  }
 
 
 
@@ -51,7 +80,7 @@ export const TestBuilder: React.FC = () => {
       <label>Enter Component Name: </label>
       <input/> */}
       {describes}
-      <button onClick = {addDescribe}>add Describe Block</button>
+      <button onClick = {addDescribe}>Add Describe Block</button>
     </div>
   )
 };

@@ -36,7 +36,6 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
     // subtract one because the other file is rendering first
     // itObject[`${itKey}`] = [index]
     itObject[`${itKey}`] = storeval
-    console.log('updated')
     updateIts(itObject)
 
   }, [])
@@ -82,7 +81,6 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
       for(let itBlocks of Object.keys(itObject[`${itProp}`])){
         console.log(data[`${itBlocks}`])
         delete data[`${itBlocks}`]
-        document.getElementById(`expect-block ${id}`)?.remove()
       }
       document.getElementById(`it-block ${itProp}`)?.remove()
       updateData(data)

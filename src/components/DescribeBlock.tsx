@@ -5,13 +5,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName,  } from '../reduxComponents/actions/actions';
 
 interface Props{
-  describeProp:string
+  describeProp:string,
+  removeDescribe: (id:number) => boolean
 }
 
 
 
 
-export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
+export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) => {
 
   const globalDescribeObj = useSelector((state:any) => state.describes)
   const index = useSelector((state: any) => state.keyOfIt)
@@ -81,8 +82,13 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
     return false
   }
 
+  function removeDescribeComponent(){
+    removeDescribe(parseInt(describeProp))
+  }
+
   return (
-    <div className ='describeBlock'>
+    <div className = {`describeBlock${describeProp}`} id = {`describeBlock${describeProp}`}>
+      <button onClick = {removeDescribeComponent}>Remove Describe</button>
       <div>
         <p>Describe Block</p>
         <input type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="What functionality should the component have?"/>
