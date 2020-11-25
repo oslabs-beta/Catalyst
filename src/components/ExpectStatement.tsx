@@ -117,6 +117,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
           <select id={"firstInput"+`${id}`} onChange = {handleChange}>
             <option value = '.type'>type</option>
             <option value = '.text'>text</option>
+            <option value = '.exists'>exist</option>
             <option value = '.find'>to find</option>
           </select>  
         </p>
@@ -126,6 +127,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         <select id="testTypes" onChange = {handleChange}>
             <option value = '.toEqual'>to Equal</option>
             <option value = '.toMatch'>to Match</option>
+            <option value = '.toBe'>to Be</option>
             <option value = '.toHavelength'>to Have Length</option>
         </select>
         <input id = {'lastInput' + `${id}`}type = 'text' onChange = {handleChange}/>
