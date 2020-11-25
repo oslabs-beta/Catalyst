@@ -82,23 +82,33 @@ export const TestBlock: React.FC = () => {
 
 
     // console.log(describeInputGlobal)
-
+    let finalString  =''
     for (let i of keysOfDescribe) {
+      console.log(describeInputGlobal)
+      finalString += `describe('${describeInputGlobal[i]}', () => { \n`
       // correctly iterating through describe block
-      console.log(`describe('${describeInputGlobal[i]}', () => {`);
-      // console.log(describeInputGlobal)
-      // console.log(i)
-      console.log(Object.keys(describeGlobal[i]))
+      console.log('describe', i)
+      // console.log(`describe('${describeInputGlobal[i]}', () => {`);
+      // // console.log(describeInputGlobal)
+      // // console.log(i)
+      // console.log(describeGlobal)
+      // console.log(Object.keys(describeGlobal[i]))
       // testBlock.push(`describe('${describeInputGlobal[i]}', () => {`);
-      for(let j of Object.keys(describeInputGlobal[i])){
-        console.log(j)
+      for (let j of Object.keys(describeGlobal[i])){
+        finalString += `it('should match snapshot', () => { \n`
+        console.log('it', j)
+        // console.log(itsGlobal)
+        for(let expect of Object.keys(itsGlobal[j])){
+          finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}()${expectGlobal[expect].testTypes}(${expectGlobal[expect][`lastInput${expect}`]}))\n`
+          console.log('expect', expect)
+          // console.log(expectGlobal[expect])
+        }
+        finalString +='})\n'
       }
-      // for (let j of Object.keys(describeInputGlobal){
-
-      // }
+      finalString += '})\n'
     
     }
-
+    console.log(finalString)
 
     // console.log('this is testBlock', testBlock.join(''));
 
