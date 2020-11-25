@@ -20,7 +20,6 @@ export const ToggleFolder = (filePath: string) => ({
 
 export const UpdateKeyOfExpect = () => ({
     type: types.UPDATE_KEY_OF_EXPECT,
-    payload: ''
 })
 
 export const UpdateData = (data:any) => ({
@@ -30,14 +29,11 @@ export const UpdateData = (data:any) => ({
 
 export const UpdateKeyOfDesribe = () => ({
     type: types.UPDATE_KEY_OF_DESCRIBE,
-    payload: ''
 });
 
 export const UpdateKeyOfIt = () => ({
     type: types.UPDATE_KEY_OF_IT,
-    payload: ''
 });
-
 
 export const UpdateItObj = (data:any) =>({
     type: types.UPDATE_IT_OBJ,
@@ -46,5 +42,31 @@ export const UpdateItObj = (data:any) =>({
 
 export const UpdateDescribe = (data:any) =>({
     type: types.UPDATE_DESCRIBE,
+    payload: data
+})
+
+export const UpdateComponentName = (name:any) =>({
+    type: types.UPDATE_COMPONENT_NAME,
+    payload: name
+})
+
+export const UpdateItStatement = (name:any) =>({
+    type: types.UPDATE_IT_STATEMENT,
+    payload: name
+
+});
+
+
+export const ClearFile = () =>({
+    type: types.CLEAR_FILE
+})
+
+export const deleteExpect = (data: any) => ({
+    type: types.DELETE_EXPECT,
+    payload: data
+})
+
+export const removeFromIt = (data: any) => ({
+    types: types.REMOVE_FROM_IT,
     payload: data
 })

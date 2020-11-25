@@ -1,21 +1,27 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {FileTree} from './FileTree'
-import {FileViewer} from './FileViewer'
-import { TestBuilder } from './TestBuilder'
+import {FileViewer} from './FileViewer';
+import { TestBuilder } from './TestBuilder';
+import { TestBlock } from './TestBlock';
+
 
 export const MainContent: React.FC = () =>{
-
+  
 
   return(
-    <div style = {{display: 'flex', flexDirection : "row"}}>
-      <div className = 'hey'>
+    <div className="row">
+      <div className = 'left column'>
         <FileTree />
       </div>
-      <div>
+      <div className="middle column">
         <TestBuilder/>
       </div>
-      <div>
+      <div className="right column">
         <FileViewer />
+      </div>
+      <div>
+        <TestBlock />
       </div>
     </div>
   )
