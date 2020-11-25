@@ -88,10 +88,10 @@ export const TestBlock: React.FC = () => {
       console.log(`describe('${describeInputGlobal[i]}', () => {`);
       // console.log(describeInputGlobal)
       // console.log(i)
-      console.log(Object.keys(describeGlobal[i]))
+      // console.log(Object.keys(describeGlobal[i]))
       // testBlock.push(`describe('${describeInputGlobal[i]}', () => {`);
-      for(let j of Object.keys(describeInputGlobal[i])){
-        console.log(j)
+      for(let j of keysOfDescribe[i]){
+        console.log(`describe('${describeInputGlobal[i]}', () => {`);
       }
       // for (let j of Object.keys(describeInputGlobal){
 
