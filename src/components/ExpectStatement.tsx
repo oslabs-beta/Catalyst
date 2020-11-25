@@ -34,18 +34,16 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
 
 
   function removeExpect(){
-    // checks to see if the it block has at least on element
-    // if(allIts[`${id}`].length >1){
-    //   deleteExpectFromStore(id)
-    // }
+
     if(remove(parseInt(id))){
       deleteExpectFromStore(id)
       document.getElementById(`expect-block ${id}`)?.remove()
       // console.log(ReactDOM.findDOMNode(document.getElementById(`expect-block ${id}`)))
     }
     else{
-      console.log('can\'t remove')
+      console.log('cannot remove expect block')
     }
+
   }
 
 
