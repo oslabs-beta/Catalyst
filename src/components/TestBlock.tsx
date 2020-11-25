@@ -1,5 +1,8 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {remote} from 'electron';
+import * as electronFs from 'fs';
+const dialog = remote.dialog
 
 
 interface Props{
@@ -43,79 +46,136 @@ export const TestBlock: React.FC = () => {
 
 
 
+  
+
+    const keysOfDescribe = Object.keys(describeGlobal);
+    const keysOfIts = Object.keys(itsGlobal);
+    const keysOfExpects = Object.keys(expectGlobal);
+    const keysOfDescribeInputs = Object.keys(describeInputGlobal);
+    const keysOfItInputs = Object.keys(itInputGlobal);
+
+    let testBlock = []; 
+
+    // for (let i = 0; i < keysOfDescribe.length; i++) {
+    //   // correctly iterating through describe block
+    //   console.log(`describe('${describeInputGlobal[i]}', () => {`);
+    //   testBlock.push(`describe('${describeInputGlobal[i]}', () => {`);
+    //   for (let j = i; j < keysOfIts.length; j++) {
+    //     // checking to see key of its exists insde each describe key
+    //     if (j in describeGlobal[i]) {
+    //     console.log(`it('${itInputGlobal[j]}', () => {`)
+    //     testBlock.push(`it('${itInputGlobal[j]}', () => {`);
+    //     }
+    //     for (let k = i; k < keysOfExpects.length; ++k) {
+    //       // console.log('this is indexk', k, 'this is itsGlobal[j]', itsGlobal[j], 'this is k in itsGlobal', k in itsGlobal[j]);
+    //       if (k in itsGlobal[j]) {
+    //         console.log(`expect(wrapper${expectGlobal[k][`firstInput${k}`]}()${expectGlobal[k].testTypes}(${expectGlobal[k][`lastInput${k}`]}
+    //           })
+    //         });`)
+    //         testBlock.push(`expect(wrapper${expectGlobal[k][`firstInput${k}`]}()${expectGlobal[k].testTypes}(${expectGlobal[k][`lastInput${k}`]}
+    //       })
+    //     });`)
+    //       }
+    //     }
+    //   } 
+    // }
 
 
-    // console.log('i was clicked');
-    // console.log('expect(wrapper.text()).toEqual("userinput")');
-    // console.log('expect(wrapper.find("").toEqual("userinput")');
+    // console.log(describeInputGlobal)
 
-    // // Returns the type of the only node of this wrapper. If it's a React component, this will be the component constructor.
-    // console.log('expect(wrapper.type().toEqual("userInput")');
-
-    // console.log('expect(wrapper.text()).toEqual("userinput")');
-    // console.log('expect(wrapper.find("").toEqual("userinput")');
-
-    // // Returns the type of the only node of this wrapper. If it's a React component, this will be the component constructor.
-    // //test('hello world', () => {
-    // //   const wrapper = mount(<p>Hello Jest!</p>);
-    // //   expect(wrapper.text()).toMatch('Hello Jest!');
-    // // });
-    // console.log('expect(wrapper.text().toMatch("userInput")');
-    // console.log('expect(wrapper.find("userInput").toHaveLength("userInput")');
-    
-    const globalData = {describeGlobal, describeInputGlobal, itsGlobal, itInputGlobal, expectGlobal};
-    console.log('this is all global data', globalData);
-    console.log('this is describeGlobal', describeGlobal);
-    console.log('this is its global',itsGlobal );
-    console.log('this is expects global', expectGlobal);
-    console.log('this is describe input global', describeInputGlobal);
-    console.log('this is the it input global', itInputGlobal);
-
-    const keysOfDescribe = Object.values(describeGlobal);
-    console.log('these are k describe', keysOfDescribe);
-    const keysOfIts = Object.values(itsGlobal);
-    console.log('these are k of its', keysOfIts);
-    const keysOfExpects = Object.values(expectGlobal);
-    console.log('these are k of expects',keysOfExpects);
-    const keysOfDescribeInputs = Object.values(describeInputGlobal);
-    console.log('these are k of DI', keysOfDescribeInputs);
-    const keysOfItInputs = Object.values(itInputGlobal);
-    console.log('these are k of II', keysOfItInputs);
-
-    for (const itIndex of keysOfDescribe){
-      for (const itStatements in itIndex) {
-        console.log('this is hopefully the expects', expectGlobal[itStatements]);
-        
+    for (let i of keysOfDescribe) {
+      // correctly iterating through describe block
+      console.log(`describe('${describeInputGlobal[i]}', () => {`);
+      // console.log(describeInputGlobal)
+      // console.log(i)
+      console.log(Object.keys(describeGlobal[i]))
+      // testBlock.push(`describe('${describeInputGlobal[i]}', () => {`);
+      for(let j of Object.keys(describeInputGlobal[i])){
+        console.log(j)
       }
+      // for (let j of Object.keys(describeInputGlobal){
+
+      // }
+    
     }
 
 
+    // console.log('this is testBlock', testBlock.join(''));
+
+    // let codeBlock = testBlock.join('');
+
+
+    
+  //  let fileName = dialog.showSaveDialog({})
+  //   .then(result => {
+  //     fileName = result.filePath;
+  //     if (fileName === undefined) {
+  //       console.log('undefined file');
+  //       return;
+  //     }
+  //     electronFs.writeFile(fileName, codeBlock, (err) => {
+  //       if (err){
+  //         console.log(err.message);
+  //         return
+  //       }
+  //       console.log('added file');
+  //     })
+  //   }).catch(err =>{
+  //     console.log(err);
+  //   })
+
+
+/*   dialog.showSaveDialog({
+    title: 'Select File Path to save',
+    // defaultPath: , can add location to save file on users directory
+    filters: [
+      {
+        name: 'Text Files',
+        extensions: ['txt', 'docx']
+      },
+    ],
+    message: 'Choose location',
+    properties: [
+      'createDirectory'
+    ]
+  }).then(file => {
+    // stating whether dialog operation was cancelled or not
+    console.log(file.canceled);
+    if (!file.canceled) {
+      console.log(file.filePath.toString());
+
+      // creating and writing to the text.txt file
+
+      electronFs.writeFile(file.filePath?.toString(), codeBlock, (err) => {
+        if (err) {
+          console.log(err.message);
+        }
+        console.log('saved');
+      })
+    }
+  })
+  .catch(err => {
+    console.log(err);
+  }) */
+
     // let expectObj = {}
     // for (let i = 0; i < Object.keys(expectGlobal).length; i+=1) {
-    //   expectObj[`${i}`] = `expect(wrapper${expectGlobal[i][`firstInput${i}`]}()${expectGlobal[i].testTypes}(${expectGlobal[i][`lastInput${i}`]})`;
+      // expectObj[`${i}`] = `expect(wrapper${expectGlobal[i][`firstInput${i}`]}()${expectGlobal[i].testTypes}(${expectGlobal[i][`lastInput${i}`]})`;
     // }
     // console.log(expectObj)
 
-  //   const iterateThrough = (obj: any) => {
-  //   Object.keys(obj).forEach((key) => {
-  //     if (typeof obj[key] === 'object') {
-  //       return iterateThrough(obj[key]);
-  //     }
-  //     console.log(`this is ${key} = ${obj[key]}`);
-  //   })
-  // }
+    // let itObj = {};
+    // for (let i = 0; i < Object.keys(itsGlobal).length; i++) {
 
+    // }
 
-    // iterateThrough(globalData);
   }
 
 
 
   return (
     <div>
-      
-
-
+    
     <button onClick={handleClick}>Create tests</button>
 
     </div>

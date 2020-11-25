@@ -5,13 +5,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName,  } from '../reduxComponents/actions/actions';
 
 interface Props{
-  describeProp:string
+  describeProp:string,
+  removeDescribe: (id:number) => boolean
 }
 
 
 
 
-export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
+export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) => {
 
   const globalDescribeObj = useSelector((state:any) => state.describes)
   const index = useSelector((state: any) => state.keyOfIt)
@@ -38,7 +39,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
   useEffect(async():Promise<void> =>{
     let itComponent: {[k:string]:any}= {}
     // creates a key value pair that will hold the index and the component 
-    itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`}/>)
+    itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`} removeIt = {removeIt}/>)
     // update the array to be displayed with the component that was created
     updateItArray(arrayOfIt.concat(itComponent[`${index}`]))
     // update the key value of the it statements
@@ -50,10 +51,9 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
 
   async function addIt(){
     let itComponent: {[k:string]:any}= {}
-    itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`}/>)
+    itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`} removeIt = {removeIt}/>)
     // add the index of the created it component to the object holding all describe blocks
     // globalDescribeObj[`${describeProp}`] = globalDescribeObj[`${describeProp}`].concat(index)
-    console.log(globalDescribeObj[`${describeProp}`] )
     globalDescribeObj[`${describeProp}`][index] = ''
     // updates the describe element in the store
     updateGlobalDescribe(globalDescribeObj)
@@ -70,8 +70,24 @@ export const DescribeBlock:React.FC<Props> = ({describeProp}) => {
   }
   
 
+  
+  function removeIt(removeItId: number): boolean{
+    if(Object.keys(globalDescribeObj[describeProp]).length > 1){
+      delete globalDescribeObj[describeProp][`${removeItId}`]
+      updateGlobalDescribe(globalDescribeObj)
+      return true
+    }
+
+    return false
+  }
+
+  function removeDescribeComponent(){
+    removeDescribe(parseInt(describeProp))
+  }
+
   return (
-    <div className ='describeBlock'>
+    <div className = {`describeBlock${describeProp}`} id = {`describeBlock${describeProp}`}>
+      <button onClick = {removeDescribeComponent}>Remove Describe</button>
       <div>
         <p>Describe Block</p>
         <input type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="What functionality should the component have?"/>
