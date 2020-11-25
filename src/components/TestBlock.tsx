@@ -1,8 +1,9 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {remote} from 'electron';
+import {Main, remote} from 'electron';
 import * as electronFs from 'fs';
 const dialog = remote.dialog
+
 
 
 interface Props{
@@ -31,10 +32,44 @@ export const TestBlock: React.FC = () => {
   const expectGlobal = useSelector((state:any) => state.expects);
   const describeInputGlobal = useSelector((state:any) => state.componentObj);
   const itInputGlobal = useSelector((state:any) => state.itInputObj);
-
-
+  const fileTree = useSelector((state:any) => state.fileTree)
   
+  function findFile(fileTree:any, name: string):string{
 
+    // console.log('inside')
+    // console.log(fileTree)
+    for(let x of fileTree){
+      // console.log(x.filepath)
+      let file = electronFs.statSync(x.filepath)
+      // console.log(file)
+      if(file.isDirectory()){
+        let find = findFile(x.children, name)
+        if(find !== ''){
+          return find
+        }
+      }
+      else{
+        // console.log(x.name)
+        if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')){
+          console.log(x.name)
+          return x.filepath
+        }
+      }
+      // else if(x.name.toLowerCase().includes(name)){
+      //   // console.log('here',x.filepath)
+      //   console.log('return')
+      //   if(!x.name.includes('_')){
+      //     console.log('what we want',x.filepath)
+      //   }
+      //   return x.filepath
+      // }
+      // // if(x.filePath.includes('component')){
+      // //   console.log('hey')
+      // // }
+      // console.log('test')
+    }
+    return ''
+  }
 
   const handleClick = () => {
     // let test = `describe('${describeInputGlobal[0]}', () => {
@@ -43,6 +78,10 @@ export const TestBlock: React.FC = () => {
     //   })
     // });`
     // console.log(test)
+
+    // console.log(fileTree)
+    
+    
 
 
 
@@ -83,9 +122,25 @@ export const TestBlock: React.FC = () => {
 
     // console.log(describeInputGlobal)
     let finalString  =''
+    for(let i of keysOfDescribe){
+      console.log(`${describeInputGlobal[i]}`.trim().toLowerCase())
+      let fileLocation = findFile(fileTree, `${describeInputGlobal[i]}`.trim().toLowerCase())
+      console.log('here is the file location',fileLocation)
+      // console.log('here',fileLocation)
+      if(fileLocation !== ''){
+        fileLocation = fileLocation.replace('.tsx','')
+        finalString += `import {${describeInputGlobal[i]}} from \'${fileLocation}\' \n`
+      }
+    }
+
+
+
     for (let i of keysOfDescribe) {
       console.log(describeInputGlobal)
-      finalString += `describe('${describeInputGlobal[i]}', () => { \n`
+      finalString += `describe('${describeInputGlobal[i]}', () => { \n let wrapper \n`
+      finalString += `beforeAll(() => { \n wrapper = shallow(<${describeInputGlobal[i]}/>)\n }) \n`
+      
+      
       // correctly iterating through describe block
       console.log('describe', i)
       // console.log(`describe('${describeInputGlobal[i]}', () => {`);
@@ -95,7 +150,7 @@ export const TestBlock: React.FC = () => {
       // console.log(Object.keys(describeGlobal[i]))
       // testBlock.push(`describe('${describeInputGlobal[i]}', () => {`);
       for (let j of Object.keys(describeGlobal[i])){
-        finalString += `it('should match snapshot', () => { \n`
+        finalString += `it('${itInputGlobal[j]}', () => { \n`
         console.log('it', j)
         // console.log(itsGlobal)
         for(let expect of Object.keys(itsGlobal[j])){
@@ -185,9 +240,7 @@ export const TestBlock: React.FC = () => {
 
   return (
     <div>
-    
     <button onClick={handleClick}>Create tests</button>
-
     </div>
   );
 };
