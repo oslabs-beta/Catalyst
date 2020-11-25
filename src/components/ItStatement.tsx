@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import {useSelector, useDispatch} from 'react-redux';
 import { UpdateData, UpdateItObj } from '../reduxComponents/actions/actions';
 import {ExpectStatement} from './ExpectStatement'
@@ -6,11 +7,12 @@ import {ExpectStatement} from './ExpectStatement'
 
 interface Props{
   itProp: string,
-  id: any
+  id: any,
+  removeIt: (id:number) => boolean
 }
  
 
-export const ItStatement: React.FC<Props> = ({itProp}) =>{
+export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
 
   const dispatch = useDispatch()
   let index = useSelector((state: any) => state.keyOfExpect)
@@ -38,10 +40,6 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
 
   }, [])
   
-  
-  
-  
-
 
 
   function addExpect(){
@@ -68,18 +66,35 @@ export const ItStatement: React.FC<Props> = ({itProp}) =>{
   }
 
   function removeExpect(removeId:number){
-    console.log('trying to remove')
     if(Object.keys(itObject[`${itProp}`]).length >1){
       delete itObject[`${itProp}`][`${removeId}`]
+      updateIts(itObject)
       return true
     }
     return false
   }
 
-
+  function removeItStatement(){
+    // id is the id of the it block that needs to be removed from the describe
+    if(removeIt(id)){
+      // here we have to delete it blocks
+      for(let itBlocks of Object.keys(itObject[`${itProp}`])){
+        console.log(data[`${itBlocks}`])
+        delete data[`${itBlocks}`]
+      }
+      document.getElementById(`it-block ${itProp}`)?.remove()
+      updateData(data)
+      // delete the it block
+      delete itObject[`${itProp}`]
+    }
+    else {
+      console.log('cannot remove it block')
+    }
+  }
   
   return(
-    <div>
+    <div id = {`it-block ${itProp}`}>
+      <button onClick = {removeItStatement}> Remove it</button>
       {arrayOfExpect}
       <button onClick = {addExpect}>Add expect </button>
     </div>
