@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux'
 import { MainContent } from './components/MainContent'
 import {FolderUpload} from './components/FolderUpload'
 
+
 import './stylesheets/styles';
 
 
@@ -20,7 +21,6 @@ export const App: React.FC = () => {
     <MainContent />
     :
     <FolderUpload />
-    
 
   )
 };

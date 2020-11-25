@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateData, UpdateItObj } from '../reduxComponents/actions/actions';
+import { UpdateData, UpdateItObj, UpdateItStatement } from '../reduxComponents/actions/actions';
 import {ExpectStatement} from './ExpectStatement'
 
 
@@ -21,6 +21,8 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
   const updateIts = (data: any) => dispatch(UpdateItObj(data))
   let updateData = (data:any) => dispatch(UpdateData(data))
   let [arrayOfExpect,updateArray] = useState([])
+  const globalItInput = useSelector((state: any) => state.itInputObj);
+  const updateItGlobal = (data:any) => dispatch(UpdateItStatement(data));
 
   const itKey = useSelector((state:any) => state.keyOfIt)
   const storeval: {[k:string]:any}= {}
@@ -74,12 +76,17 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
     return false
   }
 
+  const updateItStatement =  (input:any) => {
+    globalItInput[itProp] = input; 
+    updateItGlobal(globalItInput);
+  };
+
   function removeItStatement(){
     // id is the id of the it block that needs to be removed from the describe
     if(removeIt(id)){
       // here we have to delete it blocks
       for(let itBlocks of Object.keys(itObject[`${itProp}`])){
-        console.log(data[`${itBlocks}`])
+        // console.log(data[`${itBlocks}`])
         delete data[`${itBlocks}`]
       }
       document.getElementById(`it-block ${itProp}`)?.remove()
@@ -94,12 +101,10 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
   
   return(
     <div id = {`it-block ${itProp}`}>
+      <input placeholder='what to test' onChange={(e) => {updateItStatement(e.target?.value)}} />
       <button onClick = {removeItStatement}> Remove it</button>
       {arrayOfExpect}
       <button onClick = {addExpect}>Add expect </button>
     </div>
   )
-
-
-
 }
