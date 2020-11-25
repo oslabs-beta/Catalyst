@@ -86,7 +86,7 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
     if(removeIt(id)){
       // here we have to delete it blocks
       for(let itBlocks of Object.keys(itObject[`${itProp}`])){
-        console.log(data[`${itBlocks}`])
+        // console.log(data[`${itBlocks}`])
         delete data[`${itBlocks}`]
       }
       document.getElementById(`it-block ${itProp}`)?.remove()

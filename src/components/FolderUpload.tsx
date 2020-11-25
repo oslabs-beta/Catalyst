@@ -2,7 +2,7 @@ import React from 'react';
 import {remote} from 'electron';
 import * as electronFs from 'fs';
 import { useDispatch} from 'react-redux';
-import { ConstructFileTree } from '../reduxComponents/actions/actions';
+import { ConstructFileTree, SetProjectPath } from '../reduxComponents/actions/actions';
 import catalystLogo from '../../assets/catalyst_icons/Catalystfull-02.png';
 
 class FileTree {
@@ -48,6 +48,7 @@ export const FolderUpload: React.FC = () => {
     const dispatch = useDispatch();
     // creates dispatch that will send file path as an action payload to reducer
     const constructFileTree = (files: any) => dispatch(ConstructFileTree(files));
+    const setFilePath = (filePath: any) => dispatch(SetProjectPath(filePath));
 
     const dialog = remote.dialog
     async function uploadFolder(){
@@ -73,7 +74,7 @@ export const FolderUpload: React.FC = () => {
 
             // use regex to find all \ in the case of a windows user and replace with /
             projectDirectory = projectDirectory.replace(/\\/g, '/')
-
+            
             // will create a new FileTree object for the root directory
             const rootTree = new FileTree(projectDirectory, "root")
 
@@ -81,6 +82,8 @@ export const FolderUpload: React.FC = () => {
             const fileTree = rootTree.createTree(projectDirectory)
             // dispatches fileTree to reducer
             constructFileTree(fileTree);
+            // setting file path of project to access later by sending projectDirectory to store
+            setFilePath(projectDirectory);
         }
     }
 

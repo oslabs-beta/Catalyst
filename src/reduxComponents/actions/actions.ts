@@ -67,6 +67,11 @@ export const deleteExpect = (data: any) => ({
 })
 
 export const removeFromIt = (data: any) => ({
-    types: types.REMOVE_FROM_IT,
+    type: types.REMOVE_FROM_IT,
     payload: data
 })
+
+export const SetProjectPath = (filePath: string) => ({
+    type: types.SET_PROJECT_PATH,
+    payload: filePath
+});
