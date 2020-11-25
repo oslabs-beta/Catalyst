@@ -86,16 +86,15 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   }
 
   return (
-    <div className = {`describeBlock${describeProp}`} id = {`describeBlock${describeProp}`}>
-      <button onClick = {removeDescribeComponent}>Remove Describe</button>
-      <div>
-        <p>Describe Block</p>
-        <input type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="What functionality should the component have?"/>
-        <TestingBlock/>
+    <div className="describeBlock" id = {`describeBlock${describeProp}`}>
+      <button className="remove" onClick = {removeDescribeComponent}>X</button>
+      <div className="describe">
+        <p className="describetext">Describe Block</p>
+        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="What functionality should the component have?"/>
         {/* pass in prop so that it knows which It statement it belongs to  */}
         {arrayOfIt}
       </div>
-      <button onClick = {addIt}>Add It Statement</button>
+      <button className="addit" onClick = {addIt}>+ It Statement</button>
     </div>
     
   )

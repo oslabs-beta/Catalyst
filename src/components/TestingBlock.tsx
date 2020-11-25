@@ -3,7 +3,7 @@ import * as React from 'react';
 
 export const TestingBlock: React.FC = () => {
   return (
-    <div>
+    <div className="testingBlock">
       {/* <p> and button should be on same line */}
       {/* <p>The Component Should...</p>
       <button className="exitButton">X</button>
@@ -18,7 +18,6 @@ export const TestingBlock: React.FC = () => {
       <label>How many 'it' statements would you like?</label>
       <input type="number" id="quantity" name="quantity" min="1" max="10"></input> */}
       {/* button to add expect statement, dropdowns to hold 'toBe', 'toEqual', etc */}
-      <h1> I AM THE TESTING BLOCK</h1>
     </div>
   )
 

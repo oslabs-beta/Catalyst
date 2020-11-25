@@ -1,0 +1,20 @@
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
+.itBlock {
+  margin: 1em 1em;
+  .itinput {
+    width: 70%;
+    border: .5px solid $primary;
+    border-radius: .5em;
+    padding: .5em;
+  }
+  .removeit {
+    background: $fg;
+    font-size: 12px;
+    padding: .25em .60em;
+    margin-left: 1em;
+  }
+}

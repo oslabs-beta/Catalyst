@@ -91,7 +91,7 @@ export const FolderUpload: React.FC = () => {
                 <img className ="catalystlogo" src={catalystLogo}/>
             </div>
             <div className="frontbody">
-                <h2>Choose a Project Directory to Upload</h2>
+                <h2 className="fronth2">Choose a Project Directory to Upload</h2>
                 <button className="folderupload" onClick = {uploadFolder}>Upload Project</button>
             </div>
         </div>
