@@ -54,7 +54,6 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
     itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`} removeIt = {removeIt}/>)
     // add the index of the created it component to the object holding all describe blocks
     // globalDescribeObj[`${describeProp}`] = globalDescribeObj[`${describeProp}`].concat(index)
-    console.log(globalDescribeObj[`${describeProp}`] )
     globalDescribeObj[`${describeProp}`][index] = ''
     // updates the describe element in the store
     updateGlobalDescribe(globalDescribeObj)

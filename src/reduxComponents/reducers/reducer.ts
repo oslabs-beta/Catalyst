@@ -17,7 +17,8 @@ const initialState = {
   keyOfDescribe:0,
   keyOfIt:0,
   keyOfExpect: 0,
-  componentObj: {}
+  componentObj: {},
+  itInputObj: {}
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -34,7 +35,6 @@ export const reducer = (state: any = initialState, action: any) => {
         ...state,
         fileToView: action.payload
       }
-
     
     case types.TOGGLE_FOLDER:
       // creating an object that will hold the file path of each directory and will toggle from T to F
@@ -92,6 +92,13 @@ export const reducer = (state: any = initialState, action: any) => {
         componentObj: action.payload
       }
         
+    case types.UPDATE_IT_STATEMENT:
+          return{
+            ...state,
+            itInputObj: action.payload
+          }
+
+
     case types.CLEAR_FILE:
       return{
         ...state,

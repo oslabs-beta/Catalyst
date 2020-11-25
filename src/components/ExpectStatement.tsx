@@ -22,11 +22,10 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
 
   let [inputNeeded , updateInput] = useState(false)
 
-
-  useEffect(() =>{
+  useEffect(() => {
     data[index] = {}
-    data[index][`firstInput${index}`] = 'type'
-    data[index]['testTypes'] = 'equal'
+    data[index][`firstInput${index}`] = '.type'
+    data[index]['testTypes'] = '.toEqual'
     data[index][`lastInput${index}`] = ''
     updateData(data)
     updateExpectKey()
@@ -47,7 +46,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   }
 
 
-
   function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>){
     // obtains the element that is needed
     let block = document.getElementById(id)
@@ -56,10 +54,10 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     // checks to see if selector is equal to find
 
     if(event.target?.id === 'firstInput' + `${id}`){
-      if((document.getElementById('firstInput' + `${id}`) as HTMLInputElement).value === 'find'){
+      if((document.getElementById('firstInput' + `${id}`) as HTMLInputElement).value === '.find'){
         // changes the boolean checker to true
         updateInput(true)
-       
+        
         // creates an input box for the the find case
         let child = document.createElement('input')
         // child.innerHTML = `<input type = 'text' class= 'inputbox' id = 'wrapperInput${id}' onChange = {handleChange}/>`
@@ -75,7 +73,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         // appends to the document
         data[`${id}`][`wrapperInput${id}`] = ''
 
-      
+        console.log(block);
         if(block){
           block.appendChild(child)
         }
@@ -117,18 +115,18 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         <p>expect wrapper  
           
           <select id={"firstInput"+`${id}`} onChange = {handleChange}>
-            <option value = 'type'>type</option>
-            <option value = 'text'>text</option>
-            <option value = 'find'>to find</option>
+            <option value = '.type'>type</option>
+            <option value = '.text'>text</option>
+            <option value = '.find'>to find</option>
           </select>  
         </p>
       </div>
      
       <p>
         <select id="testTypes" onChange = {handleChange}>
-            <option value = 'equal'>to Equal</option>
-            <option value = 'match'>to Match</option>
-            <option value = 'length'>to Have Length</option>
+            <option value = '.toEqual'>to Equal</option>
+            <option value = '.toMatch'>to Match</option>
+            <option value = '.toHavelength'>to Have Length</option>
         </select>
         <input id = {'lastInput' + `${id}`}type = 'text' onChange = {handleChange}/>
       </p>
