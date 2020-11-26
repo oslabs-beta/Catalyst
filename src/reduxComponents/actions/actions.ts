@@ -28,7 +28,7 @@ export const UpdateData = (data:any) => ({
     payload: data
 })
 
-export const UpdateKeyOfDesribe = () => ({
+export const UpdateKeyOfDescribe = () => ({
     type: types.UPDATE_KEY_OF_DESCRIBE,
     payload: ''
 });
@@ -71,3 +71,8 @@ export const SetProjectPath = (filePath: string) => ({
     type: types.SET_PROJECT_PATH,
     payload: filePath
 });
+
+export const UpdateItStatement = (data: any) => ({
+    type: types.UPDATE_IT_STATEMENT, 
+    payload: data
+})

@@ -130,7 +130,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         </select>
         <input id = {'lastInput' + `${id}`}type = 'text' onChange = {handleChange}/>
       </div>
-      {/* <button>Remove Expect</button> */}
     </div>
   )
 }
