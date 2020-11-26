@@ -116,6 +116,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
           <option value = '.type'>type</option>
           <option value = '.text'>text</option>
           <option value = '.find'>to find</option>
+          <option value = '.exists'>to exist</option>
         </select>  
         <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>
@@ -124,11 +125,11 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         <select className="expectdrop2" id="testTypes" onChange = {handleChange}>
             <option value = '.toEqual'>to Equal</option>
             <option value = '.toMatch'>to Match</option>
+            <option value = '.toBe'>to Be</option>
             <option value = '.toHavelength'>to Have Length</option>
         </select>
         <input id = {'lastInput' + `${id}`}type = 'text' onChange = {handleChange}/>
       </div>
-      {/* <button>Remove Expect</button> */}
     </div>
   )
 }
