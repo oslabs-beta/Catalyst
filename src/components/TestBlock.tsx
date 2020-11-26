@@ -128,8 +128,8 @@ export const TestBlock: React.FC = () => {
       console.log('here is the file location',fileLocation)
       // console.log('here',fileLocation)
       if(fileLocation !== ''){
-        fileLocation = fileLocation.replace('.tsx','')
-        finalString += `import {${describeInputGlobal[i]}} from \'${fileLocation}\' \n`
+        fileLocation = fileLocation.replace('.jsx','')
+        finalString += `import ${describeInputGlobal[i]} from \'${fileLocation}\' \n`
       }
     }
 
