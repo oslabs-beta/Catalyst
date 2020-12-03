@@ -12,9 +12,11 @@ export const MainContent: React.FC = () =>{
   return(
     <div className="row">
       <div className = 'left column'>
+        <h1>Project Directory</h1>
         <FileTree />
       </div>
       <div className="middle column">
+        <h1>Test Builder</h1>
         <TestBuilder/>
       </div>
       <div className="right column">

@@ -1,0 +1,39 @@
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
+.describeBlock {
+  // display: block;
+  background: white;
+  border-radius: 2em;
+  padding: 1em 1em 1em 2em;
+  margin: 1em;
+  // box-shadow: 4px 4px 12px grey;
+  button {
+    background: $secondary;
+    color: $bg;
+    font-size: 16px;
+    border: none;
+    border-radius: 1em;
+    padding: .5em 1em;
+  }
+  .remove {
+    background: $fg;
+    float: right;
+    border-radius: 1.5em;
+    padding: .10em .45em;
+  }
+  .describe {
+    margin-bottom: 1em;
+    .describetext {
+      font-size: 1.5em;
+    }
+    .describeinput {
+      border: .5px solid $primary;
+      border-radius: .5em;
+      padding: .5em;
+      width: 95%;
+    }
+  }
+}

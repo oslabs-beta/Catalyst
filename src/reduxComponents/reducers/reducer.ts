@@ -7,6 +7,7 @@ const initialState = {
   fileTree: [],
   fileToView: '',
   toggleFolder: {},
+  filePathOfProject: '',
 
   
   describes: {},
@@ -117,7 +118,14 @@ export const reducer = (state: any = initialState, action: any) => {
       
       return{
         ...state
-      }
+      };
+
+    case types.SET_PROJECT_PATH:
+      console.log(' in set project path, ', action.payload);
+    return {
+      ...state,
+      filePathOfProject: action.payload
+    }
 
     default: 
       return state;

@@ -1,39 +1,50 @@
-$primary: #1c768f;
-$secondary: #032539;
+$primary: #032539;
+$secondary: #1c768f;
 $fg: #FA991C;
 $bg: #FBF3F2;
 
-.folderupload {
-  border-radius: 5em;
-  padding: .5em
-}
-
 .frontheader {
-  border: 1px solid red;
-  height: 10em;
+  background: $primary;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .frontpage {
-  border: 1px solid green;
-  height: 35em;
+  background: $bg;
+  height: 100vh;
   padding: 0;
   margin: 0;
 }
 
 .frontbody {
-  border: 1px solid black;
+  width: 25vw;
   height: 25em;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  margin-top: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
   align-items: center;
-  // width: 15em;
+  text-align: center;
+  .fronth2 {
+    font-size: 32px;
+    color: $primary;
+    margin-bottom: 0;
+  }
+  .folderupload {
+    color: $bg;
+    font-size: 24px;
+    border: none;
+    border-radius: 5em;
+    background-color: $fg;
+    padding: .5em 1em
+  }
 }
 
 .catalystlogo {
-  width: 30em;
+  width: 40em;
   height: auto;
 }

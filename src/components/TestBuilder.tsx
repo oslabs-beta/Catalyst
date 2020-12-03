@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { DescribeBlock } from './DescribeBlock';
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateItObj, UpdateKeyOfDesribe, UpdateData, UpdateDescribe} from '../reduxComponents/actions/actions';
+import { UpdateItObj, UpdateKeyOfDescribe, UpdateData, UpdateDescribe} from '../reduxComponents/actions/actions';
 
 
 
@@ -12,7 +12,7 @@ export const TestBuilder: React.FC = () => {
   const expectFromStore = useSelector((state:any) => state.expects)
   const describeIndex = useSelector((state:any) => state.keyOfDescribe)
   const itIndex = useSelector((state:any) => state.keyOfIt)
-  const updateDescribeIndex = () => dispatch(UpdateKeyOfDesribe())
+  const updateDescribeIndex = () => dispatch(UpdateKeyOfDescribe())
   const updateIt = (data:any) => dispatch(UpdateItObj(data))
   const updateExpects = (data:any) => dispatch(UpdateData(data))
   const updateDescribe = (data:any) => dispatch(UpdateDescribe(data))
@@ -80,8 +80,12 @@ export const TestBuilder: React.FC = () => {
       <button className="mainButton newComponent">New Component</button>
       <label>Enter Component Name: </label>
       <input/> */}
-      {describes}
-      <button onClick = {addDescribe}>Add Describe Block</button>
+      <div className="describecards">
+        {describes}
+      </div>
+      <div className="addtestbutton">
+        <button className="adddescribe" onClick = {addDescribe}>+ Describe Block</button>
+      </div>
     </div>
   )
 };
