@@ -20,7 +20,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   let updateExpectKey = () => dispatch( UpdateKeyOfExpect())
   let deleteExpectFromStore = (data:any) => dispatch(deleteExpect(data))
 
-  let [inputNeeded , updateInput] = useState(false)
 
   useEffect(() => {
     data[index] = {}
@@ -56,7 +55,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     if(event.target?.id === 'firstInput' + `${id}`){
       if((document.getElementById('firstInput' + `${id}`) as HTMLInputElement).value === '.find'){
         // changes the boolean checker to true
-        updateInput(true)
         
         // creates an input box for the the find case
         let child = document.createElement('input')
@@ -73,21 +71,47 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         // appends to the document
         data[`${id}`][`wrapperInput${id}`] = ''
 
-        console.log(block);
+
+        let secondSelector = document.createElement('select')
+        secondSelector.id = `selector${id}`
+        secondSelector.className = 'expectdrop1'
+        secondSelector.innerHTML = `
+        <option value = 'nothing'></option>
+        <option value = '.type'>type</option>
+        <option value = '.text'>text</option>
+        <option value = '.find'>to find</option>
+        <option value = '.exists'>to exist</option>`
+        // secondSelector.onchange = handleChange
+        data[`${id}`][`selector${id}`] = 'nothing'
+        secondSelector.onchange = handleChange
+
+        // console.log(block);
         if(block){
           block.appendChild(child)
+          block.appendChild(secondSelector)
         }
       }
       
       // every case where the selector is not equal to find
       else{
-        updateInput(false)
         delete data[`${id}`][`wrapperInput${id}`]
+        delete data[`${id}`][`selector${id}`]
         if(document.getElementById('wrapperInput' + id.toString())){
-          let x = document.getElementById('wrapperInput'+ id.toString())
-          console.log(x)
-          if(x){
-            x.remove()
+          let wrapperinput = document.getElementById('wrapperInput'+ id.toString())
+
+          if(wrapperinput){
+            wrapperinput.remove()
+          }
+        }
+        if(document.getElementById('selector' + id.toString())){
+          delete data[`${id}`][`selectorInput${id}`]
+          let selector = document.getElementById('selector'+ id.toString())
+          if(selector){
+            selector.remove()
+          }
+          let selectorInput = document.getElementById(`selectorInput${id}`)
+          if(selectorInput){
+            selectorInput.remove()
           }
         }
       }
@@ -96,13 +120,51 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
       data[`${id}`][`firstInput${id}`] = (document.getElementById('firstInput' + `${id}`) as HTMLInputElement).value
   
       // updates the store to hold the correct value of the first input box
-      updateData(data)
+    }
+
+    else if(event.target?.id === 'selector' + `${id}`){
+      if((document.getElementById('selector' + `${id}`) as HTMLInputElement).value === '.find'){
+        let child = document.createElement('input')
+        // child.innerHTML = `<input type = 'text' class= 'inputbox' id = 'wrapperInput${id}' onChange = {handleChange}/>`
+
+
+
+
+
+        child.id = 'selectorInput' + id.toString()
+        child.className = 'inputbox'
+        child.type = 'text'
+        child.onchange = handleChange
+        // appends to the document
+        data[`${id}`][`selectorInput${id}`] = ''
+
+        // console.log(block);
+        if(block){
+          block.appendChild(child)
+        }
+
+        
+      }
+      else{
+        delete data[`${id}`][`selectorInput${id}`]
+        
+        if(document.getElementById('selectorInput' + id.toString())){
+          let wrapperinput = document.getElementById('selectorInput'+ id.toString())
+
+          if(wrapperinput){
+            wrapperinput.remove()
+          }
+        }
+
+      }
+      data[`${id}`][`selector${id}`] = (document.getElementById('selector' + `${id}`) as HTMLInputElement).value
+  
+      // updates the store to hold the correct value of the first input box
     }
     else{
       data[`${id}`][`${event.target?.id}`] = event.target?.value
-      updateData(data)
     }
-    
+    updateData(data)
   }
   
   
