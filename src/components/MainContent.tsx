@@ -4,6 +4,7 @@ import {FileTree} from './FileTree'
 import {FileViewer} from './FileViewer';
 import { TestBuilder } from './TestBuilder';
 import { TestBlock } from './TestBlock';
+import { ReuploadDirectory } from './ReuploadDirectory';
 
 
 export const MainContent: React.FC = () =>{
@@ -24,6 +25,9 @@ export const MainContent: React.FC = () =>{
       </div>
       <div>
         <TestBlock />
+      </div>
+      <div>
+        <ReuploadDirectory />
       </div>
     </div>
   )
