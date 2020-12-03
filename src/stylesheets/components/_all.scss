@@ -2,10 +2,16 @@
 @import 'filetree';
 @import 'folderupload';
 @import 'testbuilder';
-@import 'testingblock';
+@import 'testblock';
 @import 'fileviewer';
 @import 'maincontent';
 @import 'itstatement';
+@import 'expectstatement';
+
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
 
 body {
   margin: 0;
