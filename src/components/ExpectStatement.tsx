@@ -74,7 +74,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
 
         let secondSelector = document.createElement('select')
         secondSelector.id = `selector${id}`
-        secondSelector.className = 'selector'
+        secondSelector.className = 'expectdrop1'
         secondSelector.innerHTML = `
         <option value = 'nothing'></option>
         <option value = '.type'>type</option>
