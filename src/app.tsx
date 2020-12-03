@@ -20,7 +20,9 @@ export const App: React.FC = () => {
 
     <MainContent />
     :
-    <FolderUpload />
+    <div className="wholePage">
+      <FolderUpload />
+    </div>
 
   )
 };
