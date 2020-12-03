@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Main, remote} from 'electron';
 import * as electronFs from 'fs';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
+import { ReuploadDirectory } from './ReuploadDirectory';
+
 
 const dialog = remote.dialog
 
@@ -52,7 +54,59 @@ export const TestBlock: React.FC = () => {
     
     }
     return ''
+  };
+
+  const openDialog = (userFilePath: string, generatedTestCode: string) => {
+    dialog.showSaveDialog({
+      title: 'Please name your Test File',
+      defaultPath: userFilePath + '/__tests__/', //can add location to save file on users directory
+      filters: [
+        {
+          name: 'Test Files',
+          extensions: ['test']
+        },
+      ],
+      message: 'Choose location',
+      properties: [
+        'createDirectory'
+      ]
+    }).then(file => {
+      // stating whether dialog operation was cancelled or not
+      console.log(file.canceled);
+      if (!file.canceled) {
+        console.log(file.filePath?.toString());
+  
+        // creating and writing to the text.txt file
+  
+        electronFs.writeFile(file.filePath?.toString() + '.js', generatedTestCode, (err) => {
+          if (err) {
+            console.log(err.message);
+          }
+          console.log('saved');
+        })
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    }) 
+  };
+
+  // determing if directory __tests__ exists already
+  const exportTestCode = (userFilePath: string, generatedTestCode:string) => {
+    // if __tests__ directory does not exist then create one and write generated test code into that newly created directory
+  if (!electronFs.existsSync(userFilePath + '/__tests__')) {
+    electronFs.mkdirSync(userFilePath + '/__tests__');
+    openDialog(userFilePath, generatedTestCode);
+  } 
+    // if __tests__ directory does exist then just generate another file into that directory
+  else {
+    openDialog(userFilePath, generatedTestCode);
   }
+  };
+
+
+
+
   const handleClick = () => {
     const keysOfDescribe = Object.keys(describeGlobal);
 
@@ -121,45 +175,8 @@ export const TestBlock: React.FC = () => {
       finalString += '});\n';
     }
     
-  
+  exportTestCode(projectFilePath, finalString);
 
-  if (!electronFs.existsSync(projectFilePath + '/__tests__)')) {
-    electronFs.mkdirSync(projectFilePath + '/__tests__')
-  }
-
-
-  dialog.showSaveDialog({
-    title: 'Select File Path to save',
-    defaultPath: projectFilePath + '/__tests__/', //can add location to save file on users directory
-    filters: [
-      {
-        name: 'Test Files',
-        extensions: ['test']
-      },
-    ],
-    message: 'Choose location',
-    properties: [
-      'createDirectory'
-    ]
-  }).then(file => {
-    // stating whether dialog operation was cancelled or not
-    console.log(file.canceled);
-    if (!file.canceled) {
-      console.log(file.filePath?.toString());
-
-      // creating and writing to the text.txt file
-
-      electronFs.writeFile(file.filePath?.toString() + '.js', finalString, (err) => {
-        if (err) {
-          console.log(err.message);
-        }
-        console.log('saved');
-      })
-    }
-  })
-  .catch(err => {
-    console.log(err);
-  }) 
 
 }
 
@@ -170,7 +187,7 @@ export const TestBlock: React.FC = () => {
       <img className ="catalysticon" src={catalystIcon}/>
       <ul className="headerlist">
         <li>
-          <button onClick={handleClick}>Create Tests</button>
+          <ReuploadDirectory />
         </li>
         <li>
           <button onClick={handleClick}>Create Tests</button>

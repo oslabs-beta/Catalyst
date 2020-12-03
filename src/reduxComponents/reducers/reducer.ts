@@ -122,7 +122,6 @@ export const reducer = (state: any = initialState, action: any) => {
       };
 
     case types.SET_PROJECT_PATH:
-      console.log(' in set project path, ', action.payload);
     return {
       ...state,
       filePathOfProject: action.payload
