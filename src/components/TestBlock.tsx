@@ -2,6 +2,10 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Main, remote} from 'electron';
 import * as electronFs from 'fs';
+import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
+import { ReuploadDirectory } from './ReuploadDirectory';
+
+
 const dialog = remote.dialog
 
 
@@ -179,8 +183,17 @@ export const TestBlock: React.FC = () => {
 
 
   return (
-    <div>
-    <button onClick={handleClick}>Create tests</button>
+    <div className="testBlock">
+      <img className ="catalysticon" src={catalystIcon}/>
+      <ul className="headerlist">
+        <li>
+          <ReuploadDirectory />
+        </li>
+        <li>
+          <button onClick={handleClick}>Create Tests</button>
+        </li>
+      </ul>
+
     </div>
   );
 };

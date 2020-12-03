@@ -1,0 +1,36 @@
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
+.testBlock{
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  background: $primary;
+  .catalysticon {
+    width: 4.5em;
+    height: 3em;
+    margin-left: 1em;
+  }
+  button {
+    background: $primary;
+    color:$bg;
+    align-items: center;
+    font-size: 24px;
+    border: none;
+    border-radius: 1.25em;
+    padding: .25em .6em;
+  }
+  .headerlist {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin: 0em 1em;
+    li {
+      padding: 0em 1em;
+      color: $bg;
+    }
+  }
+}
