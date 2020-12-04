@@ -16,6 +16,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const globalDescribeObj = useSelector((state:any) => state.describes)
   const index = useSelector((state: any) => state.keyOfIt)
   const componentObj = useSelector((state: any) => state.componentObj);
+  // const filetree = useSelector((state:any) => state.fileTree)
 
   
   

@@ -17,6 +17,8 @@ export const TestBuilder: React.FC = () => {
   const updateExpects = (data:any) => dispatch(UpdateData(data))
   const updateDescribe = (data:any) => dispatch(UpdateDescribe(data))
 
+  const filetree = useSelector((state:any) => state.fileTree)
+
   const [describes, updateDescribes] = useState([]);
 
   const storeval: {[k:string]:any}= {}
@@ -24,6 +26,7 @@ export const TestBuilder: React.FC = () => {
 
 
   useEffect(() =>{
+    // console.log(describes)
     let x: {[k:string]:any}= {}
     // create a new Describe block to be rendered. Will be inital describe
     x[`${describeIndex}`] = <DescribeBlock key ={describeIndex} id={describeIndex} itIndex = {itIndex} describeProp = {`${describeIndex}`} removeDescribe = {removeDescribe}/>
@@ -33,7 +36,8 @@ export const TestBuilder: React.FC = () => {
     describesFromStore[`${describeIndex}`] = storeval
     // updates the index of the it and describe because each has been added to the store
     updateDescribeIndex()
-  },[])
+  },[filetree])
+
 
   
   function addDescribe(){
@@ -72,15 +76,9 @@ export const TestBuilder: React.FC = () => {
 
 
 
-
   return (
     <div className="testBuilder">
-      {/* <button className="mainButton newTest">New Test</button>
-      <button className="mainButton undo">Undo</button>
-      <button className="mainButton newComponent">New Component</button>
-      <label>Enter Component Name: </label>
-      <input/> */}
-      <div className="describecards">
+      <div className="describecards" id = 'describecards'>
         {describes}
       </div>
       <div className="addtestbutton">

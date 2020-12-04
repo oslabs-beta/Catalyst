@@ -94,14 +94,14 @@ export const TestBlock: React.FC = () => {
   // determing if directory __tests__ exists already
   const exportTestCode = (userFilePath: string, generatedTestCode:string) => {
     // if __tests__ directory does not exist then create one and write generated test code into that newly created directory
-  if (!electronFs.existsSync(userFilePath + '/__tests__')) {
-    electronFs.mkdirSync(userFilePath + '/__tests__');
-    openDialog(userFilePath, generatedTestCode);
-  } 
-    // if __tests__ directory does exist then just generate another file into that directory
-  else {
-    openDialog(userFilePath, generatedTestCode);
-  }
+    if (!electronFs.existsSync(userFilePath + '/__tests__')) {
+      electronFs.mkdirSync(userFilePath + '/__tests__');
+      openDialog(userFilePath, generatedTestCode);
+    } 
+      // if __tests__ directory does exist then just generate another file into that directory
+    else {
+      openDialog(userFilePath, generatedTestCode);
+    }
   };
 
 

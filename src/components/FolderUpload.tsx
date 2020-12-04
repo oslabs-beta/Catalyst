@@ -5,7 +5,7 @@ import { useDispatch} from 'react-redux';
 import { ConstructFileTree, SetProjectPath } from '../reduxComponents/actions/actions';
 import catalystLogo from '../../assets/catalyst_icons/Catalystfull-02.png';
 
-class FileTree {
+export class FileTree {
     filepath: string
     name: string
     children: FileTree[]

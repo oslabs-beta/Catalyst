@@ -4,7 +4,6 @@ import * as types from '../constants/actionTypes'
 
 
 const initialState = {
-
   fileTree: [],
   fileToView: '',
   toggleFolder: {},
@@ -24,12 +23,30 @@ const initialState = {
 
 export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
-
+    
     case types.CONSTRUCT_FILETREE:
+      // if(document.getElementById('describecards')){
+      //   document.getElementById('describecards').innerHTML = ''
+      // }
+      console.log('there')
       return {
-        ...state,
-        fileTree: action.payload
-      };
+        // ...state,
+        fileTree: action.payload,
+        fileToView: '',
+        toggleFolder: {},
+        filePathOfProject: '',
+
+        
+        describes: {},
+        its: {},
+        expects: {},
+        
+        keyOfDescribe:0,
+        keyOfIt:0,
+        keyOfExpect: 0,
+        componentObj: {},
+        itInputObj: {}
+      }
 
     case types.SET_FILE_VIEW:
       return{
