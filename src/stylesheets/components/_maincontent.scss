@@ -5,35 +5,34 @@ $bg: #FBF3F2;
 
 .row {
   display: grid;
-  grid-template-columns: 350px repeat(2, 1fr);
+  grid-template-columns: 375px repeat(2, 1fr);
   grid-template-rows: 100%;
   height: 90vh;
   background: $bg;
   color: $primary;
-}
-
-.left {
-  overflow: scroll;
-  border-right: 1px solid $secondary;
-  h1 {
-    text-align: center;
+  .left {
+    overflow: scroll;
+    border-right: 1px solid $secondary;
+    h1 {
+      text-align: center;
+    }
+  }
+  .middle {
+    overflow: scroll;
+    border-left: 1px solid $secondary;
+    border-right: 1px solid $secondary;
+    padding: 0em 1.5em;
+    h1 {
+      text-align: center;
+    }
+  }
+  .right {
+    overflow: scroll;
+    border-left: 1px solid $secondary;
+    h1 {
+      text-align: center;
+    }
   }
 }
 
-.middle {
-  overflow: scroll;
-  border-left: 1px solid $secondary;
-  border-right: 1px solid $secondary;
-  padding: 0em 1.5em;
-  h1 {
-    text-align: center;
-  }
-}
 
-.right {
-  overflow: scroll;
-  border-left: 1px solid $secondary;
-  h1 {
-    text-align: center;
-  }
-}

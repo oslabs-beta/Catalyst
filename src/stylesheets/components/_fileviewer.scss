@@ -1,6 +1,7 @@
-// div p {
-//   margin: 0;
-// }
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
 
  div p {
   margin: 0;
@@ -22,7 +23,16 @@
 }
 
 .clearFile{
-  right:0;
+  float: right;
+}
+
+.remove {
+  color: $bg;
+  background: $fg;
+  float: right;
+  border-radius: 1.5em;
+  border: none;
+  padding: .10em .45em;
 }
 
 .buttonHolder{
