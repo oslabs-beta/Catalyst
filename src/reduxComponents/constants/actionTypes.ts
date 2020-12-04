@@ -15,3 +15,4 @@ export const CLEAR_FILE = 'CLEAR_FILE';
 export const DELETE_EXPECT = 'DELETE_EXPECT';
 export const REMOVE_FROM_IT = 'REMOVE_FROM_IT';
 export const SET_PROJECT_PATH = 'SET_PROJECT_PATH';
+export const REFRESH_STATE = 'REFRESH_STATE';

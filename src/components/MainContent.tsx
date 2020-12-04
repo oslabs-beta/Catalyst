@@ -19,7 +19,7 @@ export const MainContent: React.FC = () =>{
           <h1>PROJECT DIRECTORY</h1>
           <FileTree />
         </div>
-        <div className="middle column">
+        <div className="middle column" id = 'middle'>
           <h1>TEST BUILDER</h1>
           <TestBuilder/>
         </div>

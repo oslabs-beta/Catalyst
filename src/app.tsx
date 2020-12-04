@@ -14,7 +14,6 @@ export const App: React.FC = () => {
 
   const fileTree = useSelector((state: any) => state.fileTree)
 
-
   return(
     fileTree.length ?
 
