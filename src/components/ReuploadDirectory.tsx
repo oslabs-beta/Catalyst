@@ -2,8 +2,7 @@ import React from 'react';
 import {remote} from 'electron';
 import * as electronFs from 'fs';
 import { useDispatch} from 'react-redux';
-import {FileTree} from './FolderUpload'
-import { ConstructFileTree, SetProjectPath } from '../reduxComponents/actions/actions';
+import { ConstructFileTree, SetProjectPath, RefreshState } from '../reduxComponents/actions/actions';
 
 
 
@@ -14,6 +13,9 @@ export const ReuploadDirectory:React.FC = () => {
   // creates dispatch that will send file path as an action payload to reducer
   const constructFileTree = (files: any) => dispatch(ConstructFileTree(files));
   const setFilePath = (filePath: any) => dispatch(SetProjectPath(filePath));
+  const refreshState = () => dispatch(RefreshState());
+
+
 
   const dialog = remote.dialog
   async function uploadFolder(){
@@ -45,17 +47,21 @@ export const ReuploadDirectory:React.FC = () => {
 
           // will return an array of FileTree objects along with any children associated with it 
           const fileTree = rootTree.createTree(projectDirectory)
+
+          // dispatch call to refresh state
+          refreshState();
           // dispatches fileTree to reducer
           constructFileTree(fileTree);
           // setting file path of project to access later by sending projectDirectory to store
           setFilePath(projectDirectory);
+          
       }
   }
 
 
   return (
     <div>
-      <button onClick={uploadFolder}>Choose New Project!</button>
+      <button onClick={uploadFolder}>Choose New Project</button>
     </div>
   )
 }

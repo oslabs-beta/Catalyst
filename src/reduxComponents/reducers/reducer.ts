@@ -8,7 +8,6 @@ const initialState = {
   fileToView: '',
   toggleFolder: {},
   filePathOfProject: '',
-
   
   describes: {},
   its: {},
@@ -25,27 +24,9 @@ export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
     
     case types.CONSTRUCT_FILETREE:
-      // if(document.getElementById('describecards')){
-      //   document.getElementById('describecards').innerHTML = ''
-      // }
-      console.log('there')
       return {
-        // ...state,
-        fileTree: action.payload,
-        fileToView: '',
-        toggleFolder: {},
-        filePathOfProject: '',
-
-        
-        describes: {},
-        its: {},
-        expects: {},
-        
-        keyOfDescribe:0,
-        keyOfIt:0,
-        keyOfExpect: 0,
-        componentObj: {},
-        itInputObj: {}
+        ...state,
+        fileTree: action.payload
       }
 
     case types.SET_FILE_VIEW:
@@ -143,6 +124,24 @@ export const reducer = (state: any = initialState, action: any) => {
       ...state,
       filePathOfProject: action.payload
     }
+
+    case types.REFRESH_STATE:
+      return {
+        fileTree: [],
+        fileToView: '',
+        toggleFolder: {},
+        filePathOfProject: '',
+        
+        describes: {},
+        its: {},
+        expects: {},
+        
+        keyOfDescribe:0,
+        keyOfIt:0,
+        keyOfExpect: 0,
+        componentObj: {},
+        itInputObj: {}
+      }
 
     default: 
       return state;
