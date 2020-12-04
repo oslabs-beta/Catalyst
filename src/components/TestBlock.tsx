@@ -100,6 +100,7 @@ export const TestBlock: React.FC = () => {
   } 
     // if __tests__ directory does exist then just generate another file into that directory
   else {
+    console.log(userFilePath);
     openDialog(userFilePath, generatedTestCode);
   }
   };
@@ -196,10 +197,10 @@ export const TestBlock: React.FC = () => {
       <div className="headerbar">
         <ul className="headerlist">
           <li>
-            <ReuploadDirectory />
+          <button onClick={handleClick}>Generate Tests</button> 
           </li>
           <li>
-            <button onClick={handleClick}>Create Tests</button>
+            <ReuploadDirectory />
           </li>
         </ul>
         <ul className="iconlist">
