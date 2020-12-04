@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {remote} from 'electron';
+import {Main, remote, shell} from 'electron';
 import * as electronFs from 'fs';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
 import { ReuploadDirectory } from './ReuploadDirectory';
@@ -127,12 +127,7 @@ export const TestBlock: React.FC = () => {
 
     // console.log(describeInputGlobal)
     let finalString  = '';
-    finalString += `import React from 'react';\n
-    import { configure, shallow } from 'enzyme';\n
-    import Adapter from 'enzyme-adapter-react-16';\n
-    
-    configure({ adapter: new Adapter() });\n
-    `
+    finalString += `import React from 'react';\nimport { configure, shallow } from 'enzyme';\nimport Adapter from 'enzyme-adapter-react-16';\nconfigure({ adapter: new Adapter() });\n`
 
     for(let i of keysOfDescribe){
       let fileLocation = findFile(fileTree, `${describeInputGlobal[i]}`.trim().toLowerCase());
@@ -147,33 +142,46 @@ export const TestBlock: React.FC = () => {
     for (let i of keysOfDescribe) {
       finalString += `describe('${describeInputGlobal[i]}', () => { \n let wrapper; \n\n`;
       finalString += `beforeAll(() => { \n wrapper = shallow(<${describeInputGlobal[i]}/>)\n }) \n`;
-      
-      
-      // correctly iterating through describe block
-      // console.log('describe', i)
       for (let j of Object.keys(describeGlobal[i])){
         finalString += `\nit('${itInputGlobal[j]}', () => { \n`;
-        // console.log('it', j)
         for(let expect of Object.keys(itsGlobal[j])){
-          // if(expectGlobal[expect][`firstInput${expect}`] === .find ){
-          //  finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}()${expectGlobal[expect].testTypes}(${expectGlobal[expect][`lastInput${expect}`]}))\n`
-          // }
-          if(expectGlobal[expect][`lastInput${expect}`] === 'true' || expectGlobal[expect][`lastInput${expect}`] === 'false'){
-            finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}(${expectGlobal[expect][`lastInput${expect}`]});\n`;
+          if(expectGlobal[expect][`firstInput${expect}`] === '.exists'){
+            if(expectGlobal[expect][`lastInput${expect}`] === 'true' || expectGlobal[expect][`lastInput${expect}`] === 'false'){
+              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}(${expectGlobal[expect][`lastInput${expect}`]});\n`;
+            }
+            else{
+              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
+            }
           }
-          else{
+
+          else if(expectGlobal[expect][`firstInput${expect}`] === '.type'){
             finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
           }
-          
-          // console.log('expect', expect)
-          // console.log(expectGlobal[expect])
-        
+
+          else if(expectGlobal[expect][`firstInput${expect}`] === '.text'){
+            finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
+          }
+
+          else if(expectGlobal[expect][`firstInput${expect}`] === '.find'){
+            console.log(expectGlobal[expect][`selector${expect}`])
+            if(expectGlobal[expect][`selector${expect}`] === 'nothing'){
+              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}'))${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
+            }
+            else if(expectGlobal[expect][`selector${expect}`] === '.find'){
+              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}')${expectGlobal[expect][`selector${expect}`]}('${expectGlobal[expect][`selectorInput${expect}`]}'))${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
+            }
+            else{
+              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}')${expectGlobal[expect][`selector${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
+            }
+            
+          }
         
         }
       finalString += '});\n';
     
       }
       finalString += '});\n';
+      
     }
     
   exportTestCode(projectFilePath, finalString);
@@ -185,16 +193,22 @@ export const TestBlock: React.FC = () => {
 
   return (
     <div className="testBlock">
-      <img className ="catalysticon" src={catalystIcon}/>
-      <ul className="headerlist">
-        <li>
-          <ReuploadDirectory />
-        </li>
-        <li>
-          <button onClick={handleClick}>Create Tests</button>
-        </li>
-      </ul>
-
+      <img className="catalysticon" src={catalystIcon}/>
+      <div className="headerbar">
+        <ul className="headerlist">
+          <li>
+          <button onClick={handleClick}>Generate Tests</button> 
+          </li>
+          <li>
+            <ReuploadDirectory />
+          </li>
+        </ul>
+        <ul className="iconlist">
+          <li><a href="https://github.com/oslabs-beta/Catalyst" target="_blank"><i className="fab fa-github"></i></a></li>
+          <li><a href="https://enzymejs.github.io/enzyme/" target="_blank"><i class="fas fa-globe-americas"></i></a></li>
+          <li><a href="https://devhints.io/enzyme" target="_blank"><i class="fas fa-question-circle"></i></a></li>
+        </ul>
+      </div>
     </div>
   );
 };

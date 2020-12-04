@@ -105,7 +105,7 @@ export const ReuploadDirectory:React.FC = () => {
 
   return (
     <div>
-      <button onClick={uploadFolder}>Choose New Project!</button>
+      <button onClick={uploadFolder}>Choose New Project</button>
     </div>
   )
 }
