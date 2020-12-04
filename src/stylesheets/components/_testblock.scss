@@ -14,23 +14,53 @@ $bg: #FBF3F2;
     height: 3em;
     margin-left: 1em;
   }
-  button {
-    background: $primary;
-    color:$bg;
-    align-items: center;
-    font-size: 24px;
-    border: none;
-    border-radius: 1.25em;
-    padding: .25em .6em;
-  }
-  .headerlist {
+  .headerbar {
     display: flex;
-    list-style: none;
-    padding-left: 0;
-    margin: 0em 1em;
-    li {
-      padding: 0em 1em;
-      color: $bg;
+    width: 95vw;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      background: $primary;
+      color:$bg;
+      align-items: center;
+      font-size: 24px;
+      border: none;
+      border-radius: 1.25em;
+      padding: .25em .6em;
+    }
+    .headerlist {
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0em;
+      li {
+        padding: 0em 1em;
+        color: $bg;
+      }
+    }
+    .iconlist {
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+      margin: 0em 1em;
+      height: 36px;
+      li {
+        margin: 0em .5em;
+        color: $bg;
+        a, a:hover, a:focus {
+          text-decoration: none;
+          color: inherit;
+          .fa-github {
+            font-size: 32px;
+          }
+          .fa-globe-americas {
+            font-size: 32px;
+          }
+          .fa-question-circle {
+            font-size: 32px;
+          }
+        }
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Main, remote} from 'electron';
+import {Main, remote, shell} from 'electron';
 import * as electronFs from 'fs';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
 import { ReuploadDirectory } from './ReuploadDirectory';
@@ -192,16 +192,22 @@ export const TestBlock: React.FC = () => {
 
   return (
     <div className="testBlock">
-      <img className ="catalysticon" src={catalystIcon}/>
-      <ul className="headerlist">
-        <li>
-          <ReuploadDirectory />
-        </li>
-        <li>
-          <button onClick={handleClick}>Create Tests</button>
-        </li>
-      </ul>
-
+      <img className="catalysticon" src={catalystIcon}/>
+      <div className="headerbar">
+        <ul className="headerlist">
+          <li>
+            <ReuploadDirectory />
+          </li>
+          <li>
+            <button onClick={handleClick}>Create Tests</button>
+          </li>
+        </ul>
+        <ul className="iconlist">
+          <li><a href="https://github.com/oslabs-beta/Catalyst" target="_blank"><i className="fab fa-github"></i></a></li>
+          <li><a href="https://enzymejs.github.io/enzyme/" target="_blank"><i class="fas fa-globe-americas"></i></a></li>
+          <li><a href="https://devhints.io/enzyme" target="_blank"><i class="fas fa-question-circle"></i></a></li>
+        </ul>
+      </div>
     </div>
   );
 };
