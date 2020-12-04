@@ -9,7 +9,6 @@ const initialState = {
   fileToView: '',
   toggleFolder: {},
   filePathOfProject: '',
-
   
   describes: {},
   its: {},
@@ -126,6 +125,24 @@ export const reducer = (state: any = initialState, action: any) => {
       ...state,
       filePathOfProject: action.payload
     }
+
+    case types.REFRESH_STATE:
+      return {
+        fileTree: [],
+        fileToView: '',
+        toggleFolder: {},
+        filePathOfProject: '',
+        
+        describes: {},
+        its: {},
+        expects: {},
+        
+        keyOfDescribe:0,
+        keyOfIt:0,
+        keyOfExpect: 0,
+        componentObj: {},
+        itInputObj: {}
+      }
 
     default: 
       return state;

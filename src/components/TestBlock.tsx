@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Main, remote} from 'electron';
+import {remote} from 'electron';
 import * as electronFs from 'fs';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
 import { ReuploadDirectory } from './ReuploadDirectory';
@@ -100,6 +100,7 @@ export const TestBlock: React.FC = () => {
   } 
     // if __tests__ directory does exist then just generate another file into that directory
   else {
+    console.log(userFilePath);
     openDialog(userFilePath, generatedTestCode);
   }
   };
