@@ -76,3 +76,7 @@ export const UpdateItStatement = (data: any) => ({
     type: types.UPDATE_IT_STATEMENT, 
     payload: data
 })
+
+export const RefreshState = () => ({
+    type: types.REFRESH_STATE
+});

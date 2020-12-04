@@ -1,4 +1,3 @@
-// import { types } from "@babel/core";
 import * as types from '../constants/actionTypes'
 
 
@@ -8,7 +7,6 @@ const initialState = {
   fileToView: '',
   toggleFolder: {},
   filePathOfProject: '',
-
   
   describes: {},
   its: {},
@@ -23,12 +21,12 @@ const initialState = {
 
 export const reducer = (state: any = initialState, action: any) => {
   switch (action.type) {
-
+    
     case types.CONSTRUCT_FILETREE:
       return {
         ...state,
         fileTree: action.payload
-      };
+      }
 
     case types.SET_FILE_VIEW:
       return{
@@ -121,11 +119,28 @@ export const reducer = (state: any = initialState, action: any) => {
       };
 
     case types.SET_PROJECT_PATH:
-      console.log(' in set project path, ', action.payload);
     return {
       ...state,
       filePathOfProject: action.payload
     }
+
+    case types.REFRESH_STATE:
+      return {
+        fileTree: [],
+        fileToView: '',
+        toggleFolder: {},
+        filePathOfProject: '',
+        
+        describes: {},
+        its: {},
+        expects: {},
+        
+        keyOfDescribe:0,
+        keyOfIt:0,
+        keyOfExpect: 0,
+        componentObj: {},
+        itInputObj: {}
+      }
 
     default: 
       return state;

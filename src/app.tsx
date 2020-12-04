@@ -14,13 +14,14 @@ export const App: React.FC = () => {
 
   const fileTree = useSelector((state: any) => state.fileTree)
 
-
   return(
     fileTree.length ?
 
     <MainContent />
     :
-    <FolderUpload />
+    <div className="wholePage">
+      <FolderUpload />
+    </div>
 
   )
 };
