@@ -205,8 +205,8 @@ export const TestBlock: React.FC = () => {
         </ul>
         <ul className="iconlist">
           <li><a href="https://github.com/oslabs-beta/Catalyst" target="_blank"><i className="fab fa-github"></i></a></li>
-          <li><a href="https://enzymejs.github.io/enzyme/" target="_blank"><i class="fas fa-globe-americas"></i></a></li>
-          <li><a href="https://devhints.io/enzyme" target="_blank"><i class="fas fa-question-circle"></i></a></li>
+          <li><a href="https://enzymejs.github.io/enzyme/" target="_blank"><i className="fas fa-globe-americas"></i></a></li>
+          <li><a href="https://devhints.io/enzyme" target="_blank"><i className="fas fa-question-circle"></i></a></li>
         </ul>
       </div>
     </div>
