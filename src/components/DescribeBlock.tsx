@@ -16,7 +16,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const globalDescribeObj = useSelector((state:any) => state.describes)
   const index = useSelector((state: any) => state.keyOfIt)
   const componentObj = useSelector((state: any) => state.componentObj);
-
+  const refreshDescribe = useSelector((state:any) => state.toggleRefresh);
   
   
   let [arrayOfIt, updateItArray] = useState([])

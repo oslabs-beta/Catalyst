@@ -16,6 +16,7 @@ export const TestBuilder: React.FC = () => {
   const updateIt = (data:any) => dispatch(UpdateItObj(data))
   const updateExpects = (data:any) => dispatch(UpdateData(data))
   const updateDescribe = (data:any) => dispatch(UpdateDescribe(data))
+  const fileTree = useSelector((state:any) => state.fileTree);
 
   const [describes, updateDescribes] = useState([]);
 
@@ -33,7 +34,8 @@ export const TestBuilder: React.FC = () => {
     describesFromStore[`${describeIndex}`] = storeval
     // updates the index of the it and describe because each has been added to the store
     updateDescribeIndex()
-  },[])
+    // making fileTree as its dependency in order to re-render describe block if new project is chosen
+  },[fileTree])
 
   
   function addDescribe(){
