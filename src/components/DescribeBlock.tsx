@@ -2,7 +2,7 @@ import  React, {useState, useEffect} from 'react';
 import { ItStatement } from './ItStatement';
 import {PropLoader} from './PropLoader'
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName, UpdatePropStore } from '../reduxComponents/actions/actions';
+import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName, UpdatePropStore, UpdateDescribeBoolean } from '../reduxComponents/actions/actions';
 
 interface Props{
   describeProp:string,
@@ -18,6 +18,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const index = useSelector((state: any) => state.keyOfIt)
   const componentObj = useSelector((state: any) => state.componentObj);
   const propsInStore = useSelector((state:any) => state.describeProps)
+  const propBoolean = useSelector((state:any) => state.describePropBoolean)
 
   const [propBool, updateProps] = useState(false)  
   const [renderProp, updateRender] = useState([]) 
@@ -30,6 +31,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const updateGlobalDescribe = (data:any) => dispatch(UpdateDescribe(data))
   const updateComponentName = (name:string) => dispatch(UpdateComponentName(name))
   const updatePropsInStore = (data:any) => dispatch(UpdatePropStore(data))
+  const updatePropBooleanInStore = (data:any) => dispatch(UpdateDescribeBoolean(data))
 
 
   const storeval: {[k:string]:any}= {}
@@ -103,6 +105,8 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
     }
 
     updatePropsInStore(propsInStore)
+    propBoolean[`${describeProp}`] = !propBoolean[`${describeProp}`]
+    updatePropBooleanInStore(propBoolean) 
     updateProps(!propBool)
   }
 

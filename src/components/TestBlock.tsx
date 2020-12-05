@@ -16,6 +16,8 @@ export const TestBlock: React.FC = () => {
   const describeInputGlobal = useSelector((state:any) => state.componentObj);
   const itInputGlobal = useSelector((state:any) => state.itInputObj);
   const projectFilePath = useSelector((state:any) => state.filePathOfProject);
+  const describePropBoolean = useSelector((state:any) => state.describePropBoolean)
+
 
 
   const fileTree = useSelector((state:any) => state.fileTree)
@@ -114,7 +116,7 @@ export const TestBlock: React.FC = () => {
     let testBlock = []; 
 
 
-    
+
 
 
 
@@ -138,11 +140,32 @@ export const TestBlock: React.FC = () => {
       }
     }
 
+    let allProps = document.getElementsByClassName('Prop')
+    let counter = 0
 
 
     for (let i of keysOfDescribe) {
       finalString += `describe('${describeInputGlobal[i]}', () => { \n let wrapper; \n\n`;
-      finalString += `beforeAll(() => { \n wrapper = shallow(<${describeInputGlobal[i]}/>)\n }) \n`;
+      
+      // console.log('counter',counter)
+      // console.log('i',i)
+      
+      if(describePropBoolean[i]){
+        finalString += `const props = { \n`
+        // console.log(i)
+        for(let element of allProps[counter].getElementsByClassName('propChild')){
+          finalString += `${element.getElementsByTagName('input')[0].value} : ${element.getElementsByTagName('input')[1].value}, \n`
+          // console.log(element.getElementsByTagName('input')[0].value,element.getElementsByTagName('input')[1].value)
+        }
+        counter+=1
+        finalString += `} \n`
+        finalString += `beforeAll(() => { \n wrapper = shallow(<${describeInputGlobal[i]} {...props}>)\n }) \n`;
+      }
+      else{
+        finalString += `beforeAll(() => { \n wrapper = shallow(<${describeInputGlobal[i]}>)\n }) \n`;
+      }
+      
+      // console.log('finalString', finalString)
       for (let j of Object.keys(describeGlobal[i])){
         finalString += `\nit('${itInputGlobal[j]}', () => { \n`;
         for(let expect of Object.keys(itsGlobal[j])){
