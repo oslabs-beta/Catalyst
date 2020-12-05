@@ -24,9 +24,9 @@ export const PropLoader: React.FC<Props> =({id}) =>{
   function addProp(){
     let prop: {[k:string]:any}= {}
     prop[`describe${id}prop${count}`] = 
-      <div id = {`describe${id}prop${count}`} key = {count}>
-        <input type = "text" placeholder = "key"/>
-        <input type = "text" placeholder = "value"/>
+      <div className = 'propChild' id = {`describe${id}prop${count}`} key = {count}>
+        <input type = "text" placeholder = "key" onChange = {setKey}/>
+        <input type = "text" placeholder = "value"  onChange = {setValue}/>
         <button onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
       </div>
 
@@ -39,16 +39,26 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     let answer = []
     for(let x of temp.current){
       if(Object.keys(x)[0] !== event.target?.id.replace('button','')){
-        answer.push(x)
+        answer.push(x) 
       }
     }
     temp.current = answer
     updatePropArray(answer)
   }
 
+
+
+  function setKey(): void{
+
+  }
+
+  function setValue(): void{
+
+  }
+
   
   return(
-    <div>
+    <div className = 'Prop'>
       Props
       <br></br>
       {displayArray}
