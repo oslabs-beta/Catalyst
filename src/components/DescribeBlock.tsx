@@ -1,7 +1,8 @@
 import  React, {useState, useEffect} from 'react';
 import { ItStatement } from './ItStatement';
+import {PropLoader} from './PropLoader'
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName,  } from '../reduxComponents/actions/actions';
+import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName, UpdatePropStore, UpdateDescribeBoolean } from '../reduxComponents/actions/actions';
 
 interface Props{
   describeProp:string,
@@ -16,8 +17,11 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const globalDescribeObj = useSelector((state:any) => state.describes)
   const index = useSelector((state: any) => state.keyOfIt)
   const componentObj = useSelector((state: any) => state.componentObj);
-  
-  
+  const propsInStore = useSelector((state:any) => state.describeProps)
+  const propBoolean = useSelector((state:any) => state.describePropBoolean)
+
+  const [propBool, updateProps] = useState(false)  
+  const [renderProp, updateRender] = useState([]) 
   let [arrayOfIt, updateItArray] = useState([])
 
 
@@ -26,6 +30,8 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const updateItKey = () => dispatch(UpdateKeyOfIt())
   const updateGlobalDescribe = (data:any) => dispatch(UpdateDescribe(data))
   const updateComponentName = (name:string) => dispatch(UpdateComponentName(name))
+  const updatePropsInStore = (data:any) => dispatch(UpdatePropStore(data))
+  const updatePropBooleanInStore = (data:any) => dispatch(UpdateDescribeBoolean(data))
 
 
   const storeval: {[k:string]:any}= {}
@@ -82,12 +88,39 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
     removeDescribe(parseInt(describeProp))
   }
 
+  function addProp(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
+    // if the checkbox is filled then add the prop loader
+    if(!propBool){
+      let prop: {[k:string]:any}= {}
+      prop[`0`] = <PropLoader id = {`${describeProp}`} key = {`describePropLoader${describeProp}`}/>
+      updateRender(renderProp.concat(prop[`0`]))
+      // adds the describe index as a key to the props store
+      propsInStore[`${describeProp}`] = {}
+    }
+    // if it is not filled then clear the prop loader
+    else{
+      updateRender([])
+      // deletes the describe index from the prop store
+      delete propsInStore[`${describeProp}`]
+    }
+
+    updatePropsInStore(propsInStore)
+    propBoolean[`${describeProp}`] = !propBoolean[`${describeProp}`]
+    updatePropBooleanInStore(propBoolean) 
+    updateProps(!propBool)
+  }
+
   return (
     <div className="describeBlock" id = {`describeBlock${describeProp}`}>
       <button className="remove" onClick = {removeDescribeComponent}>X</button>
       <div className="describe">
         <p className="describetext">Describe Block</p>
-        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/>
+        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/><br></br>
+        <form>
+          <input type="checkbox" id="addProps" name="addProps" onChange = {addProp}/>
+          <label htmlFor="addProps">Add Props</label>
+        </form>
+        {renderProp}
         {/* pass in prop so that it knows which It statement it belongs to  */}
         {arrayOfIt}
       </div>

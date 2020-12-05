@@ -60,7 +60,7 @@ export const FileViewer: React.FC = () =>{
       :
       <div className = 'codeBlock'>
         <div className ='buttonHolder'>
-          <button onClick = {clearFile} className = 'clearFile'>X</button>
+          <button onClick = {clearFile} className = 'clearFile remove'>X</button>
         </div>
         <code>
           {pathToText()}
