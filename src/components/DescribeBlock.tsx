@@ -87,7 +87,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
       <button className="remove" onClick = {removeDescribeComponent}>X</button>
       <div className="describe">
         <p className="describetext">Describe Block</p>
-        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/>
+        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:" />
         {/* pass in prop so that it knows which It statement it belongs to  */}
         {arrayOfIt}
       </div>

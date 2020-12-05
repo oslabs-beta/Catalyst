@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Main, remote, shell} from 'electron';
 import * as electronFs from 'fs';
+import path from 'path';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
 import { ReuploadDirectory } from './ReuploadDirectory';
 
@@ -36,17 +37,18 @@ export const TestBlock: React.FC = () => {
     for(let x of fileTree){
       // console.log(x.filepath)
       let file = electronFs.statSync(x.filepath)
-      // console.log(file)
+      // console.log('this is file', file)
       if(file.isDirectory()){
         let find = findFile(x.children, name)
         if(find !== ''){
+          // console.log('this is find', find)
           return find
         }
       }
       else{
         // console.log(x.name)
         if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')){
-          console.log(x.name)
+          // console.log('this is x.filepath', x.filepath)
           return x.filepath
         }
       }
@@ -57,9 +59,11 @@ export const TestBlock: React.FC = () => {
   };
 
   const openDialog = (userFilePath: string, generatedTestCode: string) => {
+    // normalizing filePath to work cross-platform
+    let filePath = path.normalize(userFilePath + '/__tests__/');
     dialog.showSaveDialog({
       title: 'Please name your Test File',
-      defaultPath: userFilePath + '/__tests__/', //can add location to save file on users directory
+      defaultPath: filePath, //can add location to save file on users directory
       filters: [
         {
           name: 'Test Files',
@@ -132,6 +136,8 @@ export const TestBlock: React.FC = () => {
     for(let i of keysOfDescribe){
       let fileLocation = findFile(fileTree, `${describeInputGlobal[i]}`.trim().toLowerCase());
       if(fileLocation !== ''){
+        // let relativePath = path.relative(process.cwd(), fileLocation);
+        // console.log(relativePath, 'this is relativePath');
         fileLocation = fileLocation.replace('.jsx','');
         finalString += `import ${describeInputGlobal[i]} from \'${fileLocation}\'; \n\n`
       }
