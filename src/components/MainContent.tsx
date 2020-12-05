@@ -11,8 +11,8 @@ export const MainContent: React.FC = () =>{
 
   return(
     <div>
-      <div>
-        <TestBlock />
+      <div className="header">
+        <TestBlock/>
       </div>
       <div className="row">
         <div className = 'left column'>
