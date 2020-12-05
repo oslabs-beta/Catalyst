@@ -80,3 +80,13 @@ export const UpdateItStatement = (data: any) => ({
 export const RefreshState = () => ({
     type: types.REFRESH_STATE
 });
+
+export const UpdateDescribeBoolean = (data:any) =>({
+    type: types.UPDATE_DESCRIBE_BOOLEAN,
+    payload: data
+})
+
+export const UpdatePropStore = (data:any) => ({
+    type: types.UPDATE_PROPS,
+    payload: data
+})
