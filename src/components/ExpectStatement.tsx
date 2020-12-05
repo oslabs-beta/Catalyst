@@ -45,11 +45,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
 
   }
 
-  function inputText(elementId: string, elementKey: string){
-    let text = (document.getElementById(elementId.replace('selector','input')) as HTMLInputElement).value
-    data[`${id}`]['selectors'][`${elementId}`][`${elementKey}`] = text
-    updateData(data)
-  }
+  
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>){
     let block = document.getElementById(id)
@@ -126,6 +122,12 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     updateData(data)
   }
   
+  // updates 
+  function inputText(elementId: string, elementKey: string){
+    let text = (document.getElementById(elementId.replace('selector','input')) as HTMLInputElement).value
+    data[`${id}`]['selectors'][`${elementId}`][`${elementKey}`] = text
+    updateData(data)
+  }
 
 
   return(
