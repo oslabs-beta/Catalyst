@@ -9,15 +9,6 @@ import { ReuploadDirectory } from './ReuploadDirectory';
 
 const dialog = remote.dialog
 
-
-
-interface Props{
-
-}
-
-
-
-
 export const TestBlock: React.FC = () => {
 
   const describeGlobal = useSelector((state:any) => state.describes);
@@ -98,13 +89,13 @@ export const TestBlock: React.FC = () => {
   // determing if directory __tests__ exists already
   const exportTestCode = (userFilePath: string, generatedTestCode:string) => {
     // if __tests__ directory does not exist then create one and write generated test code into that newly created directory
+    console.log(userFilePath + '/__tests__')
   if (!electronFs.existsSync(userFilePath + '/__tests__')) {
     electronFs.mkdirSync(userFilePath + '/__tests__');
     openDialog(userFilePath, generatedTestCode);
   } 
     // if __tests__ directory does exist then just generate another file into that directory
   else {
-    console.log(userFilePath);
     openDialog(userFilePath, generatedTestCode);
   }
   };
@@ -169,7 +160,7 @@ export const TestBlock: React.FC = () => {
           }
 
           else if(expectGlobal[expect][`firstInput${expect}`] === '.find'){
-            console.log(expectGlobal[expect][`selector${expect}`])
+            // console.log(expectGlobal[expect][`selector${expect}`])
             if(expectGlobal[expect][`selector${expect}`] === 'nothing'){
               finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}'))${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
             }
