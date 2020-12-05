@@ -37,6 +37,19 @@ $bg: #FBF3F2;
       li {
         padding: 0em 1em;
         color: $bg;
+        .generatetests {
+          overflow: hidden;
+          background: linear-gradient(to right, $fg, $fg 50%, $bg 50%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-size: 200% 100%;
+          background-position: 100%;
+          transition: background-position 275ms ease;
+        }
+        .generatetests:hover {
+          background-position: 0 100%;
+        }
       }
     }
     .iconlist {

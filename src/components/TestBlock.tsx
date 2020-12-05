@@ -188,7 +188,7 @@ export const TestBlock: React.FC = () => {
       <div className="headerbar">
         <ul className="headerlist">
           <li>
-          <button onClick={handleClick}>Generate Tests</button> 
+          <button className="generatetests" onClick={handleClick}>Generate Tests</button> 
           </li>
           <li>
             <ReuploadDirectory />

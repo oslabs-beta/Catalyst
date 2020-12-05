@@ -61,8 +61,8 @@ export const ReuploadDirectory:React.FC = () => {
 
 
   return (
-    <div>
-      <button onClick={uploadFolder}>Choose New Project</button>
+    <div className="reuploadparent">
+      <button className="generatetests" onClick={uploadFolder}>Choose New Project</button>
     </div>
   )
 }
