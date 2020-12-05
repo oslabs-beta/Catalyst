@@ -1,5 +1,6 @@
 import  React, {useState, useEffect} from 'react';
 import { ItStatement } from './ItStatement';
+import {PropLoader} from './PropLoader'
 import {useSelector, useDispatch} from 'react-redux';
 import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName,  } from '../reduxComponents/actions/actions';
 
@@ -16,7 +17,8 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const globalDescribeObj = useSelector((state:any) => state.describes)
   const index = useSelector((state: any) => state.keyOfIt)
   const componentObj = useSelector((state: any) => state.componentObj);
-  
+  const [propBool, updateProps] = useState(false)  
+  const [renderProp, updateRender] = useState([])
   
   let [arrayOfIt, updateItArray] = useState([])
 
@@ -82,12 +84,29 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
     removeDescribe(parseInt(describeProp))
   }
 
+  function addProp(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
+    if(!propBool){
+      let prop: {[k:string]:any}= {}
+      prop[`0`] = <PropLoader id = {`${describeProp}`} key = {`describePropLoader${describeProp}`}/>
+      updateRender(renderProp.concat(prop[`0`]))
+    }
+    else{
+      updateRender([])
+    }
+    updateProps(!propBool)
+  }
+
   return (
     <div className="describeBlock" id = {`describeBlock${describeProp}`}>
       <button className="remove" onClick = {removeDescribeComponent}>X</button>
       <div className="describe">
         <p className="describetext">Describe Block</p>
-        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/>
+        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/><br></br>
+        <form>
+          <input type="checkbox" id="addProps" name="addProps" onChange = {addProp}/>
+          <label htmlFor="addProps">Add Props</label>
+        </form>
+        {renderProp}
         {/* pass in prop so that it knows which It statement it belongs to  */}
         {arrayOfIt}
       </div>
