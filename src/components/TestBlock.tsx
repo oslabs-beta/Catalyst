@@ -1,6 +1,6 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Main, remote, shell} from 'electron';
+import { useSelector } from 'react-redux';
+import { remote } from 'electron';
 import * as electronFs from 'fs';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
 import { ReuploadDirectory } from './ReuploadDirectory';
@@ -24,29 +24,24 @@ export const TestBlock: React.FC = () => {
   
   function findFile(fileTree:any, name: string):string{
 
-    // console.log('inside')
-    // console.log(fileTree)
+
     for(let x of fileTree){
-      // console.log(x.filepath)
       let file = electronFs.statSync(x.filepath)
-      // console.log(file)
       if(file.isDirectory()){
         let find = findFile(x.children, name)
         if(find !== ''){
-          return find
+          return find;
         }
       }
       else{
-        // console.log(x.name)
         if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')){
-          console.log(x.name)
-          return x.filepath
+          return x.filepath;
         }
       }
    
     
     }
-    return ''
+    return '';
   };
 
   const openDialog = (userFilePath: string, generatedTestCode: string) => {
@@ -65,12 +60,8 @@ export const TestBlock: React.FC = () => {
       ]
     }).then(file => {
       // stating whether dialog operation was cancelled or not
-      console.log(file.canceled);
       if (!file.canceled) {
-        console.log(file.filePath?.toString());
-  
         // creating and writing to the text.txt file
-  
         electronFs.writeFile(file.filePath?.toString() + '.js', generatedTestCode, (err) => {
           if (err) {
             console.log(err.message);
@@ -193,7 +184,6 @@ export const TestBlock: React.FC = () => {
         
         }
       finalString += '\t});\n';
-    
       }
       finalString += '});\n';
     }
