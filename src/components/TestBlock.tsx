@@ -104,31 +104,6 @@ export const TestBlock: React.FC = () => {
   const handleClick = () => {
     const keysOfDescribe = Object.keys(describeGlobal);
 
-    // console.log(fileTree)
-    
-
-
-    const keysOfIts = Object.keys(itsGlobal);
-    const keysOfExpects = Object.keys(expectGlobal);
-    const keysOfDescribeInputs = Object.keys(describeInputGlobal);
-    const keysOfItInputs = Object.keys(itInputGlobal);
-
-    let testBlock = []; 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // console.log(describeInputGlobal)
     let finalString  = '';
     finalString += `import React from 'react';\nimport { configure, shallow } from 'enzyme';\nimport Adapter from 'enzyme-adapter-react-16';\nconfigure({ adapter: new Adapter() });\n`
 
