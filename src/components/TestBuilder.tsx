@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { DescribeBlock } from './DescribeBlock';
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateItObj, UpdateKeyOfDescribe, UpdateData, UpdateDescribe, UpdateDescribeBoolean} from '../reduxComponents/actions/actions';
+import { UpdateItObj, UpdateKeyOfDescribe, UpdateData, UpdateDescribe, UpdateDescribeBoolean, updateDescribePropBoolean} from '../reduxComponents/actions/actions';
 
 
 
@@ -15,6 +15,7 @@ export const TestBuilder: React.FC = () => {
   const itIndex = useSelector((state:any) => state.keyOfIt)
   const describeBool = useSelector((state:any) => state.describePropBoolean)
   const fileTree = useSelector((state:any) => state.fileTree);
+  const propBool = useSelector((state:any) => state.describePropBoolean)
 
 
   const updateDescribeIndex = () => dispatch(UpdateKeyOfDescribe())
@@ -72,11 +73,15 @@ export const TestBuilder: React.FC = () => {
         updateExpects(expectFromStore)
         updateIt(itFromStore)
       }
+      // deletes the describe key from the store in the describes object
       delete describesFromStore[`${id}`]
+      // deletes the prop boolean key from the store describe prop boolean object
+      delete propBool[`${id}`]
       updateDescribe(describesFromStore)
       document.getElementById(`describeBlock${id}`)?.remove()
       return true
     }
+    // if there is only one block left then cannot delete
     else{
       console.log('cannot delete describe block')
       return false

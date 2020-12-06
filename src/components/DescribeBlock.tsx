@@ -30,7 +30,6 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const updateItKey = () => dispatch(UpdateKeyOfIt())
   const updateGlobalDescribe = (data:any) => dispatch(UpdateDescribe(data))
   const updateComponentName = (name:string) => dispatch(UpdateComponentName(name))
-  const updatePropsInStore = (data:any) => dispatch(UpdatePropStore(data))
   const updatePropBooleanInStore = (data:any) => dispatch(UpdateDescribeBoolean(data))
 
 
@@ -89,23 +88,22 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   }
 
   function addProp(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
+    console.log('bool', propBool)
     // if the checkbox is filled then add the prop loader
     if(!propBool){
       let prop: {[k:string]:any}= {}
       prop[`0`] = <PropLoader id = {`${describeProp}`} key = {`describePropLoader${describeProp}`}/>
       updateRender(renderProp.concat(prop[`0`]))
       // adds the describe index as a key to the props store
-      propsInStore[`${describeProp}`] = {}
     }
     // if it is not filled then clear the prop loader
     else{
       updateRender([])
       // deletes the describe index from the prop store
-      delete propsInStore[`${describeProp}`]
     }
-
-    updatePropsInStore(propsInStore)
     propBoolean[`${describeProp}`] = !propBoolean[`${describeProp}`]
+    // console.log('test',propBoolean)
+    // console.log('here',propBoolean[`${describeProp}`])
     updatePropBooleanInStore(propBoolean) 
     updateProps(!propBool)
   }
