@@ -29,7 +29,10 @@ export const FileTree: React.FC = () => {
     if (ext.split('.')[1] === undefined) {
       return 'folder';
     }
-    return ext.split('.')[1];
+    if (ext.split('.')[ext.split('.').length - 1].includes('babel')) {
+      return 'babel';
+    }
+    return ext.split('.')[ext.split('.').length - 1];
   };
 
   // sending filepath to reducer to keep track of which folder is clicked on. if set to a global state then it will 
@@ -43,8 +46,8 @@ export const FileTree: React.FC = () => {
       <ul className = "FileTree" > 
         {files.map((file: any, id: number) => {
 
-          let extension = extensionGrabber(file.name);
-          let checker = electronFs.statSync(file.filepath);
+          const extension = extensionGrabber(file.name);
+          const checker = electronFs.statSync(file.filepath);
 
           if(checker.isDirectory()){
 
