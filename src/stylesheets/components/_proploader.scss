@@ -1,0 +1,72 @@
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
+
+.Prop {
+  p {
+    margin-top: .5em;
+    font-size: 20px;
+    color: $primary;
+  }
+  .propcheck {
+    margin-right: .5em;
+    height: 15px;
+    width: 15px;
+    border-radius: 4px;
+    border: 1px solid $secondary;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    outline: none;
+  }
+  .propcheck:checked {
+    background: $secondary;
+  }
+  .propcheck:checked::before {
+    height: 10px;
+    width: 10px;
+    display:block;
+    content: '\2713';
+    color: $bg;
+    text-align: center;
+    position: relative;
+    top: -.1em;
+    left: .1em;
+  }
+  .proplabel {
+    display: inline;
+  }
+  .addvalue {
+    font-size: 16px;
+    line-height: 1em !important;
+    border-radius: .8em !important;
+    margin-left: 1em;
+  }
+  .propChild {
+    display: flex;
+    margin: .5em 0em;
+    align-items: center;
+    .proplabel {
+      font-size: 18px;
+      margin-right: .25em;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .removeprop {
+      font-size: 14px !important;
+      justify-content: center !important;
+      background: $fg !important;
+      padding: .175em .55em !important;
+    }
+    input {
+      font-size: 14px;
+      border: .5px solid $secondary;
+      border-radius: .5em;
+      padding: .25em .5em;
+      margin-right: .5em;
+    }
+  }
+}
