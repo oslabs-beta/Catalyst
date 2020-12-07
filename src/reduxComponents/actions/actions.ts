@@ -84,4 +84,13 @@ export const RefreshState = () => ({
 export const UpdateDescribeBoolean = (data:any) =>({
     type: types.UPDATE_DESCRIBE_BOOLEAN,
     payload: data
-})
+});
+
+export const ViewTestCode = (data: string) => ({
+    type: types.SHOW_TESTCODE,
+    payload: data
+});
+
+export const RemoveTestCode = () => ({
+    type: types.REMOVE_TESTCODE,
+});
