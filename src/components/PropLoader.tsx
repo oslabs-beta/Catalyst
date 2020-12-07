@@ -38,9 +38,10 @@ export const PropLoader: React.FC<Props> =({id}) =>{
       let prop: {[k:string]:any}= {}
       prop[`describe${id}prop${count}`] = 
         <div className = 'propChild' id = {`describe${id}prop${count}`} key = {count}>
+          <label className="proplabel">{count + 1}. </label>
           <input type = "text" placeholder = "key"/>
           <input type = "text" placeholder = "value"/>
-          <button onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
+          <button className="removeprop" onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
         </div>
 
       temp.current = temp.current.concat([prop])

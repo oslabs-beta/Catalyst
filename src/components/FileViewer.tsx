@@ -56,15 +56,23 @@ export const FileViewer: React.FC = () =>{
 
   return(
       fileViewPath === '' ?
-      <React.Fragment></React.Fragment>
+      <React.Fragment>
+        <div className="emptyfileview">
+          <h2 className="emptyfiletitle">No File Selected</h2>
+          <p className="emptyfilebody">Click on a file in the project directory to view its code</p>
+        </div>
+      </React.Fragment>
       :
       <div className = 'codeBlock'>
         <div className ='buttonHolder'>
           <button onClick = {clearFile} className = 'clearFile remove'>X</button>
+          <br></br>
         </div>
-        <code>
-          {pathToText()}
-        </code>
+        <div className="blockcode">
+          <code>
+            {pathToText()}
+          </code>
+        </div>
       </div>
       
   )

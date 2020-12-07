@@ -85,8 +85,12 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
       data[`${id}`][`selectors`][`expect${id}selector${counter}`] = '.nothing'
       secondSelector.onchange = handleChange
 
+      //create line break
+      let linebreak = document.createElement('br');
+
       if(block){
         block.appendChild(child)
+        block.appendChild(linebreak)
         block.appendChild(secondSelector)
       }
       
@@ -143,7 +147,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   return(
     <div className="expectBlock"  id = {`expect-block ${id}`}>
       <div className="expect1" id = {`${id}`}>
-        <label>expect wrapper</label>
+        <label>expect wrapper</label><br></br>
         <select className="expectdrop1" id={`expect${id}selector0`} onChange = {handleChange}>
           <option value = '.type'>type</option>
           <option value = '.text'>text</option>
