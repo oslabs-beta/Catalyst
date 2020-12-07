@@ -39,8 +39,8 @@ export const PropLoader: React.FC<Props> =({id}) =>{
       prop[`describe${id}prop${count}`] = 
         <div className = 'propChild' id = {`describe${id}prop${count}`} key = {count}>
           {/* <label className="proplabel">{count + 1}. </label> */}
-          <input type = "text" placeholder = "key"/>
-          <input type = "text" placeholder = "value"/>
+          <input className="propkey" type = "text" placeholder = "key"/>
+          <input className="propval" type = "text" placeholder = "value"/>
           <button className="removeprop" onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
         </div>
 
@@ -88,17 +88,19 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     ?
 
     <div className = 'Prop'>
-      Props
-      <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
-      <br></br>
+      <form className="propform">
+        <label className="proplabel">Add Props</label>
+        <input className="propcheck" type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
+      </form>
     </div>
 
     :
 
     <div className = 'Prop'>
-    Props
-    <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
-    <br></br>
+      <form className="propform">
+        <label className="proplabel">Add Props</label>
+        <input className="propcheck" type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
+      </form>
     {displayArray}
 
     <button onClick = {addProp}>Add Value</button>

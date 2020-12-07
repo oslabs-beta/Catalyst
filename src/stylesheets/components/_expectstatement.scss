@@ -31,6 +31,8 @@ $bg: #FBF3F2;
     border: .5px solid $secondary;
     border-radius: .5em;
     padding: .25em .5em;
+    width: 40%;
+    min-width: 5em;
   }
   .removeexpect {
     float: right;

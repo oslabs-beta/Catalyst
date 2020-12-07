@@ -4,13 +4,15 @@ $fg: #FA991C;
 $bg: #FBF3F2;
 
 .Prop {
+  margin: .5em 0em;
   p {
-    margin-top: .5em;
     font-size: 20px;
     color: $primary;
   }
+  .propform {
+    margin-bottom: .5em;
+  }
   .propcheck {
-    margin-right: .5em;
     height: 15px;
     width: 15px;
     border-radius: 4px;
@@ -38,6 +40,7 @@ $bg: #FBF3F2;
   }
   .proplabel {
     display: inline;
+    margin-right: .5em;
   }
   .addvalue {
     font-size: 16px;
@@ -49,6 +52,9 @@ $bg: #FBF3F2;
     display: flex;
     margin: .5em 0em;
     align-items: center;
+    .propval {
+      width: 40%;
+    }
     .proplabel {
       font-size: 18px;
       margin-right: .25em;

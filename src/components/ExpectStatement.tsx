@@ -52,7 +52,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   // when a selector is changed then create new fields
   function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>){
     let block = document.getElementById(id)
-    console.log(event.target)
+    // console.log(event.target)
     // if the selector is set to find then append a new text box and selector
     if(event.target?.value === ".find" || event.target?.value === '.contains' || event.target?.value === '.every' || event.target?.value === '.everyWhere' || event.target?.value === '.hasClass' || event.target?.value === '.exists' || event.target?.value === ".forEach" || event.target?.value === ".is" || event.target?.value === ".at" || event.target?.value === ".simulate" || event.target?.value === ".prop" || event.target?.value === ".tap" || event.target?.value === ".some" || event.target?.value === ".name" || event.target?.value === ".isEmptyRender" || event.target?.value === ".first" || event.target?.value === ".get" || event.target?.value === ".getElements" || event.target?.value === ".hostNodes"){
       
@@ -73,6 +73,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         child.id = `expect${id}input${counter}`
         child.className = 'inputbox'
         child.type = 'text'
+        child.placeholder = 'Selector optional'
 
         child.onchange = () => {inputText(event.target?.id,event.target?.value)}
 
@@ -119,12 +120,14 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     }
     // select a new option for the selector
     else{
-      console.log('hi')
+      let breaks = document.getElementsByTagName('br')
+      let breaksLength = breaks.length
       data[`${id}`]['selectors'][`${event.target?.id}`] = event.target?.value
       let checker = false
       // if the value changed was for the first selector
       if(event.target?.id === `expect${id}selector0`){
         document.getElementById(`expect${id}input${first}`)?.remove()
+        breaks[breaksLength--]?.remove()
       }
 
       // delete all elements that were appended after the selector chosen
@@ -135,11 +138,13 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
           delete data[`${id}`]['selectors'][`${keys}`]
           document.getElementById(`${keys}`)?.remove()
           document.getElementById(`${keys}`.replace('selector','input'))?.remove()
+          breaks[breaksLength--]?.remove()
           counter--
         }
         else if(keys === event.target.id){
           checker = true
           document.getElementById(`${keys}`.replace('selector','input'))?.remove()
+          breaks[breaksLength--]?.remove()
         }
       }
     }
@@ -170,7 +175,9 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   return(
     <div className="expectBlock"  id = {`expect-block ${id}`}>
       <div className="expect1" id = {`${id}`}>
-        <label>expect wrapper</label><br></br>
+        <label>expect wrapper</label>
+        <button className="removeexpect" onClick = {removeExpect}>X</button>
+        <br></br>
         <select className="expectdrop1" id={`expect${id}selector0`} onChange = {handleChange}>
           <option value = '.type'>type</option>
           <option value = '.text'>text</option>
@@ -195,7 +202,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
           <option value = '.getElements'>get elements</option>
           <option value = '.hostNodes'>host nodes</option>
         </select>  
-        <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>
 
       <div className="expect2">
