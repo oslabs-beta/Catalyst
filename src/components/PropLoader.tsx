@@ -66,7 +66,7 @@ export const PropLoader: React.FC<Props> =({id}) =>{
 
   // toggles the check box
   function updateCheck(): void{
-    // if the checkbox is checked t
+    // if the checkbox is checked
     if(propBoolean[`${id}`]){
       updatePropArray([])
       temp.current = []
@@ -92,7 +92,6 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     </div>
 
     :
-
 
     <div className = 'Prop'>
     Props

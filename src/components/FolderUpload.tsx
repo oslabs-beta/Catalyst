@@ -15,7 +15,6 @@ export class FileTree {
         this.filepath = filepath
         this.name = name
         this.children = []
-
     }
 
     // directory will be root directory path

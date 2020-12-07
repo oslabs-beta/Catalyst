@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import { UpdateData,  UpdateKeyOfExpect, deleteExpect} from '../reduxComponents/actions/actions';
 import '../stylesheets/components/_expectstatement'
 
-
 interface Props{
   id: string,
   remove: (x:number) => boolean
@@ -31,6 +30,8 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     data[index]['selectors'][`expect${index}selector0`] = '.type'
     updateData(data);
     updateExpectKey();
+
+    
   },[])
 
   // removes the expect block selected
