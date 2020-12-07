@@ -15,6 +15,7 @@ export const TestBuilder: React.FC = () => {
   const itIndex = useSelector((state:any) => state.keyOfIt)
   const describeBool = useSelector((state:any) => state.describePropBoolean)
   const fileTree = useSelector((state:any) => state.fileTree);
+  const propBool = useSelector((state:any) => state.describePropBoolean)
 
 
   const updateDescribeIndex = () => dispatch(UpdateKeyOfDescribe())
@@ -31,7 +32,6 @@ export const TestBuilder: React.FC = () => {
 
 
   useEffect(() =>{
-    // console.log(describes)
     let x: {[k:string]:any}= {}
     // create a new Describe block to be rendered. Will be inital describe
     x[`${describeIndex}`] = <DescribeBlock key ={describeIndex} id={describeIndex} itIndex = {itIndex} describeProp = {`${describeIndex}`} removeDescribe = {removeDescribe}/>
@@ -53,18 +53,19 @@ export const TestBuilder: React.FC = () => {
     // adds the describe block to the array of describe blocks to be rendered
     updateDescribes(describes.concat(x[`${describeIndex}`]));
     describesFromStore[`${describeIndex}`] = storeval;
+    // creates a boolean value set to false within the describe prop boolean object in store
     describeBool[`${describeIndex}`] = false
+    // update the store
     updateDescribeBool(describeBool)
     updateDescribeIndex();
   }
 
 
   function removeDescribe(id: number): boolean{
-    // console.log(id)
+    // if there are multiple describe blocks then delete current one selected
     if(Object.keys(describesFromStore).length > 1){
-      //delete
+      // delete all expect and it statements associated with the describe block from the store
       for(let it of Object.keys(describesFromStore[`${id}`])){
-        // console.log(it)
         for(let expect of Object.keys(itFromStore[`${it}`])){
           delete expectFromStore[`${expect}`]
         }
@@ -72,11 +73,16 @@ export const TestBuilder: React.FC = () => {
         updateExpects(expectFromStore)
         updateIt(itFromStore)
       }
+      // deletes the describe key from the store in the describes object
       delete describesFromStore[`${id}`]
+      // deletes the prop boolean key from the store describe prop boolean object
+      delete propBool[`${id}`]
       updateDescribe(describesFromStore)
+      // remove the describe block and all its children
       document.getElementById(`describeBlock${id}`)?.remove()
       return true
     }
+    // if there is only one block left then cannot delete
     else{
       console.log('cannot delete describe block')
       return false
