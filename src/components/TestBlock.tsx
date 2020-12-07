@@ -4,6 +4,7 @@ import {Main, remote, shell} from 'electron';
 import * as electronFs from 'fs';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
 import { ReuploadDirectory } from './ReuploadDirectory';
+import path from 'path'
 
 
 const dialog = remote.dialog
@@ -57,9 +58,11 @@ export const TestBlock: React.FC = () => {
   };
 
   const openDialog = (userFilePath: string, generatedTestCode: string) => {
+    let filePath = path.normalize(userFilePath + '/__tests__/');
+    console.log(filePath);
     dialog.showSaveDialog({
       title: 'Please name your Test File',
-      defaultPath: userFilePath + '/__tests__/', //can add location to save file on users directory
+      defaultPath: filePath, //can add location to save file on users directory
       filters: [
         {
           name: 'Test Files',
