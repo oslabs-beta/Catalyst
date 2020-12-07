@@ -61,13 +61,17 @@ export const ExportTestCode: React.FC = () => {
     };
 
 
-  const handleClick = () => {
+  const exportCode = () => {
+    if (generatedTestCode === '') {
+      console.log('generate test code');
+    } else {
     exportTestCode(projectFilePath, generatedTestCode);
+    }
   };
   
   return(
     <div>
-      <button className="generatetests" onClick={handleClick}>Export Test Code</button>
+      <button className="generatetests" onClick={exportCode}>Export Test Code</button>
     </div>
   )
 }

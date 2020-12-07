@@ -11,7 +11,12 @@ export const CodeViewer: React.FC = () =>{
   return(
 
     codeViewer === false ? 
-    <React.Fragment></React.Fragment> :
+    <React.Fragment>
+      <div className="emptyfileview">
+          <h2 className="emptyfiletitle">No File Displayed</h2>
+          <p className="emptyfilebody">Click on Generate Tests or a file in the project directory to view its code</p>
+      </div>
+    </React.Fragment> :
       codeViewerChecker ? 
       < FileViewer /> : 
       <ProjectTestCode />

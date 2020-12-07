@@ -46,7 +46,7 @@ export const TestBlock: React.FC = () => {
   };
 
 
-  const handleClick = () => {
+   function  handleClick():void {
     const keysOfDescribe = Object.keys(describeGlobal);
 
     let finalString: string  = '';
@@ -126,10 +126,10 @@ export const TestBlock: React.FC = () => {
       <div className="headerbar">
         <ul className="headerlist">
           <li>
-          <button className="generatetests" onClick={handleClick}>Generate Tests</button> 
+            <ReuploadDirectory />
           </li>
           <li>
-            <ReuploadDirectory />
+            <button className="generatetests" onClick={handleClick}>Generate Tests</button> 
           </li>
           <li>
             <ExportTestCode />

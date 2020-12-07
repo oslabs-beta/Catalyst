@@ -55,15 +55,20 @@ export const FileViewer: React.FC = () =>{
 
   return(
       fileViewPath === '' ?
-      <React.Fragment></React.Fragment>
+      <React.Fragment>
+      </React.Fragment>
       :
       <div className = 'codeBlock'>
         <div className ='buttonHolder'>
           <button onClick = {clearFile} className = 'clearFile remove'>X</button>
+          <br></br>
         </div>
-        <code>
-          {pathToText()}
-        </code>
-      </div>     
+        <div className="blockcode">
+          <code>
+            {pathToText()}
+          </code>
+        </div>
+      </div>
+      
   )
 }
