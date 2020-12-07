@@ -155,6 +155,7 @@ export const TestBlock: React.FC = () => {
       }
       finalString += '});\n';
     }
+    console.log(finalString)
   exportTestCode(projectFilePath, finalString);
 }
 
