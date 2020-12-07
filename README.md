@@ -7,6 +7,7 @@ typing a single piece of code. The app uses the testing frameworks Jest and Enzy
 that developers want to test.
 
 ##Installation
+
 First download the app here:
 
 Catalyst is for use with React 16, so make sure you are using that version.
