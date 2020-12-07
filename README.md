@@ -8,7 +8,7 @@ that developers want to test.
 
 ## Installation
 
-First download the app here:
+First download the app [here](www.google.com)
 
 Catalyst is for use with React 16, so make sure you are using that version.
 
@@ -17,3 +17,13 @@ To do this line in your terminal inside of your project:
 
     npm install --save-dev jest enzyme enzyme-adapter-react-16
 
+## How to use
+
+## Contributing
+
+## Authors
+
+> Jon Ascencio [jascenc1](https://github.com/jascenc1) &nbsp;&middot;&nbsp;
+> Danny Chung [chungdanny64](https://github.com/chungdanny64) &nbsp;&middot;&nbsp;
+> Gavin Crews [gcrews1894](https://github.com/gcrews1894) &nbsp;&middot;&nbsp;
+> Jarryl Oquias [jaroqui17](https://github.com/jaroqui17)
