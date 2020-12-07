@@ -52,7 +52,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     let block = document.getElementById(id)
     
     // if the selector is set to find then append a new text box and selector
-    if(event.target?.value === ".find"){
+    if(event.target?.value === ".find" || event.target?.value === '.contains'){
       
       if(event.target?.id === `expect${id}selector0`){
         first = counter
@@ -151,6 +151,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
           <option value = '.text'>text</option>
           <option value = '.find'>to find</option>
           <option value = '.exists'>to exist</option>
+          <option value = '.contains'>contains</option>
         </select>  
         <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>
