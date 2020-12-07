@@ -25,8 +25,8 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     let prop: {[k:string]:any}= {}
     prop[`describe${id}prop${count}`] = 
       <div className = 'propChild' id = {`describe${id}prop${count}`} key = {count}>
-        <input type = "text" placeholder = "key" onChange = {setKey}/>
-        <input type = "text" placeholder = "value"  onChange = {setValue}/>
+        <input type = "text" placeholder = "key"/>
+        <input type = "text" placeholder = "value"/>
         <button onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
       </div>
 
@@ -46,17 +46,7 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     updatePropArray(answer)
   }
 
-
-
-  function setKey(): void{
-
-  }
-
-  function setValue(): void{
-
-  }
-
-  
+  // bug somewhere here that is making it crash when deleting first it block
   return(
     <div className = 'Prop'>
       Props

@@ -150,43 +150,13 @@ export const TestBlock: React.FC = () => {
               }
             }
           }
-          finalString += `)${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          // if(expectGlobal[expect][`firstInput${expect}`] === '.exists'){
-          //   if(expectGlobal[expect][`lastInput${expect}`] === 'true' || expectGlobal[expect][`lastInput${expect}`] === 'false'){
-          //     finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}(${expectGlobal[expect][`lastInput${expect}`]});\n`;
-          //   }
-          //   else{
-          //     finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          //   }
-          // }
-
-          // else if(expectGlobal[expect][`firstInput${expect}`] === '.type'){
-          //   finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          // }
-
-          // else if(expectGlobal[expect][`firstInput${expect}`] === '.text'){
-          //   finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          // }
-
-          // else if(expectGlobal[expect][`firstInput${expect}`] === '.find'){
-          //   // console.log(expectGlobal[expect][`selector${expect}`])
-          //   if(expectGlobal[expect][`selector${expect}`] === 'nothing'){
-          //     finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}'))${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          //   }
-          //   else if(expectGlobal[expect][`selector${expect}`] === '.find'){
-          //     finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}')${expectGlobal[expect][`selector${expect}`]}('${expectGlobal[expect][`selectorInput${expect}`]}'))${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          //   }
-          //   else{
-          //     finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}')${expectGlobal[expect][`selector${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          //   }
-            
-          // }
-        
+          finalString += `)${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;  
         }
       finalString += '\t});\n';
       }
       finalString += '});\n';
     }
+    console.log(finalString)
   exportTestCode(projectFilePath, finalString);
 }
 
