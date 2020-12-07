@@ -11,6 +11,7 @@ export const PropLoader: React.FC<Props> =({id}) =>{
   let [propArray, updatePropArray] = useState<object[]>([])
   const [displayArray, updateDisplay] = useState<any>([])
   const [count, updateCount] = useState(0)
+  const [check, updateBool] = useState(false)
 
   const dispatch = useDispatch()
   const propBoolean = useSelector((state:any) => state.describePropBoolean);
@@ -66,28 +67,42 @@ export const PropLoader: React.FC<Props> =({id}) =>{
 
   // toggles the check box
   function updateCheck(): void{
-    // if the checkbox is checked t
+    // if the checkbox is checked
     if(propBoolean[`${id}`]){
       updatePropArray([])
+      temp.current = []
+      updateCount(0)
     }
     // sets the boolean value to the opposite value
     propBoolean[`${id}`] = !propBoolean[`${id}`]
     // update the boolean value in the store
     updatePropBooleanInStore(propBoolean)
+    updateBool(!check)
   }
 
-  return(
-    <div className = 'Prop'>
-      <form>
-        <input className="propcheck" type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
-        <label className="proplabel" >Add Props</label>
-      </form>
-      <p>Props</p>
-      <div>
-        {displayArray}
-      </div>
 
-      <button className="addvalue" onClick = {addProp}>+ Prop</button>
+  return(
+
+    !check
+    
+    ?
+
+    <div className = 'Prop'>
+      Props
+      <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
+      <br></br>
     </div>
+
+    :
+
+    <div className = 'Prop'>
+    Props
+    <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
+    <br></br>
+    {displayArray}
+
+    <button onClick = {addProp}>Add Value</button>
+  </div>
+
   )
 }
