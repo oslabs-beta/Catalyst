@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import {FileTree} from './FileTree'
-import {FileViewer} from './FileViewer';
+import {CodeViewer} from './CodeViewer';
 import { TestBuilder } from './TestBuilder';
 import { TestBlock } from './TestBlock';
 
@@ -24,8 +23,8 @@ export const MainContent: React.FC = () =>{
           <TestBuilder/>
         </div>
         <div className="right column">
-          <h1>FILE VIEWER</h1>
-          <FileViewer />
+          <h1>CODE VIEWER</h1>
+          <CodeViewer />
         </div>
       </div>
     </div>

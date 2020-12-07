@@ -1,13 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { remote } from 'electron';
-import * as electronFs from 'fs';
-import path from 'path';
+import { useSelector,useDispatch } from 'react-redux';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
+import { ViewTestCode } from '../reduxComponents/actions/actions';
 import { ReuploadDirectory } from './ReuploadDirectory';
+import { ExportTestCode } from './ExportTestCode';
+import * as electronFs from 'fs';
 
 
-const dialog = remote.dialog
 
 export const TestBlock: React.FC = () => {
 
@@ -16,15 +15,16 @@ export const TestBlock: React.FC = () => {
   const expectGlobal = useSelector((state:any) => state.expects);
   const describeInputGlobal = useSelector((state:any) => state.componentObj);
   const itInputGlobal = useSelector((state:any) => state.itInputObj);
-  const projectFilePath = useSelector((state:any) => state.filePathOfProject);
-  const describePropBoolean = useSelector((state:any) => state.describePropBoolean)
-
-
-
+  const describePropBoolean = useSelector((state:any) => state.describePropBoolean);
   const fileTree = useSelector((state:any) => state.fileTree)
+
+
+  const dispatch = useDispatch();
+  // generated testCode from GUI is dispactched to store to be displayed in viewer
+  const viewTestCode = (data: string) => dispatch(ViewTestCode(data));
+
   
   function findFile(fileTree:any, name: string):string{
-
 
     for(let x of fileTree){
       let file = electronFs.statSync(x.filepath)
@@ -44,54 +44,6 @@ export const TestBlock: React.FC = () => {
     }
     return '';
   };
-
-  const openDialog = (userFilePath: string, generatedTestCode: string) => {
-    // normalizing filePath to work cross-platform
-    let filePath = path.normalize(userFilePath + '/__tests__/');
-    dialog.showSaveDialog({
-      title: 'Please name your Test File',
-      defaultPath: filePath, //can add location to save file on users directory
-      filters: [
-        {
-          name: 'Test Files',
-          extensions: ['test']
-        },
-      ],
-      message: 'Choose location',
-      properties: [
-        'createDirectory'
-      ]
-    }).then(file => {
-      // stating whether dialog operation was cancelled or not
-      if (!file.canceled) {
-        // creating and writing to the text.txt file
-        electronFs.writeFile(file.filePath?.toString() + '.js', generatedTestCode, (err) => {
-          if (err) {
-            console.log(err.message);
-          }
-          console.log('saved');
-        })
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    }) 
-  };
-
-  // determing if directory __tests__ exists already
-  const exportTestCode = (userFilePath: string, generatedTestCode:string) => {
-    // if __tests__ directory does not exist then create one and write generated test code into that newly created directory
-  if (!electronFs.existsSync(userFilePath + '/__tests__')) {
-    electronFs.mkdirSync(userFilePath + '/__tests__');
-    openDialog(userFilePath, generatedTestCode);
-  } 
-    // if __tests__ directory does exist then just generate another file into that directory
-  else {
-    openDialog(userFilePath, generatedTestCode);
-  }
-  };
-
-
 
 
   const handleClick = () => {
@@ -160,9 +112,11 @@ export const TestBlock: React.FC = () => {
       finalString += '});\n';
     }
 
-    console.log(finalString);
-    // exportTestCode(projectFilePath, finalString);
-}
+    viewTestCode(finalString);
+  }
+
+  
+
 
 
 
@@ -176,6 +130,9 @@ export const TestBlock: React.FC = () => {
           </li>
           <li>
             <ReuploadDirectory />
+          </li>
+          <li>
+            <ExportTestCode />
           </li>
         </ul>
         <ul className="iconlist">

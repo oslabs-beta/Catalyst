@@ -7,6 +7,7 @@ const initialState = {
   fileToView: '',
   toggleFolder: {},
   filePathOfProject: '',
+  generatedTestCode: '',
   
   describes: {},
   its: {},
@@ -19,6 +20,8 @@ const initialState = {
   itInputObj: {},
 
   describePropBoolean:{},
+  codeViewer: false,
+  codeViewerChecker: true,
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -33,7 +36,9 @@ export const reducer = (state: any = initialState, action: any) => {
     case types.SET_FILE_VIEW:
       return{
         ...state,
-        fileToView: action.payload
+        codeViewer: true,
+        fileToView: action.payload,
+        codeViewerChecker: true
       }
     
     case types.TOGGLE_FOLDER:
@@ -102,6 +107,8 @@ export const reducer = (state: any = initialState, action: any) => {
     case types.CLEAR_FILE:
       return{
         ...state,
+        codeViewer: false,
+        codeViewerChecker: false,
         fileToView: ''
       }
 
@@ -132,6 +139,7 @@ export const reducer = (state: any = initialState, action: any) => {
         fileToView: '',
         toggleFolder: {},
         filePathOfProject: '',
+        generatedTestCode: '',
         
         describes: {},
         its: {},
@@ -141,13 +149,31 @@ export const reducer = (state: any = initialState, action: any) => {
         keyOfIt:0,
         keyOfExpect: 0,
         componentObj: {},
-        itInputObj: {}
+        itInputObj: {},
+        codeViewer: false,
+        codeViewerChecker: true,
       }
     
     case types.UPDATE_DESCRIBE_BOOLEAN:
       return{
         ...state,
         describePropBoolean: action.payload
+      }
+
+    case types.SHOW_TESTCODE:
+      return {
+        ...state,
+        codeViewer: true,
+        codeViewerChecker: false,
+        generatedTestCode: action.payload,
+      }
+
+    case types.REMOVE_TESTCODE:
+      return {
+        ...state,
+        codeViewer: false,
+        codeViewerChecker: true,
+        generatedTestCode: '',
       }
 
     default: 

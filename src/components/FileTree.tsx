@@ -1,5 +1,5 @@
-import React from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import * as electronFs from 'fs';
 import { SetFileView, ToggleFolder } from '../reduxComponents/actions/actions';
 import FILE_ICONS from '../icons/icons'; 
@@ -7,9 +7,9 @@ import FILE_ICONS from '../icons/icons';
 
 
 export const FileTree: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // obtains the filetree from the store
-  const fileTree = useSelector((state: any) => state.fileTree)
+  const fileTree = useSelector((state: any) => state.fileTree);
   // obtains the folder status from the store
   const isOpen = useSelector((state:any) => state.toggleFolder);
   // dispatches an action to set the file that will be viewed
@@ -20,8 +20,8 @@ export const FileTree: React.FC = () => {
   // onclick function to set invoke the function to dispatch an action
   function setFileView(event:any){
     // file path is saved as the id of the button
-    setFileInRedux(event.target.id)
-  }
+    setFileInRedux(event.target.id);
+  };
 
   // func will strip extension ending from files which will be used as the key for the imported object that holds images for 
   // those specific file icons

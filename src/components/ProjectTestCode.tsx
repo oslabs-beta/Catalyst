@@ -1,31 +1,29 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {ClearFile} from '../reduxComponents/actions/actions';
-import fs from 'fs';
+import { RemoveTestCode } from '../reduxComponents/actions/actions';
 
 
-export const FileViewer: React.FC = () =>{
-  let fileViewPath: string
-  const dispatch = useDispatch()
-  fileViewPath = useSelector((state: any) => state.fileToView);
-  const clearFileInStore = () => dispatch(ClearFile())
 
-  function clearFile(){
-    clearFileInStore()
+
+export const ProjectTestCode: React.FC = () =>{
+  const dispatch = useDispatch();
+  const generatedTestCode = useSelector((state: any) => state.generatedTestCode);
+  const removeTestCode = () => dispatch(RemoveTestCode());
+
+  const clearTestCode = () => {
+    removeTestCode();
   };
 
 
 
   function pathToText(){
-    let fileContent = fs.readFileSync(fileViewPath);
-    // console.log('this is it', fi)
-    let x: any = fileContent.toString();
+    let x: any = generatedTestCode;
     let counter = 0 ;
     for(let space = 0; space < x.length -1; space++){
       if(x[space] === ' ' && x[space+1] === ' '){
         counter++;
       }
-    } ;
+    };
 
 
     // move all in line styles into the css file
@@ -38,8 +36,8 @@ export const FileViewer: React.FC = () =>{
       for(let i = 0; i < Math.floor(start/2); i++){
         spaces+= '\t';
       }
-      let begin = 5-id.toString().length;
-      let beginSpaces = id.toString();
+      let begin = 5-id.toString().length
+      let beginSpaces = id.toString()
       while(begin > 0){
         beginSpaces += ' ';
         begin--;
@@ -54,16 +52,17 @@ export const FileViewer: React.FC = () =>{
   
 
   return(
-      fileViewPath === '' ?
+      generatedTestCode === '' ?
       <React.Fragment></React.Fragment>
       :
       <div className = 'codeBlock'>
         <div className ='buttonHolder'>
-          <button onClick = {clearFile} className = 'clearFile remove'>X</button>
+          <button onClick = {clearTestCode} className = 'clearFile remove'>X</button>
         </div>
         <code>
           {pathToText()}
         </code>
-      </div>     
+      </div>
+      
   )
 }
