@@ -1,4 +1,6 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState, useRef} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import { UpdateDescribeBoolean } from '../reduxComponents/actions/actions';
 
 interface Props {
   id:string
@@ -10,6 +12,11 @@ export const PropLoader: React.FC<Props> =({id}) =>{
   const [displayArray, updateDisplay] = useState<any>([])
   const [count, updateCount] = useState(0)
 
+  const dispatch = useDispatch()
+  const propBoolean = useSelector((state:any) => state.describePropBoolean);
+
+
+  const updatePropBooleanInStore = (data:any) => dispatch(UpdateDescribeBoolean(data));
 
   useEffect(() =>{
     let display = []
@@ -21,22 +28,32 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     updateDisplay(display)
   },[propArray])
 
-  function addProp(){
-    let prop: {[k:string]:any}= {}
-    prop[`describe${id}prop${count}`] = 
-      <div className = 'propChild' id = {`describe${id}prop${count}`} key = {count}>
-        <input type = "text" placeholder = "key"/>
-        <input type = "text" placeholder = "value"/>
-        <button onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
-      </div>
+  // adds a key value element to the display
+  function addProp(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+    event?.preventDefault()
+    // checks to see if the checkbox is fille and if it is then add the prop field
+    if(propBoolean[`${id}`]){
+      // save the element as in an object with a key associated to it for easy access on deletion
+      let prop: {[k:string]:any}= {}
+      prop[`describe${id}prop${count}`] = 
+        <div className = 'propChild' id = {`describe${id}prop${count}`} key = {count}>
+          <input type = "text" placeholder = "key"/>
+          <input type = "text" placeholder = "value"/>
+          <button onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
+        </div>
 
-    temp.current = temp.current.concat([prop])
-    updatePropArray([...propArray, prop])
-    updateCount(count +1)
+      temp.current = temp.current.concat([prop])
+      updatePropArray([...propArray, prop])
+      updateCount(count +1)
+    }
+    
   }
 
-  function test(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+  // deletes the selected key value field 
+  function test(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+    event.preventDefault()
     let answer = []
+    // loops through the current array of key value fields and adds those that are not selected
     for(let x of temp.current){
       if(Object.keys(x)[0] !== event.target?.id.replace('button','')){
         answer.push(x) 
@@ -46,10 +63,22 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     updatePropArray(answer)
   }
 
-  // bug somewhere here that is making it crash when deleting first it block
+  // toggles the check box
+  function updateCheck(): void{
+    // if the checkbox is checked t
+    if(propBoolean[`${id}`]){
+      updatePropArray([])
+    }
+    // sets the boolean value to the opposite value
+    propBoolean[`${id}`] = !propBoolean[`${id}`]
+    // update the boolean value in the store
+    updatePropBooleanInStore(propBoolean)
+  }
+
   return(
     <div className = 'Prop'>
       Props
+      <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
       <br></br>
       {displayArray}
 

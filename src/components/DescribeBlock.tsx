@@ -2,7 +2,7 @@ import  React, {useState, useEffect} from 'react';
 import { ItStatement } from './ItStatement';
 import {PropLoader} from './PropLoader';
 import {useSelector, useDispatch} from 'react-redux';
-import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName, UpdateDescribeBoolean } from '../reduxComponents/actions/actions';
+import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName} from '../reduxComponents/actions/actions';
 
 interface Props{
   describeProp:string,
@@ -10,18 +10,13 @@ interface Props{
 }
 
 
-
-
 export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) => {
 
   const globalDescribeObj = useSelector((state:any) => state.describes);
   const index = useSelector((state: any) => state.keyOfIt);
   const componentObj = useSelector((state: any) => state.componentObj);
-  const propsInStore = useSelector((state:any) => state.describeProps);
-  const propBoolean = useSelector((state:any) => state.describePropBoolean);
 
-  const [propBool, updateProps] = useState(false);
-  const [renderProp, updateRender] = useState([]);
+
   let [arrayOfIt, updateItArray] = useState([]);
 
 
@@ -30,7 +25,6 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   const updateItKey = () => dispatch(UpdateKeyOfIt());
   const updateGlobalDescribe = (data:any) => dispatch(UpdateDescribe(data));
   const updateComponentName = (name:string) => dispatch(UpdateComponentName(name));
-  const updatePropBooleanInStore = (data:any) => dispatch(UpdateDescribeBoolean(data));
 
 
   const storeval: {[k:string]:any}= {};
@@ -49,8 +43,6 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
   }, [])
 
 
-
-
   async function addIt(){
     let itComponent: {[k:string]:any}= {};
     itComponent[`${index}`] = await (<ItStatement key = {`${index}`} id = {`${index}`} itProp ={`${index}`} removeIt = {removeIt}/>);
@@ -65,9 +57,8 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
     updateItKey();
   }
 
-  function addComponentName(input: any) {
+  function addComponentName(input: any): void {
     componentObj[describeProp] = input;
-    // console.log(componentObj)
     updateComponentName(componentObj);
   }
   
@@ -84,28 +75,10 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
     return false;
   }
 
-  function removeDescribeComponent(){
+  function removeDescribeComponent(): void{
     removeDescribe(parseInt(describeProp));
   }
 
-  function addProp(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
-    // if the checkbox is filled then add the prop loader
-    if(!propBool){
-      // creates a new object to hold the value of the prop boolean
-      let prop: {[k:string]:any}= {};
-      prop[`0`] = <PropLoader id = {`${describeProp}`} key = {`describePropLoader${describeProp}`}/>;
-      updateRender(renderProp.concat(prop[`0`]));
-      // adds the describe index as a key to the props store
-    }
-    // if the checkbox is not filled then clear the prop loader
-    else{
-      updateRender([]);
-    }
-    // updates the describePropBoolean object in the store to hold the opposite value
-    propBoolean[`${describeProp}`] = !propBoolean[`${describeProp}`];
-    updatePropBooleanInStore(propBoolean) ;
-    updateProps(!propBool);
-  }
 
   return (
     <div className="describeBlock" id = {`describeBlock${describeProp}`}>
@@ -114,10 +87,9 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
         <p className="describetext">Describe Block</p>
         <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/><br></br>
         <form>
-          <input type="checkbox" id="addProps" name="addProps" onChange = {addProp}/>
+          <PropLoader id = {`${describeProp}`} key = {`describePropLoader${describeProp}`}/>
           <label htmlFor="addProps">Add Props</label>
         </form>
-        {renderProp}
         {arrayOfIt}
       </div>
       <button className="addit" onClick = {addIt}>+ It Statement</button>

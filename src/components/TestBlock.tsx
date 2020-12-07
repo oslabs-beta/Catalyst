@@ -112,7 +112,6 @@ export const TestBlock: React.FC = () => {
     // counter for the array of allProps
     let counter: number = 0;
 
-
     // loop all the describe blocks
     for (let i of keysOfDescribe) {
       finalString += `describe('${describeInputGlobal[i]}', () => {\n\tlet wrapper; \n\n`;
@@ -123,14 +122,14 @@ export const TestBlock: React.FC = () => {
         for(let element of allProps[counter].getElementsByClassName('propChild')){
           finalString += `\t\t${element.getElementsByTagName('input')[0].value} : ${element.getElementsByTagName('input')[1].value}, \n`;
         }
-        counter+=1;
+        
         finalString += `\t} \n\n`;
         finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]} {...props}>)\n \t}) \n`;
       }
       else{
         finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]}>)\n \t}) \n`;
       }
-      
+      counter+=1;
       // loop through all the it statements that should be within the specidfied describe block
       for (let j of Object.keys(describeGlobal[i])){
         finalString += `\n\tit('${itInputGlobal[j]}', () => { \n`;
@@ -156,7 +155,6 @@ export const TestBlock: React.FC = () => {
       }
       finalString += '});\n';
     }
-    console.log(finalString)
   exportTestCode(projectFilePath, finalString);
 }
 
