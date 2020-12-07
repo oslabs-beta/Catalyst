@@ -71,6 +71,7 @@ export const PropLoader: React.FC<Props> =({id}) =>{
     if(propBoolean[`${id}`]){
       updatePropArray([])
       temp.current = []
+      updateCount(0)
     }
     // sets the boolean value to the opposite value
     propBoolean[`${id}`] = !propBoolean[`${id}`]
