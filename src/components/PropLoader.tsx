@@ -11,6 +11,7 @@ export const PropLoader: React.FC<Props> =({id}) =>{
   let [propArray, updatePropArray] = useState<object[]>([])
   const [displayArray, updateDisplay] = useState<any>([])
   const [count, updateCount] = useState(0)
+  const [check, updateBool] = useState(false)
 
   const dispatch = useDispatch()
   const propBoolean = useSelector((state:any) => state.describePropBoolean);
@@ -37,9 +38,10 @@ export const PropLoader: React.FC<Props> =({id}) =>{
       let prop: {[k:string]:any}= {}
       prop[`describe${id}prop${count}`] = 
         <div className = 'propChild' id = {`describe${id}prop${count}`} key = {count}>
+          <label className="proplabel">{count + 1}. </label>
           <input type = "text" placeholder = "key"/>
           <input type = "text" placeholder = "value"/>
-          <button onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
+          <button className="removeprop" onClick ={test} id = {`describe${id}prop${count}button`}>X</button>
         </div>
 
       temp.current = temp.current.concat([prop])
@@ -65,24 +67,42 @@ export const PropLoader: React.FC<Props> =({id}) =>{
 
   // toggles the check box
   function updateCheck(): void{
-    // if the checkbox is checked t
+    // if the checkbox is checked
     if(propBoolean[`${id}`]){
       updatePropArray([])
+      temp.current = []
+      updateCount(0)
     }
     // sets the boolean value to the opposite value
     propBoolean[`${id}`] = !propBoolean[`${id}`]
     // update the boolean value in the store
     updatePropBooleanInStore(propBoolean)
+    updateBool(!check)
   }
 
+
   return(
+
+    !check
+    
+    ?
+
     <div className = 'Prop'>
       Props
       <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
       <br></br>
-      {displayArray}
-
-      <button onClick = {addProp}>Add Value</button>
     </div>
+
+    :
+
+    <div className = 'Prop'>
+    Props
+    <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
+    <br></br>
+    {displayArray}
+
+    <button onClick = {addProp}>Add Value</button>
+  </div>
+
   )
 }

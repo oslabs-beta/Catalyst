@@ -25,5 +25,3 @@
   "include": ["./src/"]
 }
 
-// can also add this to the include file instead of adding a type root
-// include: ['./src/', 'typings']

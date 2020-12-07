@@ -28,8 +28,10 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     data[index][`lastInput${index}`] = ''
     data[index]['selectors'] = {}
     data[index]['selectors'][`expect${index}selector0`] = '.type'
-    updateData(data)
-    updateExpectKey()
+    updateData(data);
+    updateExpectKey();
+
+    
   },[])
 
   // removes the expect block selected
@@ -83,8 +85,12 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
       data[`${id}`][`selectors`][`expect${id}selector${counter}`] = '.nothing'
       secondSelector.onchange = handleChange
 
+      //create line break
+      let linebreak = document.createElement('br');
+
       if(block){
         block.appendChild(child)
+        block.appendChild(linebreak)
         block.appendChild(secondSelector)
       }
       
@@ -125,7 +131,8 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   }
 
   // updates the last selector value (expectdrop2) in the store
-  function updateLastSelector(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
+  function updateLastSelector(event: any){
+    console.log(event)
     data[`${id}`][`${event.target?.id}`] = event.target?.value
     updateData(data)
   }
@@ -137,11 +144,10 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     updateData(data)
   }
 
-
   return(
     <div className="expectBlock"  id = {`expect-block ${id}`}>
       <div className="expect1" id = {`${id}`}>
-        <label>expect wrapper</label>
+        <label>expect wrapper</label><br></br>
         <select className="expectdrop1" id={`expect${id}selector0`} onChange = {handleChange}>
           <option value = '.type'>type</option>
           <option value = '.text'>text</option>
@@ -150,7 +156,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         </select>  
         <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>
-     
+
       <div className="expect2">
         <select className="expectdrop2" id="testTypes" onChange = {updateLastSelector}>
             <option value = '.toEqual'>to Equal</option>
