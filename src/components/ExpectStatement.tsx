@@ -52,7 +52,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     let block = document.getElementById(id)
     
     // if the selector is set to find then append a new text box and selector
-    if(event.target?.value === ".find" || event.target?.value === '.contains'){
+    if(event.target?.value === ".find" || event.target?.value === '.contains' || event.target?.value === '.every' || event.target?.value === '.everyWhere' || event.target?.value === '.hasClass' || event.target?.value === '.exists' || event.target?.value === ".forEach" || event.target?.value === ".is" || event.target?.value === ".at" || event.target?.value === ".simulate" || event.target?.value === ".prop" || event.target?.value === ".tap" || event.target?.value === ".some" || event.target?.value === ".name" || event.target?.value === ".isEmptyRender" || event.target?.value === ".first" || event.target?.value === ".get" || event.target?.value === ".getElements" || event.target?.value === ".hostNodes"){
       
       if(event.target?.id === `expect${id}selector0`){
         first = counter
@@ -79,7 +79,24 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
       <option value = '.type'>type</option>
       <option value = '.text'>text</option>
       <option value = '.find'>to find</option>
-      <option value = '.exists'>to exist</option>`
+      <option value = '.exists'>to exist</option>
+      <option value = '.contains'>contains</option>
+      <option value = '.every'>every</option>
+      <option value = '.everyWhere'>everyWhere(fn)</option>
+      <option value = '.hasClass'>has class</option>
+      <option value = '.forEach'>forEach(fn)</option>
+      <option value = '.is'>is</option>
+      <option value = '.at'>at</option>
+      <option value = '.simulate'>simulate</option>
+      <option value = '.prop'>prop</option>
+      <option value = '.tap'>tap(interceptor)</option>
+      <option value = '.some'>some</option>
+      <option value = '.name'>name</option>
+      <option value = '.isEmptyRender'>is empty render</option>
+      <option value = '.first'>first</option>
+      <option value = '.get'>get</option>
+      <option value = '.getElements'>get elements</option>
+      <option value = '.hostNodes'>host nodes</option>`
       data[`${id}`][`selectors`][`expect${id}selector${counter}`] = '.nothing'
       secondSelector.onchange = handleChange
 
@@ -152,6 +169,23 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
           <option value = '.find'>to find</option>
           <option value = '.exists'>to exist</option>
           <option value = '.contains'>contains</option>
+          <option value = '.every'>every</option>
+          <option value = '.everyWhere'>everyWhere(fn)</option>
+          <option value = '.hasClass'>has class</option>
+          <option value = '.forEach'>forEach(fn)</option>
+          <option value = '.is'>is</option>
+          <option value = '.at'>at</option>
+          <option value = '.simulate'>simulate</option>
+          <option value = '.prop'>prop</option>
+          <option value = '.tap'>tap(interceptor)</option>
+          <option value = '.some'>some</option>
+          <option value = '.name'>name</option>
+          <option value = '.isEmptyRender'>is empty render</option>
+          <option value = '.isEmpty'>is empty</option>
+          <option value = '.first'>first</option>
+          <option value = '.get'>get</option>
+          <option value = '.getElements'>get elements</option>
+          <option value = '.hostNodes'>host nodes</option>
         </select>  
         <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>

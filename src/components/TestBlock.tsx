@@ -89,15 +89,20 @@ export const TestBlock: React.FC = () => {
       // loop through all the it statements that should be within the specidfied describe block
       for (let j of Object.keys(describeGlobal[i])){
         finalString += `\n\tit('${itInputGlobal[j]}', () => { \n`;
-        // loop through all of the expect statements that should be within the specifiec expect block
+        // loop through all of the expect statements that should be within the specific expect block
         for(let expect of Object.keys(itsGlobal[j])){
           finalString += `\t\texpect(wrapper`;
           // loop through all of the selectors that exist
           for(let element of Object.values(expectGlobal[expect]['selectors'])){
             // if the selector holds an object then print out the key with the value inside the ()
             if(typeof element === 'object'){
-              finalString += `${Object.keys(element)[0]}('${Object.values(element)[0]}')`;
-            }
+              // checking if selector value is empty but still needs to be chained
+              if (Object.keys(element)[0] && Object.values(element)[0] === '') {
+                finalString += `${Object.keys(element)[0]}()`;
+              } else {
+                finalString += `${Object.keys(element)[0]}('${Object.values(element)[0]}')`;
+              }
+            } 
             // if the selector does not hold a string then append the string
             else{
               if(element !== '.nothing'){
