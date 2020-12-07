@@ -6,7 +6,6 @@ import { TestBlock } from './TestBlock';
 
 
 export const MainContent: React.FC = () =>{
-  
 
   return(
     <div>

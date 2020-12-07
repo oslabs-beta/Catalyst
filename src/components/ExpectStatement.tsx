@@ -28,8 +28,10 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     data[index][`lastInput${index}`] = ''
     data[index]['selectors'] = {}
     data[index]['selectors'][`expect${index}selector0`] = '.type'
-    updateData(data)
-    updateExpectKey()
+    updateData(data);
+    updateExpectKey();
+
+    
   },[])
 
   // removes the expect block selected
@@ -146,7 +148,8 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   }
 
   // updates the last selector value (expectdrop2) in the store
-  function updateLastSelector(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
+  function updateLastSelector(event: any){
+    console.log(event)
     data[`${id}`][`${event.target?.id}`] = event.target?.value
     updateData(data)
   }
@@ -157,7 +160,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     data[`${id}`]['selectors'][`${elementId}`][`${elementKey}`] = text
     updateData(data)
   }
-
 
   return(
     <div className="expectBlock"  id = {`expect-block ${id}`}>
@@ -189,7 +191,7 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         </select>  
         <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>
-     
+
       <div className="expect2">
         <select className="expectdrop2" id="testTypes" onChange = {updateLastSelector}>
             <option value = '.toEqual'>to Equal</option>

@@ -76,7 +76,11 @@ export const TestBlock: React.FC = () => {
       if(describePropBoolean[i] && allProps[counter].getElementsByClassName('propChild').length >0){
         finalString += `\tconst props = { \n`;
         for(let element of allProps[counter].getElementsByClassName('propChild')){
-          finalString += `\t\t${element.getElementsByTagName('input')[0].value} : ${element.getElementsByTagName('input')[1].value}, \n`;
+          if (element.getElementsByTagName('input')[0].value === '' && element.getElementsByTagName('input')[1].value === '') {
+            continue;
+          } else {
+            finalString += `\t\t${element.getElementsByTagName('input')[0].value} : ${element.getElementsByTagName('input')[1].value}, \n`;
+          }
         }
         
         finalString += `\t}; \n\n`;
@@ -110,7 +114,7 @@ export const TestBlock: React.FC = () => {
               }
             }
           }
-          finalString += `)${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;  
+          finalString += `)${expectGlobal[expect].testTypes}(${expectGlobal[expect][`lastInput${expect}`]});\n`;  
         }
       finalString += '\t});\n';
       }

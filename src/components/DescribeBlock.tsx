@@ -40,6 +40,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
     updateItArray(arrayOfIt.concat(itComponent[`${index}`]));
     // update the key value of the it statements
     updateItKey();
+
   }, [])
 
 
