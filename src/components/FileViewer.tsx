@@ -17,7 +17,6 @@ export const FileViewer: React.FC = () =>{
 
 
   function pathToText(){
-    console.log(fileViewPath)
     let fileContent = fs.readFileSync(fileViewPath)
     // console.log('this is it', fi)
     let x: any = fileContent.toString()

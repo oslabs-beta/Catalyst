@@ -122,7 +122,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     updateData(data)
   }
   
-  // updates 
   function inputText(elementId: string, elementKey: string){
     let text = (document.getElementById(elementId.replace('selector','input')) as HTMLInputElement).value
     data[`${id}`]['selectors'][`${elementId}`][`${elementKey}`] = text

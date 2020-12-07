@@ -16,7 +16,10 @@ const initialState = {
   keyOfIt:0,
   keyOfExpect: 0,
   componentObj: {},
-  itInputObj: {}
+  itInputObj: {},
+
+  describePropBoolean:{},
+  describeProps:{}
 };
 
 export const reducer = (state: any = initialState, action: any) => {
@@ -141,7 +144,18 @@ export const reducer = (state: any = initialState, action: any) => {
         componentObj: {},
         itInputObj: {}
       }
+    
+    case types.UPDATE_DESCRIBE_BOOLEAN:
+      return{
+        ...state,
+        describePropBoolean: action.payload
+      }
 
+    case types.UPDATE_PROPS:
+      return{
+        ...state,
+        describeProps: action.payload
+      }
     default: 
       return state;
     
