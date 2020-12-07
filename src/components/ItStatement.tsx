@@ -33,21 +33,16 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
     let x: {[k:string]:any}= {}
     x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`}  remove = {removeExpect}/>
     updateArray(arrayOfExpect.concat(x[`${index}`]))
-
-
-    // subtract one because the other file is rendering first
-    // itObject[`${itKey}`] = [index]
+    // update the store with the newly added it statement
     itObject[`${itKey}`] = storeval
     updateIts(itObject)
 
   }, [])
   
 
-
+  // adds an expect statement to the current it statement
   function addExpect(){
-    // unsure about this typing and if piping would work ConcatArray<never> | JSX.Element
     let x: {[k:string]:any} = {}
-    // itObject[`${itProp}`] = itObject[`${itProp}`].concat(index)
     itObject[`${itProp}`][index] = ''
 
     x[`${index}`] = <ExpectStatement key = {`${index}`} id = {`${index}`} remove = {removeExpect}/>
@@ -60,33 +55,35 @@ export const ItStatement: React.FC<Props> = ({itProp, removeIt,id}) =>{
     // add the key value pair to the expect object in the store 
     data[index] = newExpect
 
-    // let storeval: {[k:string]:any}= {}
-    // storeval[`${index}`]  = ''
     updateData(data)
     // updates the it object associated with the component to hold the key value of the child 
     updateIts(itObject)
   }
 
+  // remove an expect block from the it statement
   function removeExpect(removeId:number){
+    // if there are more than one then delete selected
     if(Object.keys(itObject[`${itProp}`]).length >1){
       delete itObject[`${itProp}`][`${removeId}`]
       updateIts(itObject)
       return true
     }
+    // if there are not more then one return false to notify that it cannot be deleted
     return false
   }
 
+  // updates the it statement value in the store
   const updateItStatement =  (input:any) => {
     globalItInput[itProp] = input; 
     updateItGlobal(globalItInput);
   };
 
+  // removes the it statement from the current describe block
   function removeItStatement(){
     // id is the id of the it block that needs to be removed from the describe
     if(removeIt(id)){
       // here we have to delete it blocks
       for(let itBlocks of Object.keys(itObject[`${itProp}`])){
-        // console.log(data[`${itBlocks}`])
         delete data[`${itBlocks}`]
       }
       document.getElementById(`it-block ${itProp}`)?.remove()
