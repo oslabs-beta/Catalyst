@@ -8,7 +8,7 @@ that developers want to test.
 
 ## Installation
 
-First download the app [here](www.google.com)
+First download the app [here](https://www.google.com)
 
 Catalyst is for use with React 16, so make sure you are using that version.
 
@@ -19,7 +19,31 @@ To do this line in your terminal inside of your project:
 
 ## How to use
 
+1. Select the root folder for the project you would like to run test for.
+
+![](https://i.imgur.com/Gb1pZUW.jpeg)
+
+Opitonally, You can check which file you want test by previewing on the right.
+
+![](https://i.imgur.com/Gb1pZUW.jpeg)
+
+2. Fill in the respective boxes to specify the test cases for your file.
+
+![](https://i.imgur.com/Gb1pZUW.jpeg)
+
+3.  When you finish writing your test cases just click the Generate Tests button 
+and select a name for your test.
+
+![](https://i.imgur.com/Gb1pZUW.jpeg)
+
 ## Contributing
+
+This project is still very early in development, so please let us know of any issues you find inside the app.
+If you'd like like like to fork and send a PR for the project here are a few things you can work on:
+
+-   Adding new enzyme tests to the file generation
+-   Creating the capability to test with React Testing Library
+-   Implementing End Point Testing
 
 ## Authors
 
