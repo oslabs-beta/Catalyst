@@ -1,6 +1,5 @@
 import React from 'react';
 import {remote} from 'electron';
-import * as electronFs from 'fs';
 import { useDispatch} from 'react-redux';
 import {FileTree} from './FolderUpload'
 import { ConstructFileTree, SetProjectPath, RefreshState } from '../reduxComponents/actions/actions';
