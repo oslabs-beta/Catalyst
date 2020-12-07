@@ -52,59 +52,85 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   // when a selector is changed then create new fields
   function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>){
     let block = document.getElementById(id)
-    
+    // console.log(event.target)
     // if the selector is set to find then append a new text box and selector
-    if(event.target?.value === ".find"){
+    if(event.target?.value === ".find" || event.target?.value === '.contains' || event.target?.value === '.every' || event.target?.value === '.everyWhere' || event.target?.value === '.hasClass' || event.target?.value === '.exists' || event.target?.value === ".forEach" || event.target?.value === ".is" || event.target?.value === ".at" || event.target?.value === ".simulate" || event.target?.value === ".prop" || event.target?.value === ".tap" || event.target?.value === ".some" || event.target?.value === ".name" || event.target?.value === ".isEmptyRender" || event.target?.value === ".first" || event.target?.value === ".get" || event.target?.value === ".getElements" || event.target?.value === ".hostNodes"){
       
       if(event.target?.id === `expect${id}selector0`){
         first = counter
       }
+      // will keep value of prop key if user wants to change key again
+      if (typeof data[`${id}`]['selectors'][`${event.target?.id}`] === 'object') {
+        let value = Object.values(data[`${id}`]['selectors'][`${event.target?.id}`])[0];
+        data[`${id}`]['selectors'][`${event.target?.id}`] = {};
+        data[`${id}`]['selectors'][`${event.target?.id}`][`${event.target?.value}`] = value;
+      } 
+      else {
+        data[`${id}`]['selectors'][`${event.target?.id}`] = {}
+        data[`${id}`]['selectors'][`${event.target?.id}`][`${event.target?.value}`] = ''
+        // creates a text box for the input
+        let child = document.createElement('input')
+        child.id = `expect${id}input${counter}`
+        child.className = 'inputbox'
+        child.type = 'text'
+        child.placeholder = 'Selector optional'
 
+        child.onchange = () => {inputText(event.target?.id,event.target?.value)}
 
-      data[`${id}`]['selectors'][`${event.target?.id}`] = {}
-      data[`${id}`]['selectors'][`${event.target?.id}`][`${event.target?.value}`] = ''
-      // creates a text box for the input
-      let child = document.createElement('input')
-      child.id = `expect${id}input${counter}`
-      child.className = 'inputbox'
-      child.type = 'text'
+        counter++
+        // creates a selector for the next portion
+        let secondSelector = document.createElement('select')
+        secondSelector.id = `expect${id}selector${counter}`
+        secondSelector.className = 'expectdrop1'
+        secondSelector.innerHTML = `
+        <option value = 'nothing'></option>
+        <option value = '.type'>type</option>
+        <option value = '.text'>text</option>
+        <option value = '.find'>to find</option>
+        <option value = '.exists'>to exist</option>
+        <option value = '.contains'>contains</option>
+        <option value = '.every'>every</option>
+        <option value = '.everyWhere'>everyWhere(fn)</option>
+        <option value = '.hasClass'>has class</option>
+        <option value = '.forEach'>forEach(fn)</option>
+        <option value = '.is'>is</option>
+        <option value = '.at'>at</option>
+        <option value = '.simulate'>simulate</option>
+        <option value = '.prop'>prop</option>
+        <option value = '.tap'>tap(interceptor)</option>
+        <option value = '.some'>some</option>
+        <option value = '.name'>name</option>
+        <option value = '.isEmptyRender'>is empty render</option>
+        <option value = '.first'>first</option>
+        <option value = '.get'>get</option>
+        <option value = '.getElements'>get elements</option>
+        <option value = '.hostNodes'>host nodes</option>`
+        data[`${id}`][`selectors`][`expect${id}selector${counter}`] = '.nothing'
+        secondSelector.onchange = handleChange
 
-      child.onchange = () => {inputText(event.target?.id,event.target?.value)}
+        //create line break
+        let linebreak = document.createElement('br');
 
-      counter++
-      // creates a selector for the next portion
-      let secondSelector = document.createElement('select')
-      secondSelector.id = `expect${id}selector${counter}`
-      secondSelector.className = 'expectdrop1'
-      secondSelector.innerHTML = `
-      <option value = 'nothing'></option>
-      <option value = '.type'>type</option>
-      <option value = '.text'>text</option>
-      <option value = '.find'>to find</option>
-      <option value = '.exists'>to exist</option>`
-      data[`${id}`][`selectors`][`expect${id}selector${counter}`] = '.nothing'
-      secondSelector.onchange = handleChange
-
-      //create line break
-      let linebreak = document.createElement('br');
-
-      if(block){
-        block.appendChild(child)
-        block.appendChild(linebreak)
-        block.appendChild(secondSelector)
+        if(block){
+          block.appendChild(child)
+          block.appendChild(linebreak)
+          block.appendChild(secondSelector)
+        }
       }
-      
     }
     // select a new option for the selector
     else{
+      let breaks = document.getElementsByTagName('br')
+      let breaksLength = breaks.length
       data[`${id}`]['selectors'][`${event.target?.id}`] = event.target?.value
       let checker = false
       // if the value changed was for the first selector
       if(event.target?.id === `expect${id}selector0`){
         document.getElementById(`expect${id}input${first}`)?.remove()
+        breaks[breaksLength--]?.remove()
       }
 
-      // dlete all elements that were appended after the selector chosen
+      // delete all elements that were appended after the selector chosen
       for(let keys of Object.keys(data[`${id}`]['selectors'])){
         // checker will be true when the correct identifier is found 
         // all values after that identifier will be removed from the store
@@ -112,11 +138,13 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
           delete data[`${id}`]['selectors'][`${keys}`]
           document.getElementById(`${keys}`)?.remove()
           document.getElementById(`${keys}`.replace('selector','input'))?.remove()
+          breaks[breaksLength--]?.remove()
           counter--
         }
         else if(keys === event.target.id){
           checker = true
           document.getElementById(`${keys}`.replace('selector','input'))?.remove()
+          breaks[breaksLength--]?.remove()
         }
       }
     }
@@ -147,14 +175,33 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   return(
     <div className="expectBlock"  id = {`expect-block ${id}`}>
       <div className="expect1" id = {`${id}`}>
-        <label>expect wrapper</label><br></br>
+        <label>expect wrapper</label>
+        <button className="removeexpect" onClick = {removeExpect}>X</button>
+        <br></br>
         <select className="expectdrop1" id={`expect${id}selector0`} onChange = {handleChange}>
           <option value = '.type'>type</option>
           <option value = '.text'>text</option>
           <option value = '.find'>to find</option>
           <option value = '.exists'>to exist</option>
+          <option value = '.contains'>contains</option>
+          <option value = '.every'>every</option>
+          <option value = '.everyWhere'>everyWhere(fn)</option>
+          <option value = '.hasClass'>has class</option>
+          <option value = '.forEach'>forEach(fn)</option>
+          <option value = '.is'>is</option>
+          <option value = '.at'>at</option>
+          <option value = '.simulate'>simulate</option>
+          <option value = '.prop'>prop</option>
+          <option value = '.tap'>tap(interceptor)</option>
+          <option value = '.some'>some</option>
+          <option value = '.name'>name</option>
+          <option value = '.isEmptyRender'>is empty render</option>
+          <option value = '.isEmpty'>is empty</option>
+          <option value = '.first'>first</option>
+          <option value = '.get'>get</option>
+          <option value = '.getElements'>get elements</option>
+          <option value = '.hostNodes'>host nodes</option>
         </select>  
-        <button className="removeexpect" onClick = {removeExpect}>X</button>
       </div>
 
       <div className="expect2">

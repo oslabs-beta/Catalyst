@@ -1,5 +1,5 @@
-import React from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import * as electronFs from 'fs';
 import { SetFileView, ToggleFolder } from '../reduxComponents/actions/actions';
 import FILE_ICONS from '../icons/icons'; 
@@ -7,9 +7,9 @@ import FILE_ICONS from '../icons/icons';
 
 
 export const FileTree: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // obtains the filetree from the store
-  const fileTree = useSelector((state: any) => state.fileTree)
+  const fileTree = useSelector((state: any) => state.fileTree);
   // obtains the folder status from the store
   const isOpen = useSelector((state:any) => state.toggleFolder);
   // dispatches an action to set the file that will be viewed
@@ -20,8 +20,8 @@ export const FileTree: React.FC = () => {
   // onclick function to set invoke the function to dispatch an action
   function setFileView(event:any){
     // file path is saved as the id of the button
-    setFileInRedux(event.target.id)
-  }
+    setFileInRedux(event.target.id);
+  };
 
   // func will strip extension ending from files which will be used as the key for the imported object that holds images for 
   // those specific file icons
@@ -29,7 +29,10 @@ export const FileTree: React.FC = () => {
     if (ext.split('.')[1] === undefined) {
       return 'folder';
     }
-    return ext.split('.')[1];
+    if (ext.split('.')[ext.split('.').length - 1].includes('babel')) {
+      return 'babel';
+    }
+    return ext.split('.')[ext.split('.').length - 1];
   };
 
   // sending filepath to reducer to keep track of which folder is clicked on. if set to a global state then it will 
@@ -43,8 +46,8 @@ export const FileTree: React.FC = () => {
       <ul className = "FileTree" > 
         {files.map((file: any, id: number) => {
 
-          let extension = extensionGrabber(file.name);
-          let checker = electronFs.statSync(file.filepath);
+          const extension = extensionGrabber(file.name);
+          const checker = electronFs.statSync(file.filepath);
 
           if(checker.isDirectory()){
 
