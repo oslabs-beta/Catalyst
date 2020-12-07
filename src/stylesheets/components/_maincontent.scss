@@ -6,7 +6,7 @@ $bg: #FBF3F2;
 
 .row {
   display: grid;
-  grid-template-columns: 375px repeat(2, 1fr);
+  grid-template-columns: 325px repeat(2, 1fr);
   grid-template-rows: 100%;
   height: 90vh;
   background: $bg;
@@ -16,6 +16,7 @@ $bg: #FBF3F2;
     border-right: 1px solid $secondary;
     h1 {
       text-align: center;
+      font-size: 24px;
     }
   }
   .middle {
@@ -23,9 +24,11 @@ $bg: #FBF3F2;
     border-left: 1px solid $secondary;
     border-right: 1px solid $secondary;
     padding: 0em 1.5em;
-    min-width: 35em;
+    min-width: 30em;
     h1 {
       text-align: center;
+      font-size: 24px;
+
     }
   }
   .right {
@@ -33,6 +36,8 @@ $bg: #FBF3F2;
     border-left: 1px solid $secondary;
     h1 {
       text-align: center;
+      font-size: 24px;
+
     }
   }
 }
