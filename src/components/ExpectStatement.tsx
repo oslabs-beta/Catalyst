@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { UpdateData,  UpdateKeyOfExpect, deleteExpect} from '../reduxComponents/actions/actions';
 import '../stylesheets/components/_expectstatement'
@@ -16,7 +16,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   let first:number
   const data = useSelector((state: any) => state.expects)
   const index = useSelector((state: any) => state.keyOfExpect)
-  const allIts = useSelector((state:any) => state.its)
 
   let updateData = (data:any) => dispatch(UpdateData(data))
   let updateExpectKey = () => dispatch( UpdateKeyOfExpect())
@@ -33,12 +32,14 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
     updateExpectKey()
   },[])
 
-
+  // removes the expect block selected
   function removeExpect(){
+    // uses remove prop from ItStatement componene to see if the user is able to delete
     if(remove(parseInt(id))){
       deleteExpectFromStore(id)
       document.getElementById(`expect-block ${id}`)?.remove()
     }
+    // if there is only one expect block then do not delete
     else{
       console.log('cannot remove expect block')
     }
@@ -46,10 +47,11 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
   }
 
   
-
+  // when a selector is changed then create new fields
   function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>){
     let block = document.getElementById(id)
     
+    // if the selector is set to find then append a new text box and selector
     if(event.target?.value === ".find"){
       
       if(event.target?.id === `expect${id}selector0`){
@@ -78,7 +80,6 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
       <option value = '.text'>text</option>
       <option value = '.find'>to find</option>
       <option value = '.exists'>to exist</option>`
-      // secondSelector.onchange = handleChange
       data[`${id}`][`selectors`][`expect${id}selector${counter}`] = '.nothing'
       secondSelector.onchange = handleChange
 
@@ -92,14 +93,19 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
       }
       
     }
+    // select a new option for the selector
     else{
       data[`${id}`]['selectors'][`${event.target?.id}`] = event.target?.value
       let checker = false
+      // if the value changed was for the first selector
       if(event.target?.id === `expect${id}selector0`){
         document.getElementById(`expect${id}input${first}`)?.remove()
       }
 
+      // dlete all elements that were appended after the selector chosen
       for(let keys of Object.keys(data[`${id}`]['selectors'])){
+        // checker will be true when the correct identifier is found 
+        // all values after that identifier will be removed from the store
         if(checker){
           delete data[`${id}`]['selectors'][`${keys}`]
           document.getElementById(`${keys}`)?.remove()
@@ -112,20 +118,23 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         }
       }
     }
-
+    // updates the elements in the store 
     updateData(data)
   }
   
+  // updates the last input box in the store
   function updateInput(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
     data[`${id}`][`${event.target?.id}`] = event.target?.value
     updateData(data)
   }
 
+  // updates the last selector value (expectdrop2) in the store
   function updateLastSelector(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> ){
     data[`${id}`][`${event.target?.id}`] = event.target?.value
     updateData(data)
   }
   
+  // sets the input box text as the value of the object associated with the selector
   function inputText(elementId: string, elementKey: string){
     let text = (document.getElementById(elementId.replace('selector','input')) as HTMLInputElement).value
     data[`${id}`]['selectors'][`${elementId}`][`${elementKey}`] = text

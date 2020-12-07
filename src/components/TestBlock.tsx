@@ -1,6 +1,6 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Main, remote, shell} from 'electron';
+import { useSelector } from 'react-redux';
+import { remote } from 'electron';
 import * as electronFs from 'fs';
 import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
 import { ReuploadDirectory } from './ReuploadDirectory';
@@ -24,29 +24,24 @@ export const TestBlock: React.FC = () => {
   
   function findFile(fileTree:any, name: string):string{
 
-    // console.log('inside')
-    // console.log(fileTree)
+
     for(let x of fileTree){
-      // console.log(x.filepath)
       let file = electronFs.statSync(x.filepath)
-      // console.log(file)
       if(file.isDirectory()){
         let find = findFile(x.children, name)
         if(find !== ''){
-          return find
+          return find;
         }
       }
       else{
-        // console.log(x.name)
         if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')){
-          console.log(x.name)
-          return x.filepath
+          return x.filepath;
         }
       }
    
     
     }
-    return ''
+    return '';
   };
 
   const openDialog = (userFilePath: string, generatedTestCode: string) => {
@@ -65,12 +60,8 @@ export const TestBlock: React.FC = () => {
       ]
     }).then(file => {
       // stating whether dialog operation was cancelled or not
-      console.log(file.canceled);
       if (!file.canceled) {
-        console.log(file.filePath?.toString());
-  
         // creating and writing to the text.txt file
-  
         electronFs.writeFile(file.filePath?.toString() + '.js', generatedTestCode, (err) => {
           if (err) {
             console.log(err.message);
@@ -104,113 +95,67 @@ export const TestBlock: React.FC = () => {
   const handleClick = () => {
     const keysOfDescribe = Object.keys(describeGlobal);
 
-    // console.log(fileTree)
-    
-
-
-    const keysOfIts = Object.keys(itsGlobal);
-    const keysOfExpects = Object.keys(expectGlobal);
-    const keysOfDescribeInputs = Object.keys(describeInputGlobal);
-    const keysOfItInputs = Object.keys(itInputGlobal);
-
-    let testBlock = []; 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // console.log(describeInputGlobal)
-    let finalString  = '';
+    let finalString: string  = '';
     finalString += `import React from 'react';\nimport { configure, shallow } from 'enzyme';\nimport Adapter from 'enzyme-adapter-react-16';\nconfigure({ adapter: new Adapter() });\n`
 
+    // inserts the correct import statement for each component
     for(let i of keysOfDescribe){
       let fileLocation = findFile(fileTree, `${describeInputGlobal[i]}`.trim().toLowerCase());
       if(fileLocation !== ''){
         fileLocation = fileLocation.replace('.jsx','');
-        finalString += `import ${describeInputGlobal[i]} from \'${fileLocation}\'; \n\n`
+        finalString += `import ${describeInputGlobal[i]} from \'${fileLocation}\'; \n\n`;
       }
     }
 
-    let allProps = document.getElementsByClassName('Prop')
-    let counter = 0
+    // obtains all the prop fields from the dom and puts it into an array of html elements
+    let allProps: HTMLCollectionOf<Element> = document.getElementsByClassName('Prop');
+    // counter for the array of allProps
+    let counter: number = 0;
 
-
+    // loop all the describe blocks
     for (let i of keysOfDescribe) {
-      finalString += `describe('${describeInputGlobal[i]}', () => { \n let wrapper; \n\n`;
+      finalString += `describe('${describeInputGlobal[i]}', () => {\n\tlet wrapper; \n\n`;
       
-      // console.log('counter',counter)
-      // console.log('i',i)
-      
-      if(describePropBoolean[i]){
-        finalString += `const props = { \n`
-        // console.log(i)
+      // if the describe block should have props then retrieve it from the allProps object, if no then skip 
+      if(describePropBoolean[i] && allProps[counter].getElementsByClassName('propChild').length >0){
+        finalString += `\tconst props = { \n`;
         for(let element of allProps[counter].getElementsByClassName('propChild')){
-          finalString += `${element.getElementsByTagName('input')[0].value} : ${element.getElementsByTagName('input')[1].value}, \n`
-          // console.log(element.getElementsByTagName('input')[0].value,element.getElementsByTagName('input')[1].value)
+          finalString += `\t\t${element.getElementsByTagName('input')[0].value} : ${element.getElementsByTagName('input')[1].value}, \n`;
         }
-        counter+=1
-        finalString += `} \n`
-        finalString += `beforeAll(() => { \n wrapper = shallow(<${describeInputGlobal[i]} {...props}>)\n }) \n`;
+        
+        finalString += `\t} \n\n`;
+        finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]} {...props}>)\n \t}) \n`;
       }
       else{
-        finalString += `beforeAll(() => { \n wrapper = shallow(<${describeInputGlobal[i]}>)\n }) \n`;
+        finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]}>)\n \t}) \n`;
       }
-      
-      // console.log('finalString', finalString)
+      counter+=1;
+      // loop through all the it statements that should be within the specidfied describe block
       for (let j of Object.keys(describeGlobal[i])){
-        finalString += `\nit('${itInputGlobal[j]}', () => { \n`;
+        finalString += `\n\tit('${itInputGlobal[j]}', () => { \n`;
+        // loop through all of the expect statements that should be within the specifiec expect block
         for(let expect of Object.keys(itsGlobal[j])){
-          if(expectGlobal[expect][`firstInput${expect}`] === '.exists'){
-            if(expectGlobal[expect][`lastInput${expect}`] === 'true' || expectGlobal[expect][`lastInput${expect}`] === 'false'){
-              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}(${expectGlobal[expect][`lastInput${expect}`]});\n`;
+          finalString += `\t\texpect(wrapper`;
+          // loop through all of the selectors that exist
+          for(let element of Object.values(expectGlobal[expect]['selectors'])){
+            // if the selector holds an object then print out the key with the value inside the ()
+            if(typeof element === 'object'){
+              finalString += `${Object.keys(element)[0]}('${Object.values(element)[0]}')`;
             }
+            // if the selector does not hold a string then append the string
             else{
-              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
+              if(element !== '.nothing'){
+                finalString += `${element}()`;
+              }
             }
           }
-
-          else if(expectGlobal[expect][`firstInput${expect}`] === '.type'){
-            finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          }
-
-          else if(expectGlobal[expect][`firstInput${expect}`] === '.text'){
-            finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-          }
-
-          else if(expectGlobal[expect][`firstInput${expect}`] === '.find'){
-            // console.log(expectGlobal[expect][`selector${expect}`])
-            if(expectGlobal[expect][`selector${expect}`] === 'nothing'){
-              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}'))${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-            }
-            else if(expectGlobal[expect][`selector${expect}`] === '.find'){
-              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}')${expectGlobal[expect][`selector${expect}`]}('${expectGlobal[expect][`selectorInput${expect}`]}'))${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-            }
-            else{
-              finalString += `expect(wrapper${expectGlobal[expect][`firstInput${expect}`]}('${expectGlobal[expect][`wrapperInput${expect}`]}')${expectGlobal[expect][`selector${expect}`]}())${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;
-            }
-            
-          }
-        
+          finalString += `)${expectGlobal[expect].testTypes}('${expectGlobal[expect][`lastInput${expect}`]}');\n`;  
         }
-      finalString += '});\n';
-    
+      finalString += '\t});\n';
       }
       finalString += '});\n';
-      
     }
-    
   exportTestCode(projectFilePath, finalString);
-
-
 }
 
 
