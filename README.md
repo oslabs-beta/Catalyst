@@ -1,12 +1,12 @@
 ![](https://i.imgur.com/OpWjHnD.png)
 
-##What is Catatlyst?
+## What is Catatlyst?
 
 Catalyst is a testing tool that helps developers by creating simple and intuitive component tests without 
 typing a single piece of code. The app uses the testing frameworks Jest and Enzyme to render react components
 that developers want to test.
 
-##Installation
+## Installation
 
 First download the app here:
 
