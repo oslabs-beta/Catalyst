@@ -17,6 +17,7 @@ export class FileTree {
         this.children = []
     }
 
+
     // directory will be root directory path
     createTree(directory: string): FileTree[]{
         let treeElements: FileTree[] = []

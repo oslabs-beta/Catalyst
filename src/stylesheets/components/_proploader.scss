@@ -21,6 +21,7 @@ $bg: #FBF3F2;
     -o-appearance: none;
     appearance: none;
     outline: none;
+    display:inline-block;
   }
   .propcheck:checked {
     background: $secondary;
@@ -28,7 +29,6 @@ $bg: #FBF3F2;
   .propcheck:checked::before {
     height: 10px;
     width: 10px;
-    display:block;
     content: '\2713';
     color: $bg;
     text-align: center;

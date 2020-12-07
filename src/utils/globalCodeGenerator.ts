@@ -1,54 +1,45 @@
-import React from 'react';
-import { useSelector,useDispatch } from 'react-redux';
-import catalystIcon from '../../assets/catalyst_icons/Catalyst-01.png';
-import { ViewTestCode } from '../reduxComponents/actions/actions';
-import { ReuploadDirectory } from './ReuploadDirectory';
-import { ExportTestCode } from './ExportTestCode';
+import { store } from '../reduxComponents/store'; 
 import * as electronFs from 'fs';
 
-
-
-export const TestBlock: React.FC = () => {
-
-  const describeGlobal = useSelector((state:any) => state.describes);
-  const itsGlobal = useSelector((state:any) => state.its);
-  const expectGlobal = useSelector((state:any) => state.expects);
-  const describeInputGlobal = useSelector((state:any) => state.componentObj);
-  const itInputGlobal = useSelector((state:any) => state.itInputObj);
-  const describePropBoolean = useSelector((state:any) => state.describePropBoolean);
-  const fileTree = useSelector((state:any) => state.fileTree)
-
-
-  const dispatch = useDispatch();
-  // generated testCode from GUI is dispactched to store to be displayed in viewer
-  const viewTestCode = (data: string) => dispatch(ViewTestCode(data));
-
+export function generateTestCode () {
+ 
+  const currentState = store.getState();
   
-  function findFile(fileTree:any, name: string):string{
+  const describeGlobal = currentState.describes;
+  const itsGlobal = currentState.its;
+  const expectGlobal = currentState.expects;
+  const describeInputGlobal = currentState.componentObj;
+  const itInputGlobal = currentState.itInputObj;
+  const describePropBoolean = currentState.describePropBoolean;
+  const fileTree = currentState.fileTree;
 
-    for(let x of fileTree){
-      let file = electronFs.statSync(x.filepath)
-      if(file.isDirectory()){
-        let find = findFile(x.children, name)
-        if(find !== ''){
-          return find;
+
+  const keysOfDescribe = Object.keys(describeGlobal);
+
+
+
+    function findFile(fileTree:any, name: string):string{
+
+      for(let x of fileTree){
+        let file = electronFs.statSync(x.filepath)
+        if(file.isDirectory()){
+          let find = findFile(x.children, name)
+          if(find !== ''){
+            return find;
+          }
         }
-      }
-      else{
-        if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')){
-          return x.filepath;
+        else{
+          if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')){
+            return x.filepath;
+          }
         }
-      }
-   
     
-    }
-    return '';
-  };
+      
+      }
+      return '';
+    };
 
-
-   function  handleClick():void {
-    const keysOfDescribe = Object.keys(describeGlobal);
-
+    // console.log(tree)
     let finalString: string  = '';
     finalString += `import React from 'react';\nimport { configure, shallow } from 'enzyme';\nimport Adapter from 'enzyme-adapter-react-16';\n\nconfigure({ adapter: new Adapter() });\n\n`
 
@@ -120,36 +111,6 @@ export const TestBlock: React.FC = () => {
       }
       finalString += '});\n';
     }
-    // dispatches generated test code to store for global usage
-    viewTestCode(finalString);
-  }
 
-  
-
-
-
-
-  return (
-    <div className="testBlock">
-      <img className="catalysticon" src={catalystIcon}/>
-      <div className="headerbar">
-        <ul className="headerlist">
-          <li>
-            <ReuploadDirectory />
-          </li>
-          <li>
-            <button className="generatetests" onClick={handleClick}>Generate Tests</button> 
-          </li>
-          <li>
-            <ExportTestCode />
-          </li>
-        </ul>
-        <ul className="iconlist">
-          <li><a href="https://github.com/oslabs-beta/Catalyst" target="_blank"><i className="fab fa-github"></i></a></li>
-          <li><a href="https://enzymejs.github.io/enzyme/" target="_blank"><i className="fas fa-globe-americas"></i></a></li>
-          <li><a href="https://devhints.io/enzyme" target="_blank"><i className="fas fa-question-circle"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  );
-};
+    return finalString;
+}

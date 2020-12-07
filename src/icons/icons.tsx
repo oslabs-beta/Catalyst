@@ -26,9 +26,12 @@ import configLogo from '../../assets/icons/file_type_config.svg';
 // folder icon
 import folderIcon from '../../assets/icons/default_folder.svg';
 
+// json icon
+import jsonIcon from '../../assets/icons/file_type_json.svg';
 
+//babel icon
+import babelIcon from '../../assets/icons/file_type_babel2.svg';
 
-// type Keys = keyof typeof FILE_ICONS;
 
 
 const FILE_ICONS: {[k:string]: JSX.Element} = {
@@ -41,7 +44,9 @@ const FILE_ICONS: {[k:string]: JSX.Element} = {
   scss: <img src={scssLogo} />,
   config: <img src={jsLogo} />,
   env: < img src={configLogo} />,
-  folder: < img src={folderIcon} />
+  folder: < img src={folderIcon} />,
+  json: <img src={jsonIcon} />,
+  babel: <img src={babelIcon} />,
 };
 
 
