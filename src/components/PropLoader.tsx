@@ -78,9 +78,10 @@ export const PropLoader: React.FC<Props> =({id}) =>{
 
   return(
     <div className = 'Prop'>
-      Props
-      <input type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
-      <br></br>
+      <form>
+        <input className="propcheck" type="checkbox" id="addProps" name="addProps" onChange = {updateCheck}/> 
+        <label className="proplabel" >Add Props</label>
+      </form>
       <p>Props</p>
       <div>
         {displayArray}

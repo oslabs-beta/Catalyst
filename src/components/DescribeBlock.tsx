@@ -85,14 +85,10 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
       <button className="remove" onClick = {removeDescribeComponent}>X</button>
       <div className="describe">
         <p className="describetext">Describe Block</p>
-        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/><br></br>
+        <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/>
+        <br></br>
         <form>
-<<<<<<< HEAD
-          <input type="checkbox" className="propcheck" id="addProps" name="addProps" onChange = {addProp}/>
-=======
           <PropLoader id = {`${describeProp}`} key = {`describePropLoader${describeProp}`}/>
->>>>>>> 06ba1c675420336cc5e964f9c282a393e1f7af47
-          <label htmlFor="addProps">Add Props</label>
         </form>
         {arrayOfIt}
       </div>
