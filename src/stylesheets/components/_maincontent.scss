@@ -19,7 +19,7 @@ $bg: #FBF3F2;
     }
   }
   .middle {
-    // overflow: scroll;
+    overflow: scroll;
     border-left: 1px solid $secondary;
     border-right: 1px solid $secondary;
     padding: 0em 1.5em;
@@ -29,7 +29,7 @@ $bg: #FBF3F2;
     }
   }
   .right {
-    overflow: scroll;
+    // overflow: scroll;
     border-left: 1px solid $secondary;
     h1 {
       text-align: center;
