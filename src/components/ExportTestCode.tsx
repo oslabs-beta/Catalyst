@@ -1,8 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { ViewTestCode } from '../reduxComponents/actions/actions';
 import { remote } from 'electron';
 import * as electronFs from 'fs';
 import path from 'path';
+import {generateTestCode} from '../utils/globalCodeGenerator';
 
 const dialog = remote.dialog
 
@@ -11,6 +13,15 @@ export const ExportTestCode: React.FC = () => {
   const generatedTestCode = useSelector((state: any) => state.generatedTestCode);
   // get users project file path from store to aid in exporting generated test code to their machine
   const projectFilePath = useSelector((state:any) => state.filePathOfProject);
+
+
+
+
+  const dispatch = useDispatch();
+  // generated testCode from GUI is dispactched to store to be displayed in viewer
+  const viewTestCode = (data: string) => dispatch(ViewTestCode(data));
+
+
 
 
   // helper function that will open browser window and default to a __tests__ directory for generated test code placement
@@ -47,6 +58,8 @@ export const ExportTestCode: React.FC = () => {
     }) 
   };
 
+
+  
     // determing if directory __tests__ exists already
     const exportTestCode = (userFilePath: string, generatedTestCode:string) => {
       // if __tests__ directory does not exist then create one and write generated test code into that newly created directory
@@ -61,17 +74,26 @@ export const ExportTestCode: React.FC = () => {
     };
 
 
-  const exportCode = () => {
+  const exportCodeToDirectory = () => {
     if (generatedTestCode === '') {
-      console.log('generate test code');
+      // if user logs in and does not want to visualize code, helper function will create test code
+      // this test code will be sent to store as well as be exported
+      const testCode = generateTestCode();
+      // open window to export file
+      exportTestCode(projectFilePath, testCode);
+      // dispatch generated code to store to be seen on side panel
+      viewTestCode(testCode);
     } else {
-    exportTestCode(projectFilePath, generatedTestCode);
+      const testCode = generateTestCode();
+      // if user clicked on generat code before exporting code, it will be pulled from store
+      exportTestCode(projectFilePath, testCode);
+      viewTestCode(testCode);
     }
   };
   
   return(
     <div>
-      <button className="generatetests" onClick={exportCode}>Export Test Code</button>
+      <button className="generatetests" onClick={exportCodeToDirectory}>Export Test Code</button>
     </div>
   )
 }
