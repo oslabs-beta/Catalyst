@@ -15,7 +15,6 @@ export class FileTree {
         this.filepath = filepath
         this.name = name
         this.children = []
-
     }
 
     // directory will be root directory path
@@ -95,7 +94,12 @@ export const FolderUpload: React.FC = () => {
             </div>
             <div className="frontbody">
                 <h2 className="fronth2">Choose a Project Directory to Upload</h2>
-                <button className="folderupload" onClick = {uploadFolder}>Upload Project</button>
+                <button className="folderupload" onClick = {uploadFolder}>
+                    <span>Upload Project</span>
+                    <div className="icon">
+                        <i className="fas fa-upload"></i>
+                    </div>
+                </button>
             </div>
         </div>
     )

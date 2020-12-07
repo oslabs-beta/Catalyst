@@ -1,6 +1,7 @@
-// div p {
-//   margin: 0;
-// }
+$primary: #032539;
+$secondary: #1c768f;
+$fg: #FA991C;
+$bg: #FBF3F2;
 
  div p {
   margin: 0;
@@ -17,15 +18,52 @@
   margin: 0
 }
 
+.emptyfileview {
+  color: $fg;
+  border: none;
+  width: 20em;
+  margin: 1em;
+  display: block;
+  margin: 10em auto;
+  padding-bottom: 1.5em;
+  padding-top: 1.5em;
+  justify-content: center;
+  text-align: center;
+  .emptyfiletitle {
+    margin-top: 0;
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .emptyfilebody {
+    font-weight: 200;
+    font-size: 24px;
+  }
+}
+
 .codeBlock{
   padding-left: 5%;
+  .buttonHolder{
+    width:100%;
+    height:5%;
+  }
 }
 
 .clearFile{
-  right:0;
+  display: block;
+  float: right;
 }
 
-.buttonHolder{
-  width:100%;
-  height:5%;
+.remove {
+  color: $bg;
+  background: $fg;
+  float: right;
+  border-radius: 1.5em;
+  border: none;
+  padding: .10em .45em;
+  margin-right: 1em;
+}
+
+.blockcode {
+  overflow: scroll;
 }

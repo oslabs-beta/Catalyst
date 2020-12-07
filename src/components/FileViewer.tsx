@@ -17,6 +17,7 @@ export const FileViewer: React.FC = () =>{
 
 
   function pathToText(){
+    console.log(fileViewPath)
     let fileContent = fs.readFileSync(fileViewPath)
     // console.log('this is it', fi)
     let x: any = fileContent.toString()
@@ -44,7 +45,6 @@ export const FileViewer: React.FC = () =>{
         beginSpaces += ' '
         begin--
       }
-      console.log(begin)
       return <div key={id} className = 'codeLine'>
         <pre>{beginSpaces}{spaces}{ele} </pre>
       </div>
@@ -56,15 +56,23 @@ export const FileViewer: React.FC = () =>{
 
   return(
       fileViewPath === '' ?
-      <React.Fragment></React.Fragment>
+      <React.Fragment>
+        <div className="emptyfileview">
+          <h2 className="emptyfiletitle">No File Selected</h2>
+          <p className="emptyfilebody">Click on a file in the project directory to view its code</p>
+        </div>
+      </React.Fragment>
       :
       <div className = 'codeBlock'>
         <div className ='buttonHolder'>
-          <button onClick = {clearFile} className = 'clearFile'>X</button>
+          <button onClick = {clearFile} className = 'clearFile remove'>X</button>
+          <br></br>
         </div>
-        <code>
-          {pathToText()}
-        </code>
+        <div className="blockcode">
+          <code>
+            {pathToText()}
+          </code>
+        </div>
       </div>
       
   )
