@@ -117,7 +117,7 @@ export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) =>
         <p className="describetext">Describe Block</p>
         <input className="describeinput" type="text" onChange={(e) => addComponentName(e.target.value)} placeholder="Please enter component name:"/><br></br>
         <form>
-          <input type="checkbox" id="addProps" name="addProps" onChange = {addProp}/>
+          <input type="checkbox" className="propcheck" id="addProps" name="addProps" onChange = {addProp}/>
           <label htmlFor="addProps">Add Props</label>
         </form>
         {renderProp}
