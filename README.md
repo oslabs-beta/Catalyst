@@ -21,7 +21,7 @@ To do this, enter the following line in the command line interface of your proje
 
 ![](https://i.imgur.com/o1EVl5B.gif)
 
-  Opitonally, You can select which file you want to generate tests and preview the componet of choice on the right.
+  Opitonally, You can select which file you want to generate tests and preview the component of choice on the right.
 
 ![](https://i.imgur.com/XV6acqK.gif)
 
@@ -38,7 +38,7 @@ file, and select the save button to create the test in your project.
 ## Contributing
 
 This project is still very early in development, so please inform our team know of any issues found in the application.
-If you'd like to fork and send a PR for the project here are a few things you can work on:
+Feel free to reach out to the development team if you'd like to make a PR to add new features to this project.
 
 ## Authors
 
