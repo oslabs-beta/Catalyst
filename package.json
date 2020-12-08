@@ -7,7 +7,10 @@
   "scripts": {
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
     "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
+    "prod:electron": "webpack --config webpack.electron.config.js --mode production && electron .",
+    "prod:react": "webpack --config webpack.react.config.js  --mode production",
     "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\"",
+    "prod:dev": " concurrently  \"npm run prod:electron\" \"npm run prod:react\"",
     "test": "jest",
     "testall": "jest --converge",
     "start": "electron-forge start",
@@ -17,15 +20,20 @@
   },
   "build": {
     "appId": "Catalyst",
+    "directories": {
+      "buildResources": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "assets/**/*"
+    ],
     "win": {
       "target": [
         "nsis"
-      ],
-      "icon": "assets/catalyst_icons/Catalyst-01.png"
+      ]
     },
     "nsis": {
-      "installerIcon": "assets/catalyst_icons/Catalyst-01.png",
-      "uninstallerIcon": "assets/catalyst_icons/Catalyst-01.png",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }

@@ -84,10 +84,10 @@ export const TestBlock: React.FC = () => {
         }
         
         finalString += `\t}; \n\n`;
-        finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]} {...props}>);\n \t}); \n`;
+        finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]} {...props}/>);\n \t}); \n`;
       }
       else{
-        finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]}>)\n \t}); \n`;
+        finalString += `\tbeforeAll(() => {\n\t\twrapper = shallow(<${describeInputGlobal[i]}/>)\n \t}); \n`;
       }
       counter+=1;
       // loop through all the it statements that should be within the specidfied describe block

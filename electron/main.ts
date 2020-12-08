@@ -30,14 +30,13 @@ function createWindow() {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL(`http://localhost:4000`);
   } else {
-    // and load the index.html of the app
-    mainWindow.loadURL(
-      url.format({
-          pathname: path.resolve(__dirname, '../src/index.html'),
-          protocol: 'file:',
-          slashes: true
-      })
-    );
+
+    const urLink = url.format({
+      pathname: path.resolve(__dirname, '../dist/renderer/index.html'),
+      protocol: 'file:',
+      slashes: true
+  })
+    mainWindow.loadURL(urLink)
   }
 
 
