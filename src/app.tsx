@@ -16,7 +16,6 @@ export const App: React.FC = () => {
 
   return(
     fileTree.length ?
-
     <MainContent />
     :
     <div className="wholePage">
