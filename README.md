@@ -21,7 +21,7 @@ To do this line in your terminal inside of your project:
 
 1. Select the root folder for the project you would like to run test for.
 
-![](https://i.imgur.com/Gb1pZUW.jpeg)
+![](https://i.imgur.com/o1EVl5B.gif)
 
 Opitonally, You can check which file you want test by previewing on the right.
 
