@@ -1,5 +1,6 @@
 {
   "name": "catalyst",
+  "productName": "Catalyst",
   "version": "1.0.0",
   "description": "Catalyst will simplify the generation of unit tests for React framework with an emphasis on enzyme",
   "main": "./dist/main.js",
@@ -8,14 +9,33 @@
     "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
     "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\"",
     "test": "jest",
-    "testall": "jest --converge"
+    "testall": "jest --converge",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "build-installer": "electron-builder"
+  },
+  "build": {
+    "appId": "Catalyst",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/catalyst_icons/Catalyst-01.png"
+    },
+    "nsis": {
+      "installerIcon": "assets/catalyst_icons/Catalyst-01.png",
+      "uninstallerIcon": "assets/catalyst_icons/Catalyst-01.png",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chungdanny64/Catalyst.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Catalyst",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chungdanny64/Catalyst/issues"
@@ -30,7 +50,7 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
-    "electron": "^11.0.0",
+    "electron-squirrel-startup": "^1.0.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.3",
     "jquery": "^3.5.1",
@@ -58,6 +78,11 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
     "@svgr/webpack": "^5.5.0",
     "@types/enzyme": "^3.10.8",
     "@types/jquery": "^3.5.4",
@@ -65,6 +90,8 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.3.1",
     "babel-loader": "^8.2.1",
     "css-loader": "^5.0.1",
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1",
     "electron-devtools-installer": "^3.1.1",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.1",
@@ -76,5 +103,32 @@
     "ts-jest": "^26.4.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.6.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "catalyst"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }

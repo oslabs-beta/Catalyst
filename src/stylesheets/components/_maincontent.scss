@@ -3,16 +3,22 @@ $secondary: #1c768f;
 $fg: #FA991C;
 $bg: #FBF3F2;
 
+.main-content{
+  height:100%;
+}
 
 .row {
   display: grid;
   grid-template-columns: 325px repeat(2, 1fr);
   grid-template-rows: 100%;
-  height: 90vh;
+  width:100%;
+  height: 90%;
   background: $bg;
   color: $primary;
+  width: 100%;
   .left {
-    overflow: scroll;
+    overflow: auto;
+    height:100%;
     border-right: 1px solid $secondary;
     h1 {
       text-align: center;
@@ -20,7 +26,8 @@ $bg: #FBF3F2;
     }
   }
   .middle {
-    overflow: scroll;
+    overflow: auto;
+    height:100%;
     border-left: 1px solid $secondary;
     border-right: 1px solid $secondary;
     padding: 0em 1.5em;
@@ -32,7 +39,8 @@ $bg: #FBF3F2;
     }
   }
   .right {
-    // overflow: scroll;
+    overflow: auto;
+    height:100%;
     border-left: 1px solid $secondary;
     h1 {
       text-align: center;
