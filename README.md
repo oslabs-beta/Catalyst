@@ -25,7 +25,7 @@ To do this line in your terminal inside of your project:
 
 Opitonally, You can check which file you want test by previewing on the right.
 
-![](https://i.imgur.com/Gb1pZUW.jpeg)
+![](https://i.imgur.com/XV6acqK.gif)
 
 2. Fill in the respective boxes to specify the test cases for your file.
 
