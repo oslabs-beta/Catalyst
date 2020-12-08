@@ -1,5 +1,6 @@
 {
   "name": "catalyst",
+  "productName": "Catalyst",
   "version": "1.0.0",
   "description": "Catalyst will simplify the generation of unit tests for React framework with an emphasis on enzyme",
   "main": "./dist/main.js",

@@ -69,10 +69,10 @@ export const ExpectStatement: React.FC<Props> = ({id, remove}) =>{
         data[`${id}`]['selectors'][`${event.target?.id}`] = {}
         data[`${id}`]['selectors'][`${event.target?.id}`][`${event.target?.value}`] = ''
         // creates a text box for the input
-        let child = document.createElement('input')
-        child.id = `expect${id}input${counter}`
-        child.className = 'inputbox'
-        child.type = 'text'
+        let child = document.createElement('input');
+        child.id = `expect${id}input${counter}`;
+        child.className = 'inputbox';
+        child.type = 'text';
 
         child.onchange = () => {inputText(event.target?.id,event.target?.value)}
 
