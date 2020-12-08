@@ -13,7 +13,7 @@ First download the app [here](https://www.google.com)
 Catalyst is for use with React 16, so make sure you are using that version.
 
 For Catalyst to work Jest, Enzyme, and Enzyme Adapter for React 16 must be installed.
-To do this line in your terminal inside of your project:
+Run this command from your terminal inside of your project:
 
     npm install --save-dev jest enzyme enzyme-adapter-react-16
 
@@ -39,7 +39,7 @@ and select a name for your test.
 ## Contributing
 
 This project is still very early in development, so please let us know of any issues you find inside the app.
-If you'd like like like to fork and send a PR for the project here are a few things you can work on:
+If you'd like to fork and send a PR for the project here are a few things you can work on:
 
 -   Adding new enzyme tests to the file generation
 -   Creating the capability to test with React Testing Library
