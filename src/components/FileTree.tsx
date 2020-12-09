@@ -54,8 +54,6 @@ export const FileTree: React.FC = () => {
             return (
               <li key={id}>
                 <span className='directory' key={id} onClick={() => handleToggle(file.filepath)}><span>{FILE_ICONS[extension]}</span>{file.name}</span>
-                  {/* {file.children.length > 0 && traverseFileTree(file.children)} */}
-                  {/* if isOpen is true then will render closed folders. can edit as necessary */}
                   {isOpen[file.filepath] && traverseFileTree(file.children)}
               </li>
             )

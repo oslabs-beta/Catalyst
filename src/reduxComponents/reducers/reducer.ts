@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes'
+import * as types from '../constants/actionTypes';
 
 
 
@@ -31,15 +31,15 @@ export const reducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         fileTree: action.payload
-      }
+      };
 
     case types.SET_FILE_VIEW:
-      return{
+      return {
         ...state,
         codeViewer: true,
         fileToView: action.payload,
         codeViewerChecker: true
-      }
+      };
     
     case types.TOGGLE_FOLDER:
       // creating an object that will hold the file path of each directory and will toggle from T to F
@@ -49,34 +49,34 @@ export const reducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         toggleFolder
-      }
+      };
 
 
     case types.UPDATE_KEY_OF_EXPECT:
-      return{
+      return {
         ...state,
         keyOfExpect: state.keyOfExpect + 1
-      }
+      };
 
       case types.UPDATE_KEY_OF_IT:
-      return{
+      return {
         ...state,
         keyOfIt: state.keyOfIt + 1
-      }
+      };
 
     
     case types.UPDATE_DATA:
-      return{
+      return {
         ...state,
         expects: action.payload
-      }
+      };
 
 
     case types.UPDATE_IT_OBJ:
       return {
         ...state,
         its: action.payload
-      }
+      };
 
     case types.UPDATE_KEY_OF_DESCRIBE: 
     return {
@@ -85,45 +85,45 @@ export const reducer = (state: any = initialState, action: any) => {
     };
 
     case types.UPDATE_DESCRIBE:
-      return{
+      return {
         ...state,
         describes: action.payload
-      }
+      };
 
       
     case types.UPDATE_COMPONENT_NAME:
-      return{
+      return {
         ...state,
         componentObj: action.payload
-      }
+      };
         
     case types.UPDATE_IT_STATEMENT:
-          return{
+          return {
             ...state,
             itInputObj: action.payload
-          }
+          };
 
 
     case types.CLEAR_FILE:
-      return{
+      return {
         ...state,
         codeViewer: false,
         codeViewerChecker: false,
         fileToView: ''
-      }
+      };
 
     case types.DELETE_EXPECT:
-      let expects = state.expects
-      let id = action.payload.toString()
-      delete expects[`${id}`]
-      return{
+      let expects = state.expects;
+      let id = action.payload.toString();
+      delete expects[`${id}`];
+      return {
         ...state,
         expects
-      }
+      };
     
     case types.REMOVE_FROM_IT:
       
-      return{
+      return {
         ...state
       };
 
@@ -131,7 +131,7 @@ export const reducer = (state: any = initialState, action: any) => {
     return {
       ...state,
       filePathOfProject: action.payload
-    }
+    };
 
     case types.REFRESH_STATE:
       return {
@@ -150,15 +150,16 @@ export const reducer = (state: any = initialState, action: any) => {
         keyOfExpect: 0,
         componentObj: {},
         itInputObj: {},
+        describePropBoolean:{},
         codeViewer: false,
         codeViewerChecker: true,
-      }
+      };
     
     case types.UPDATE_DESCRIBE_BOOLEAN:
-      return{
+      return {
         ...state,
         describePropBoolean: action.payload
-      }
+      };
 
     case types.SHOW_TESTCODE:
       return {
@@ -166,7 +167,7 @@ export const reducer = (state: any = initialState, action: any) => {
         codeViewer: true,
         codeViewerChecker: false,
         generatedTestCode: action.payload,
-      }
+      };
 
     case types.REMOVE_TESTCODE:
       return {
@@ -174,10 +175,10 @@ export const reducer = (state: any = initialState, action: any) => {
         codeViewer: false,
         codeViewerChecker: true,
         generatedTestCode: '',
-      }
+      };
 
     default: 
       return state;
     
-  }
-}
+  };
+};

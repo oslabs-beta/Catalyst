@@ -52,5 +52,3 @@ const FILE_ICONS: {[k:string]: JSX.Element} = {
 
 
 export default FILE_ICONS;
-
-// export {tsxLogo, jsLogo, htmlLogo, cssLogo, tsLogo, scssLogo};

@@ -1,7 +1,7 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
-import { MainContent } from './components/MainContent'
-import {FolderUpload} from './components/FolderUpload'
+import React from 'react';
+import {useSelector} from 'react-redux';
+import { MainContent } from './components/MainContent';
+import {FolderUpload} from './components/FolderUpload';
 
 
 import './stylesheets/styles';
@@ -12,7 +12,7 @@ import './stylesheets/styles';
 
 export const App: React.FC = () => {
 
-  const fileTree = useSelector((state: any) => state.fileTree)
+  const fileTree = useSelector((state: any) => state.fileTree);
 
   return(
     fileTree.length ?
@@ -24,5 +24,3 @@ export const App: React.FC = () => {
 
   )
 };
-
-
