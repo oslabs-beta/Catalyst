@@ -16,7 +16,7 @@ export const TestBlock: React.FC = () => {
   const describeInputGlobal = useSelector((state:any) => state.componentObj);
   const itInputGlobal = useSelector((state:any) => state.itInputObj);
   const describePropBoolean = useSelector((state:any) => state.describePropBoolean);
-  const fileTree = useSelector((state:any) => state.fileTree)
+  const fileTree = useSelector((state:any) => state.fileTree);
 
 
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export const TestBlock: React.FC = () => {
   function findFile(fileTree:any, name: string):string{
 
     for(let x of fileTree){
-      let file = electronFs.statSync(x.filepath)
+      let file = electronFs.statSync(x.filepath);
       if(file.isDirectory()){
         let find = findFile(x.children, name)
         if(find !== ''){
@@ -56,8 +56,6 @@ export const TestBlock: React.FC = () => {
     for(let i of keysOfDescribe){
       let fileLocation = findFile(fileTree, `${describeInputGlobal[i]}`.trim().toLowerCase());
       if(fileLocation !== ''){
-        // let relativePath = path.relative(process.cwd(), fileLocation);
-        // console.log(relativePath, 'this is relativePath');
         fileLocation = fileLocation.replace('.jsx','');
         finalString += `import ${describeInputGlobal[i]} from \'${fileLocation}\'; \n\n`;
       }

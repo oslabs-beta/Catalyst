@@ -36,7 +36,7 @@ function createWindow() {
       protocol: 'file:',
       slashes: true
   })
-    mainWindow.loadURL(urLink)
+    mainWindow.loadURL(urLink);
   }
 
 
