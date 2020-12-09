@@ -33,9 +33,12 @@
     "win": {
       "target": [
         "nsis"
-      ]
+      ],
+      "icon": "assets/icon.png"
     },
     "nsis": {
+      "installerIcon": "assets/catalyst_icons/Catalyst-01.png",
+      "uninstallerIcon": "assets/catalyst_icons/Catalyst-01.png",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },
@@ -48,6 +51,7 @@
       "category": "public.app-category.Developer-tools"
     },
     "dmg": {
+      "background": "assets/CatalystInstallBG-05.tif",
       "icon": "assets/icon.png",
       "iconSize": 100,
       "window": {
@@ -56,12 +60,12 @@
       },
       "contents": [
         {
-          "x": 145,
-          "y": 257
+          "x": 105,
+          "y": 250
         },
         {
-          "x": 400,
-          "y": 255,
+          "x": 440,
+          "y": 250,
           "type": "link",
           "path": "/Applications"
         }
