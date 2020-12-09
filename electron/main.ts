@@ -26,7 +26,6 @@ function createWindow() {
   if (process.platform === 'darwin') {
     app.dock.setIcon(path.resolve(__dirname, '../assets/catalyst_icons/CatalystDockIconLarge-04.png'));
   }
-  console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL(`http://localhost:4000`);
   
