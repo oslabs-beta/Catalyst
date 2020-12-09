@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack','url-loader']
+        use: ['url-loader']
       },
       {
         test: /\.s[ac]ss$/i,
@@ -46,7 +46,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist/renderer'),
-    filename: 'index.js',
+    filename: 'js/index.js',
     publicPath: './',
   },
   plugins: [

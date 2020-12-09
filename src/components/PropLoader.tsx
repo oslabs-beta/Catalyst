@@ -13,7 +13,7 @@ export const PropLoader: React.FC<Props> =({id}) =>{
   const [count, updateCount] = useState(0);
   const [check, updateBool] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const propBoolean = useSelector((state:any) => state.describePropBoolean);
 
 
@@ -31,7 +31,7 @@ export const PropLoader: React.FC<Props> =({id}) =>{
 
   // adds a key value element to the display
   function addProp(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
-    event?.preventDefault()
+    event?.preventDefault();
     // checks to see if the checkbox is fille and if it is then add the prop field
     if(propBoolean[`${id}`]){
       // save the element as in an object with a key associated to it for easy access on deletion

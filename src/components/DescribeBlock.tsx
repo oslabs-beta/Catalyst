@@ -7,7 +7,7 @@ import { UpdateKeyOfIt, UpdateDescribe, UpdateComponentName} from '../reduxCompo
 interface Props{
   describeProp:string,
   removeDescribe: (id:number) => boolean
-}
+};
 
 
 export const DescribeBlock:React.FC<Props> = ({describeProp, removeDescribe}) => {

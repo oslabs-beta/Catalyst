@@ -20,38 +20,36 @@ $bg: #FBF3F2;
 }
 
 .frontbody {
-  width: 25vw;
+  width: 30vw;
   height: 25em;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 5em;
+  margin-top: 4em;
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
   justify-content: center;
   align-items: center;
   text-align: center;
-  .fronth2 {
-    font-size: 32px;
+  h6{
+    margin: 0;
+    padding: 0;
+    font-size: 48px;
     color: $primary;
-    margin-bottom: 0;
+    .fronth2 {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
   }
-  // .folderupload {
-  //   text-transform: uppercase;
-  //   color: $bg;
-  //   font-size: 24px;
-  //   border: none;
-  //   border-radius: 5em;
-  //   background-color: $fg;
-  //   padding: .5em 1em;
-  //   overflow: hidden;
-  //   box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
-  //   transition: all .25s cubic-bezier(0.310, -0.105, 0.430, 1.400);
-  // }
+  p {
+    color: $primary;
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+  }
 }
 
 // Variables
-$color: #c0392b;
-$color-dark: #a53125;
 $speed: "0.25s";
 $transition: all #{$speed} cubic-bezier(0.310, -0.105, 0.430, 1.400);
 

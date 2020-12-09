@@ -5,19 +5,16 @@
   "description": "Catalyst will simplify the generation of unit tests for React framework with an emphasis on enzyme",
   "main": "dist/main.js",
   "scripts": {
-    "start": "electron .",
     "build": "webpack --config webpack.react.config.js --mode production",
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
     "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
-    "dev": "concurrently \"npm run dev:electron\" \"npm run dev:react\"",
-    "prod:electron": "webpack --config webpack.electron.config.js --mode production && electron .",
-    "prod:react": "webpack serve --config webpack.react.config.js --mode production",
-    "prod": "concurrently \"npm run prod:electron\" \"npm run prod:react\"",
+    "prod:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
+    "prod:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js  --mode production",
+    "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\"",
+    "prod:dev": "npm run prod:react && npm run prod:electron",
     "test": "jest",
     "testall": "jest --converge",
-    "build-installer": "electron-builder",
-    "postinstall": "electron-builder install-app-deps",
-    "pack": "electron-builder --dir"
+    "build-installer": "electron-builder"
   },
   "build": {
     "appId": "com.example.catalyst",
@@ -34,12 +31,9 @@
     "win": {
       "target": [
         "nsis"
-      ],
-      "icon": "assets/catalyst_icons/Catalyst-01.png"
+      ]
     },
     "nsis": {
-      "installerIcon": "assets/catalyst_icons/Catalyst-01.png",
-      "uninstallerIcon": "assets/catalyst_icons/Catalyst-01.png",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },
@@ -91,7 +85,6 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
-    "electron-squirrel-startup": "^1.0.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.3",
     "jquery": "^3.5.1",
@@ -100,7 +93,6 @@
     "react-redux": "^7.2.2",
     "react-select": "^3.1.1",
     "redux": "^4.0.5",
-    "regenerator-runtime": "^0.13.7",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -119,12 +111,6 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "@svgr/webpack": "^5.5.0",
     "@types/enzyme": "^3.10.8",
     "@types/jquery": "^3.5.4",
     "@types/react-redux": "^7.1.11",
@@ -136,7 +122,10 @@
     "electron-devtools-installer": "^3.1.1",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.1",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-typescript-prettier": "^4.1.0",
     "file-loader": "^6.2.0",
+    "prettier": "^2.2.1",
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",

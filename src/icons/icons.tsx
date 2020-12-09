@@ -32,7 +32,8 @@ import jsonIcon from '../../assets/icons/file_type_json.svg';
 //babel icon
 import babelIcon from '../../assets/icons/file_type_babel2.svg';
 
-
+// eslingt icon
+import eslintIcon from '../../assets/icons/file_type_eslint.svg';
 
 const FILE_ICONS: {[k:string]: JSX.Element} = {
   tsx: <img src={tsxLogo} />,
@@ -47,10 +48,9 @@ const FILE_ICONS: {[k:string]: JSX.Element} = {
   folder: < img src={folderIcon} />,
   json: <img src={jsonIcon} />,
   babel: <img src={babelIcon} />,
+  eslint: <img src={eslintIcon} />
 };
 
 
 
 export default FILE_ICONS;
-
-// export {tsxLogo, jsLogo, htmlLogo, cssLogo, tsLogo, scssLogo};
