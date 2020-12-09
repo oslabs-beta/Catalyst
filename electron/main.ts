@@ -20,7 +20,7 @@ function createWindow() {
       // this allows us to access remote in other files of the app
       enableRemoteModule: true
     },
-    icon: path.resolve(__dirname, 'assets/catalyst_icons/CatalystDockIconLarge-04.png')
+    icon: path.resolve(__dirname, '../assets/catalyst_icons/CatalystDockIconLarge-04.png')
   });
 
   if (process.platform === 'darwin') {
