@@ -32,7 +32,7 @@ export const FileTree: React.FC = () => {
     if (ext.split('.')[ext.split('.').length - 1].includes('babel')) {
       return 'babel';
     }
-    if (ext.split('.')[ext.split('.').length - 1].includes('eslint' || ext.split('.')[1].includes('eslint'))) {
+    if (ext.split('.')[ext.split('.').length - 1].includes('eslint') || ext.split('.')[1].includes('eslint')) {
       return 'eslint';
     }
     return ext.split('.')[ext.split('.').length - 1];
