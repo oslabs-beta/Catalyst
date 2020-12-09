@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.scss'],
   },
   devtool: 'source-map',
   entry: './electron/main.ts',
@@ -34,4 +34,4 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: 'main.js',
   },
-};
+}; 

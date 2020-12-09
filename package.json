@@ -3,8 +3,9 @@
   "productName": "Catalyst",
   "version": "1.0.0",
   "description": "Catalyst will simplify the generation of unit tests for React framework with an emphasis on enzyme",
-  "main": "./dist/main.js",
+  "main": "dist/main.js",
   "scripts": {
+    "build": "webpack --config webpack.react.config.js --mode production",
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
     "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
     "prod:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
@@ -13,11 +14,15 @@
     "prod:dev": "npm run prod:react && npm run prod:electron",
     "test": "jest",
     "testall": "jest --converge",
-    "build-installer": "electron-builder"
+    "build-installer": "electron-builder",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
+    "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
   },
   "build": {
-    "appId": "Catalyst",
+    "appId": "com.example.catalyst",
+    "productName": "Catalyst",
     "directories": {
+      "output": "builder",
       "buildResources": "dist"
     },
     "files": [
@@ -33,6 +38,34 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "identity": null,
+      "icon": "assets/icon.png",
+      "category": "public.app-category.Developer-tools"
+    },
+    "dmg": {
+      "icon": "assets/icon.png",
+      "iconSize": 100,
+      "window": {
+        "width": 544,
+        "height": 408
+      },
+      "contents": [
+        {
+          "x": 145,
+          "y": 257
+        },
+        {
+          "x": 400,
+          "y": 255,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
     }
   },
   "repository": {
@@ -45,7 +78,6 @@
   "bugs": {
     "url": "https://github.com/chungdanny64/Catalyst/issues"
   },
-  "homepage": "https://github.com/chungdanny64/Catalyst#readme",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "@types/jest": "^26.0.15",
@@ -63,6 +95,7 @@
     "react-redux": "^7.2.2",
     "react-select": "^3.1.1",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -87,13 +120,15 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.3.1",
     "babel-loader": "^8.2.1",
     "css-loader": "^5.0.1",
-    "electron": "^11.0.3",
+    "electron": "^11.0.4",
     "electron-builder": "^22.9.1",
     "electron-devtools-installer": "^3.1.1",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.1",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-typescript-prettier": "^4.1.0",
     "file-loader": "^6.2.0",
-    "redux-devtools-extension": "^2.13.8",
+    "prettier": "^2.2.1",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
