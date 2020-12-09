@@ -1,0 +1,52 @@
+body{
+    color: black;
+    margin: 0;
+}
+
+button{
+    border:none;
+    height: 100%;
+    width: 100%;
+    padding:0;
+    outline: none;
+}
+
+li{
+    list-style: none;
+    height: 100%;
+}
+
+.page{
+    height: 150vh;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+}
+
+.navbar{
+    height: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: orange;
+}
+.navbar div{
+    width: 5%;
+    display: flex; 
+    justify-content: center;
+}
+.navbar ul{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-intro, .upload-file, .functioning-page, .generate-test{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
