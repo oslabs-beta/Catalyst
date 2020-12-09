@@ -7,25 +7,30 @@
   "scripts": {
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
     "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack.react.config.js --mode development",
+    "prod:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
+    "prod:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js  --mode production",
     "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\"",
+    "prod:dev": "npm run prod:react && npm run prod:electron",
     "test": "jest",
     "testall": "jest --converge",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
     "build-installer": "electron-builder"
   },
   "build": {
     "appId": "Catalyst",
+    "directories": {
+      "buildResources": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "assets/**/*"
+    ],
     "win": {
       "target": [
         "nsis"
-      ],
-      "icon": "assets/catalyst_icons/Catalyst-01.png"
+      ]
     },
     "nsis": {
-      "installerIcon": "assets/catalyst_icons/Catalyst-01.png",
-      "uninstallerIcon": "assets/catalyst_icons/Catalyst-01.png",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }
@@ -50,7 +55,6 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
-    "electron-squirrel-startup": "^1.0.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.3",
     "jquery": "^3.5.1",
@@ -59,7 +63,6 @@
     "react-redux": "^7.2.2",
     "react-select": "^3.1.1",
     "redux": "^4.0.5",
-    "regenerator-runtime": "^0.13.7",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -78,12 +81,6 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "@svgr/webpack": "^5.5.0",
     "@types/enzyme": "^3.10.8",
     "@types/jquery": "^3.5.4",
     "@types/react-redux": "^7.1.11",
@@ -103,32 +100,5 @@
     "ts-jest": "^26.4.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.6.0"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "catalyst"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
   }
 }

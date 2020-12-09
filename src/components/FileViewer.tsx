@@ -5,20 +5,19 @@ import fs from 'fs';
 
 
 export const FileViewer: React.FC = () =>{
-  let fileViewPath: string
-  const dispatch = useDispatch()
+  let fileViewPath: string;
+  const dispatch = useDispatch();
   fileViewPath = useSelector((state: any) => state.fileToView);
-  const clearFileInStore = () => dispatch(ClearFile())
+  const clearFileInStore = () => dispatch(ClearFile());
 
   function clearFile(){
-    clearFileInStore()
+    clearFileInStore();
   };
 
 
 
   function pathToText(){
     let fileContent = fs.readFileSync(fileViewPath);
-    // console.log('this is it', fi)
     let x: any = fileContent.toString();
     let counter = 0 ;
     for(let space = 0; space < x.length -1; space++){

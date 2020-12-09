@@ -21,15 +21,15 @@ export function generateTestCode () {
     function findFile(fileTree:any, name: string):string{
 
       for(let x of fileTree){
-        let file = electronFs.statSync(x.filepath)
+        let file = electronFs.statSync(x.filepath);
         if(file.isDirectory()){
-          let find = findFile(x.children, name)
+          let find = findFile(x.children, name);
           if(find !== ''){
             return find;
           }
         }
         else{
-          if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')){
+          if(x.name.toLowerCase().includes(name) && !x.name.toLowerCase().includes('_')) {
             return x.filepath;
           }
         }
@@ -44,9 +44,9 @@ export function generateTestCode () {
     finalString += `import React from 'react';\nimport { configure, shallow } from 'enzyme';\nimport Adapter from 'enzyme-adapter-react-16';\n\nconfigure({ adapter: new Adapter() });\n\n`
 
     // inserts the correct import statement for each component
-    for(let i of keysOfDescribe){
+    for(let i of keysOfDescribe) {
       let fileLocation = findFile(fileTree, `${describeInputGlobal[i]}`.trim().toLowerCase());
-      if(fileLocation !== ''){
+      if(fileLocation !== '') {
         // let relativePath = path.relative(process.cwd(), fileLocation);
         // console.log(relativePath, 'this is relativePath');
         fileLocation = fileLocation.replace('.jsx','');
@@ -64,7 +64,7 @@ export function generateTestCode () {
       finalString += `describe('${describeInputGlobal[i]}', () => {\n\tlet wrapper; \n\n`;
       
       // if the describe block should have props then retrieve it from the allProps object, if no then skip 
-      if(describePropBoolean[i] && allProps[counter].getElementsByClassName('propChild').length >0){
+      if(describePropBoolean[i] && allProps[counter].getElementsByClassName('propChild').length >0) {
         finalString += `\tconst props = { \n`;
         for(let element of allProps[counter].getElementsByClassName('propChild')){
           if (element.getElementsByTagName('input')[0].value === '' && element.getElementsByTagName('input')[1].value === '') {
@@ -82,25 +82,25 @@ export function generateTestCode () {
       }
       counter+=1;
       // loop through all the it statements that should be within the specidfied describe block
-      for (let j of Object.keys(describeGlobal[i])){
+      for (let j of Object.keys(describeGlobal[i])) {
         finalString += `\n\tit('${itInputGlobal[j]}', () => { \n`;
         // loop through all of the expect statements that should be within the specific expect block
-        for(let expect of Object.keys(itsGlobal[j])){
+        for(let expect of Object.keys(itsGlobal[j])) {
           finalString += `\t\texpect(wrapper`;
           // loop through all of the selectors that exist
-          for(let element of Object.values(expectGlobal[expect]['selectors'])){
+          for(let element of Object.values(expectGlobal[expect]['selectors'])) {
             // if the selector holds an object then print out the key with the value inside the ()
-            if(typeof element === 'object'){
+            if(typeof element === 'object') {
               // checking if selector value is empty but still needs to be chained
               if (Object.keys(element)[0] && Object.values(element)[0] === '') {
                 finalString += `${Object.keys(element)[0]}()`;
               } else {
-                finalString += `${Object.keys(element)[0]}('${Object.values(element)[0]}')`;
+                finalString += `${Object.keys(element)[0]}(${Object.values(element)[0]})`;
               }
             } 
             // if the selector does not hold a string then append the string
-            else{
-              if(element !== '.nothing'){
+            else {
+              if(element !== '.nothing') {
                 finalString += `${element}()`;
               }
             }

@@ -37,16 +37,16 @@ export const ReuploadDirectory:React.FC = () => {
        // Project is an object that holds canceled (boolean to check if it was cancelled) and filePaths (array of filepaths)
       if(Project && !Project.canceled){
           // holds the directory of the project that was selected 
-          let projectDirectory = Project.filePaths[0]
+          let projectDirectory = Project.filePaths[0];
 
           // use regex to find all \ in the case of a windows user and replace with /
-          projectDirectory = projectDirectory.replace(/\\/g, '/')
+          projectDirectory = projectDirectory.replace(/\\/g, '/');
           
           // will create a new FileTree object for the root directory
-          const rootTree = new FileTree(projectDirectory, "root")
+          const rootTree = new FileTree(projectDirectory, "root");
 
           // will return an array of FileTree objects along with any children associated with it 
-          const fileTree = rootTree.createTree(projectDirectory)
+          const fileTree = rootTree.createTree(projectDirectory);
 
           // dispatch call to refresh state
           refreshState();

@@ -20,7 +20,7 @@ function createWindow() {
       // this allows us to access remote in other files of the app
       enableRemoteModule: true
     },
-    icon: path.resolve(__dirname, 'assets/catalyst_icons/CatalystDockIconLarge-04.png')
+    icon: path.resolve(__dirname, '../assets/catalyst_icons/CatalystDockIconLarge-04.png')
   });
 
   if (process.platform === 'darwin') {
@@ -30,15 +30,14 @@ function createWindow() {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL(`http://localhost:4000`);
   } else {
-    // and load the index.html of the app
-    mainWindow.loadURL(
-      url.format({
-          pathname: path.resolve(__dirname, '../src/index.html'),
-          protocol: 'file:',
-          slashes: true
-      })
-    );
-  }
+
+    const urlToLoad = url.format({
+      pathname: path.resolve(__dirname, '../dist/renderer/index.html'),
+      protocol: 'file:',
+      slashes: true
+  });
+    mainWindow.loadURL(urlToLoad);
+  };
 
 
   // emitted when the window is closed
