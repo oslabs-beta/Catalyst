@@ -150,6 +150,7 @@ export const reducer = (state: any = initialState, action: any) => {
         keyOfExpect: 0,
         componentObj: {},
         itInputObj: {},
+        describePropBoolean:{},
         codeViewer: false,
         codeViewerChecker: true,
       };

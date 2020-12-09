@@ -95,7 +95,7 @@ export function generateTestCode () {
               if (Object.keys(element)[0] && Object.values(element)[0] === '') {
                 finalString += `${Object.keys(element)[0]}()`;
               } else {
-                finalString += `${Object.keys(element)[0]}('${Object.values(element)[0]}')`;
+                finalString += `${Object.keys(element)[0]}(${Object.values(element)[0]})`;
               }
             } 
             // if the selector does not hold a string then append the string

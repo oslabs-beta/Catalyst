@@ -25,19 +25,19 @@ function createWindow() {
 
   if (process.platform === 'darwin') {
     app.dock.setIcon('assets/catalyst_icons/Catalyst-01.png');
-  }
+  };
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL(`http://localhost:4000`);
   } else {
 
-    const urLink = url.format({
+    const urlToLoad = url.format({
       pathname: path.resolve(__dirname, '../dist/renderer/index.html'),
       protocol: 'file:',
       slashes: true
-  })
-    mainWindow.loadURL(urLink);
-  }
+  });
+    mainWindow.loadURL(urlToLoad);
+  };
 
 
   // emitted when the window is closed
