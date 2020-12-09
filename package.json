@@ -16,7 +16,8 @@
     "testall": "jest --converge",
     "build-installer": "electron-builder",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
-    "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}"
+    "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
+    "notarize:electron": "electron-builder --publish always"
   },
   "build": {
     "appId": "com.example.catalyst",
