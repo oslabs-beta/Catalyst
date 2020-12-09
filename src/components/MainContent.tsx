@@ -8,7 +8,7 @@ import { TestBlock } from './TestBlock';
 export const MainContent: React.FC = () =>{
 
   return(
-    <div>
+    <div className = 'main-content'>
       <div className="header">
         <TestBlock/>
       </div>
