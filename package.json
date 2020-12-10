@@ -48,10 +48,8 @@
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "assets/entitlements.mac.plist",
-      "entitlementsInherit": "assets/entitlements.mac.plist",
       "target": [
-        "dmg",
-        "zip"
+        "dmg"
       ],
       "icon": "assets/icon.png",
       "category": "public.app-category.Developer-tools"
