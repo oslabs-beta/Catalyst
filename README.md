@@ -4,13 +4,23 @@
 
 Catalyst is an application which allows developers to generate unit test cases for components utilizing the Jest framework and Javascript's Enzyme testing utility. With its interactive GUI, the creation of test code can be completed with just a few clicks.
 
-Catalyst is currently in beta
+Catalyst is currently in beta and compatible for use with React 16.
 
 ## Installation
 
 First download the app [here](https://www.catalystjs.com/)
 
-At this time Catalyst is compatible for use with React 16.
+Or you can also get started by cloning the repo using
+
+    git clone https://github.com/oslabs-beta/Catalyst.git
+
+- Once you have the repo on your system, open the terminal in root directory of repo and install all the dependencies using:
+
+  npm install
+
+- After that is completed, you can open our app using:
+
+  npm run dev
 
 To get started, Jest, Enzyme, and Enzyme Adapter for React 16 must be installed.
 To do this, enter the following line in the command line interface of your project directory:
