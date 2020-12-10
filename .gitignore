@@ -1,6 +1,14 @@
+# Ignore node_modules folder
 node_modules
+
+# Ignore module bundles folder
 dist
+
+# Ignore package-lock.json
 package-lock.json
+
+# Ignore files related to API keys
 .env
-out/
+
+# Ignore Mac system files
 .DS_Store
