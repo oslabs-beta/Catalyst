@@ -17,10 +17,10 @@ exports.default = async function notarizing(context) {
       appleId: process.env.APPLEID,
       appleIdPassword: process.env.APPLEIDPASS,
     });
+    console.log('done notarizing');
   }
     catch (err) {
       console.log(err);
     } 
 
-  // console.log('done notarizing', appBundleId);
 };

@@ -1,7 +1,7 @@
 {
   "name": "catalyst",
   "productName": "Catalyst",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Catalyst will simplify the generation of unit tests for React framework with an emphasis on enzyme",
   "main": "dist/main.js",
   "scripts": {
@@ -39,8 +39,8 @@
       "icon": "assets/icon.png"
     },
     "nsis": {
-      "installerIcon": "assets/catalyst_icons/Catalyst-01.png",
-      "uninstallerIcon": "assets/catalyst_icons/Catalyst-01.png",
+      "installerIcon": "assets/icon.png",
+      "uninstallerIcon": "assets/icon.png",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },
