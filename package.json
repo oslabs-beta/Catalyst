@@ -22,6 +22,7 @@
   "build": {
     "appId": "com.example.catalyst",
     "productName": "Catalyst",
+    "afterSign": "assets/notarize.js",
     "directories": {
       "output": "builder",
       "buildResources": "dist"
@@ -44,14 +45,19 @@
       "allowToChangeInstallationDirectory": true
     },
     "mac": {
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
       "target": [
-        "dmg"
+        "dmg",
+        "zip"
       ],
-      "identity": null,
       "icon": "assets/icon.png",
       "category": "public.app-category.Developer-tools"
     },
     "dmg": {
+      "sign": false,
       "background": "assets/CatalystInstallBG-05.tif",
       "icon": "assets/icon.png",
       "iconSize": 100,
@@ -92,6 +98,7 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.1",
+    "dotenv": "^8.2.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.3",
     "jquery": "^3.5.1",
@@ -127,7 +134,9 @@
     "css-loader": "^5.0.1",
     "electron": "^11.0.4",
     "electron-builder": "^22.9.1",
+    "electron-builder-notarize": "^1.2.0",
     "electron-devtools-installer": "^3.1.1",
+    "electron-notarize": "^1.0.0",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.1",
     "eslint": "^7.15.0",
