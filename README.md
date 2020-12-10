@@ -4,9 +4,11 @@
 
 Catalyst is an application which allows developers to generate unit test cases for components utilizing the Jest framework and Javascript's Enzyme testing utility. With its interactive GUI, the creation of test code can be completed with just a few clicks.
 
+Catalyst is currently in beta
+
 ## Installation
 
-First download the app [here](https://www.google.com)
+First download the app [here](https://www.catalystjs.com/)
 
 At this time Catalyst is compatible for use with React 16.
 
@@ -39,6 +41,9 @@ file, and select the save button to create the test in your project.
 
 This project is still very early in development, so please inform our team know of any issues found in the application.
 Feel free to reach out to the development team if you'd like to make a PR to add new features to this project.
+
+## License
+Distributed under the MIT License. See LICENSE for more information.
 
 ## Authors
 
