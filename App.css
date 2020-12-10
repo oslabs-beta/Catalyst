@@ -165,6 +165,9 @@ p {
     box-shadow: 3px 3px 8px grey;
     border-radius: 5em;
 }
+.githublink {
+    font-size: 22px;
+}
 
 /* footer */
 .footer {
