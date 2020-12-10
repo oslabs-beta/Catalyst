@@ -150,11 +150,12 @@ p {
 }
 .teamlist {
     display: inline-flex;
-    width: 75vw;
+    width: 80vw;
     list-style: none;
 }
 .teammember {
     margin: 1em auto;
+    padding: 0em 1em;
 }
 .teammember h3 {
     font-size: 28px;
@@ -163,16 +164,13 @@ p {
     height: 20vh;
     width: auto;
     box-shadow: 3px 3px 8px grey;
-    border-radius: 5em;
+    border-radius: 50%;
 }
 .githublink {
     font-size: 22px;
 }
 
 /* footer */
-.footer {
-    margin-top:
-}
 .footerbar {
     width: 100vw;
     height: 7vw;
