@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/OpWjHnD.png)
 
-## What is Catatlyst?
+## What is Catalyst?
 
 Catalyst is an application which allows developers to generate unit test cases for components utilizing the Jest framework and Javascript's Enzyme testing utility. With its interactive GUI, the creation of test code can be completed with just a few clicks.
 
@@ -14,7 +14,7 @@ Or you can also get started by cloning the repo using
 
     git clone https://github.com/oslabs-beta/Catalyst.git
 
-- Once you have the repo on your system, open the terminal in root directory of repo and install all the dependencies using:
+- Once you have the repo on your system, install all the dependencies using:
 
   npm install
 
@@ -37,12 +37,11 @@ To do this, enter the following line in the command line interface of your proje
 
 ![](https://i.imgur.com/XV6acqK.gif)
 
-2. Using our interactive GUI, choose from Enzyme's matcher API and fill in their respective selectors. Once completed, click the Generate Tests button to preview your test 
-code.
+2. Using our interactive GUI, choose from Enzyme's matcher API and fill in their respective selectors. Once completed, click the 'Generate Tests' button to preview your test code.
 
 ![](https://i.imgur.com/Yze4a98.gif)
 
-3.  If satisfied, click the Export Test Code button, name your 
+3.  If satisfied, click the 'Export Test Code' button, name your 
 file, and select the save button to create the test in your project.
 
 ![](https://i.imgur.com/bCiQj4O.gif)
