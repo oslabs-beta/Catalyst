@@ -1,8 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS} from 'electron-devtools-installer';
-
 
 // keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is garbage collected
@@ -30,7 +28,6 @@ function createWindow() {
     mainWindow.loadURL(`http://localhost:4000`);
   
   } else {
-
     const urlToLoad = url.format({
       pathname: path.resolve(__dirname, '../dist/renderer/index.html'),
       protocol: 'file:',
@@ -50,15 +47,6 @@ function createWindow() {
 }
 
 app.on('ready', () => {
-  // calling installExtension func after the ready event was emitted by app
-  // on the different extensions by looping through array of them
-  [REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS].forEach(extension => {
-    installExtension(extension)
-    .then((name) => console.log(`Added Extension: ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
-  });
-  // once extensions are looped through, invoking createWindow method
-  
   createWindow();
 });
 
