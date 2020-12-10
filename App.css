@@ -1,57 +1,177 @@
-body{
-    color: black;
+* {
     margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
-button{
-    border:none;
-    height: 100%;
-    width: 100%;
-    padding:0;
-    outline: none;
+/* Header bar */
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 25vh;
+    align-items: center;
+    background: #032539;
+    margin: 0;
+    justify-content: center;
+}
+.navbar {
+    display: flex;
+    width: 100vw;
+    height: 6vh;
+    align-items: center;
+    justify-content: center;
+}
+.banner{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: auto;
+    margin-top: 1em;
 }
 
-li{
+.logobanner {
+    width: 45vw;
+    height: auto;
+}
+.leftlist {
+    display: flex;
+    width: 50vw;
     list-style: none;
-    height: 100%;
+    padding-left: 0;
+    margin: 0em;
+    justify-content: space-around;
+}
+.rightlist {
+    list-style: none;
+    padding-left: 0;
+    margin: 1em;
+}
+.navbutton {
+    border: none;
+    font-size: 20px;
+    color: #FBF3F2;
+    padding: .5em 1em;
+    background: none;
+    cursor: pointer
 }
 
-.page{
-    height: 150vh;
-    width: 100%;
-    display: flex;
-    flex-direction:column;
+/* installer buttons */
+.page-content{
+    background-color: #FBF3F2;
 }
-
-.navbar{
-    height: 5%;
-    width: 100%;
+.downloadtitle {
+    text-align: center;
+    padding-top: 1em;
+}
+.installerbuttons {
     display: flex;
+    height: 20vh;
+    width: 75vw;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+}
+.installer {
+    display: inline;
     justify-content: space-between;
-    background-color: orange;
 }
-.navbar div{
-    width: 5%;
-    display: flex; 
-    justify-content: center;
-}
-.navbar ul{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width:100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.installerbutton {
+    border-radius: 3em;
+    padding: .5em .25em;
+    width: 20vw;
+    border: none;
+    outline: none;
+    background: #FA991C;
+    color: #FBF3F2;
+    font-size: 28px;
 }
 
-.project-intro, .upload-file, .functioning-page, .generate-test{
+/* Site Body */
+.project-body {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    justify-content: center;
+    text-align: center;
+}
+.project-intro {
+    width: 55vw;
+    margin: 3em;
+}
+.gif-container {
+    box-shadow: 3px 3px 10px #032539;
+    margin-top: 2em;
+    margin-bottom: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+    height: inherit;
+}
+.gif{
+    width: 60vw;
+    height: auto;
+}
+.bodytext {
+    width: 40vw;
+    margin: 0 auto;
+}
+.maintitle {
+    font-size: 48px;
+    color: #032539;
+}
+h1 {
+    font-size: 40px;
+    color: #1a1a1a
+}
+p {
+    font-size: 22px;
+    color: #3a3a3a
 }
 
-.installer{
-    height: 10%;
-    width:10%;
+/* team section */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    justify-content: center;
+    text-align: center;
+}
+.teamtitle {
+    font-size: 48px;
+    color: #032539;
+}
+.teamlistcontainer {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+.teamlist {
+    display: inline-flex;
+    width: 75vw;
+    list-style: none;
+}
+.teammember {
+    margin: 1em auto;
+}
+.teammember h3 {
+    font-size: 28px;
+}
+.teamimage {
+    height: 20vh;
+    width: auto;
+    box-shadow: 3px 3px 8px grey;
+    border-radius: 5em;
+}
+
+/* footer */
+.footer {
+    margin-top:
+}
+.footerbar {
+    width: 100vw;
+    height: 7vw;
+    background-color: #032539;
 }

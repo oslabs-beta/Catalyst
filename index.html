@@ -12,80 +12,122 @@
 </head>
 <body>
               <div class = 'page'>
-                <div class = 'navbar'>
-                    <div>
-                        <ul>
-                            <li>
-                                <a src= 'https://oslabs-beta.github.io/Catalyst/'><button>Catalyst</button></a>
-                            </li>
-                        </ul>
+                  <div class = 'header'>
+                    <div class="banner">
+                        <img class="logobanner" src="CatalystLogoBanner-02.png" alt="catalyst banner">
                     </div>
-                    <div>
-                        <ul>
-                            <li>
-                                <a href = 'https://oslabs-beta.github.io/Catalyst/'><button>Docs</button></a>
-                            </li>
-                        </ul>
+                    <div class="navbar">
+                        <div>
+                            <ul class="leftlist">
+                                <li class="navitem">
+                                    <a href='https://oslabs-beta.github.io/Catalyst/'><button class="navbutton">Github</button></a>
+                                </li>
+                                <li class="navitem">
+                                    <a href='https://twitter.com/catalyst_js'><button class="navbutton">Twitter</button></a>
+                                </li>
+                                <li class="navitem">
+                                    <a href='https://www.linkedin.com/company/catalystjs'><button class="navbutton">LinkedIn</button></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div>
+                            <ul class="rightlist">
+                                <li class="navitem">
+                                    <a href = 'https://oslabs-beta.github.io/Catalyst/'><button class="navbutton">Docs</button></a>
+                                </li>
+                            </ul>
+                        </div> -->
                     </div>
                 </div>
                 <div class = 'page-content'>
-                    <div class ='installer'>
-                        <a href= './windowsSetup.exe' download><button>Download Windows Installer</button></a>
-
+                    <div class="downloadtitle">
+                        <h1 class="maintitle">Click Your OS to Install Catalyst</h1>
                     </div>
-                    <div class = 'installer'>
-                        <a href = 'https://cdsmithbucket01.s3.us-east-2.amazonaws.com/Installer.zip' download> <button> Install for Windows</button> </a>
-                    <div class='installer'>
-                        <a href= './Catalyst-1.0.0.dmg' download><button>Download Mac Installer</button></a>
-                    </div>
-                    
-                    <div class = 'project-logo'>
-
-                    </div>
-                    <div class = 'project-intro'>
-                        <div>       
-                            
+                    <div class="installerbuttons">
+                        <div class = 'installer'>
+                            <a href = 'https://cdsmithbucket01.s3.us-east-2.amazonaws.com/Installer.zip' download><button class="installerbutton">Windows</button> </a>
                         </div>
-                        <div>
-                            <h1>Catalyst</h1>
-                            <p>
-                                Catalyst aims to simplify the generation of unit tests for React framework with an emphasis on enzyme
-                            </p>
+                        <div class='installer'>
+                            <a href= './Catalyst-1.0.0.dmg' download><button class="installerbutton">Mac</button></a>
                         </div>
                     </div>
-                    <div class = 'upload-file'>
+                    <div class="project-body">
                         <div>
-                            <img src = "./Upload.gif" alt = "upload"/>
-                        </div>
-                        <div>
-                            <h1>Landing Page</h1>
-                            <p>
-                                With a simple click of a button, you can choose your project of choice and its content will be displayed
-                            </p>
+                            <div>
+                                <div class = 'project-intro'>
+                                    <h1 class="maintitle">Catalyst simplifies the generation of React unit tests using enzyme</h1>
+                                </div>
+                            </div>
+                            <div class = 'upload-file'>
+                                <div class="bodytext">
+                                    <h1>Landing Page</h1>
+                                    <p>
+                                        With a click, you can select the project for which you want to create tests
+                                    </p>
+                                </div>
+                                <div class="gif-container">
+                                    <img class="gif" src = "./Upload.gif" alt = "upload"/>
+                                </div>
+                            </div>
+                            <div class = 'functioning-page'>
+                                <div class="bodytext">
+                                    <h1>How to use</h1>
+                                    <p>
+                                        Using our interactive GUI, you'll be able to easily create tests while viewing your code side by side.
+                                    </p>
+                                </div>
+                                <div class="gif-container">
+                                    <img class="gif" src ="./Example.gif" alt ="example"/>
+                                </div>
+                            </div>
+                            <div class = 'generate-test'>
+                                <div class="bodytext">
+                                    <h1>Create functional test files</h1>
+                                    <p>
+                                        Test files can be previewed and exported to the directory of the chosen project 
+                                    </p>
+                                </div>
+                                <div class="gif-container">
+                                    <img class="gif" src = "./Export.gif" alt = "export" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class = 'functioning-page'>
-                        <div>
-                            <img src ="./Example.gif" alt ="example"/>
+                    <div class="team">
+                        <div class="bodytext">
+                            <h1 class="teamtitle">Meet the Team</h1>
                         </div>
-                        <div>
-                            <h1>How to use</h1>
-                            <p>
-                                Using our interactive GUI, you'll be able to easily choose which file you want to create tests and create tests while viewing your code side by side. Afterwards, click on generate tests and this code will be displayed for reviewing.
-                            </p>
+                        <br>
+                        <div class="teamlistcontainer">
+                            <ul class="teamlist">
+                                <li class="teammember">
+                                    <img class="teamimage" src="./Dannyprofile.png" />
+                                    <h3>Danny Chung</h3>
+                                    <p>Software Engineer</p>
+                                </li>
+                                <li class="teammember">
+                                    <img class="teamimage" src="./Gavinprofile.png" />
+                                    <h3>Gavin Crews</h3>
+                                    <p>Software Engineer</p>
+                                </li>
+                                <li class="teammember">
+                                    <img class="teamimage" src="./Jarrylprofile.png" />
+                                    <h3>Jarryl Oquias</h3>
+                                    <p>Software Engineer</p>
+                                </li>
+                                <li class="teammember">
+                                    <img class="teamimage" src="./Jonprofile.png" />
+                                    <h3>Jon Ascencio</h3>
+                                    <p>Software Engineer</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class = 'generate-test'>
+                </div>
+                <div class="footer">
+                    <div class="footerbar">
                         <div>
-                            <img src = "./Export.gif" alt = "export" />
-                        </div>
-                        <div>
-                            <h1>
-                                Create and Export Functional Test files
-                            </h1>
-                            <p>
-                                Test files can be previewed and exported to a test folder in the directory of the chosen project 
-                            </p>
+                            <h1></h1>
                         </div>
                     </div>
                 </div>
