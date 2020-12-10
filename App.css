@@ -3,12 +3,15 @@
     box-sizing: border-box;
     font-family: 'Nunito Sans', sans-serif;
 }
-
+body{
+    width:100vw;
+    overflow-x:hidden;
+}
 /* Header bar */
 .header {
     display: flex;
     flex-wrap: wrap;
-    width: 100vw;
+    width: 100%;
     height: 25vh;
     align-items: center;
     background: #032539;
@@ -175,4 +178,7 @@ p {
     width: 100vw;
     height: 7vw;
     background-color: #032539;
+}
+.page{
+    width:100%;
 }
