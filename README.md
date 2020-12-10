@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/OpWjHnD.png)
 
-## What is Catatlyst?
+## What is Catalyst?
 
 Catalyst is an application which allows developers to generate unit test cases for components utilizing the Jest framework and Javascript's Enzyme testing utility. With its interactive GUI, the creation of test code can be completed with just a few clicks.
 
