@@ -42,7 +42,7 @@ To do this, enter the following line in the command line interface of your proje
 ![](https://i.imgur.com/Yze4a98.gif)
 
 3.  If satisfied, click the 'Export Test Code' button, name your 
-file, and select the save button to save the generated code in your project.
+file, and select the save button to save the generated code in your project. Catalyst will save this file in a \_\_tests\_\_ folder for you automatically if it doesn't already exist.
 
 ![](https://i.imgur.com/bCiQj4O.gif)
 
