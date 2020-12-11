@@ -37,7 +37,7 @@ To do this, enter the following line in the command line interface of your proje
 
 ![](https://i.imgur.com/XV6acqK.gif)
 
-2. Using our interactive GUI, choose from Enzyme's matcher API and fill in their respective selectors. If the selected matcher does not require a selector input, leave blank. Additionally, selector input box can be your value of choosing. Once completed, click the 'Generate Tests' button to preview your test code.
+2. Using our interactive GUI, choose from Enzyme's matcher API and fill in their respective selectors. If the selected matcher does not require a selector input, leave blank. Additionally, selector input box can be the value of your choosing. Once completed, click the 'Generate Tests' button to preview your test code.
 
 ![](https://i.imgur.com/Yze4a98.gif)
 
