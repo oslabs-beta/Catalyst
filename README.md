@@ -16,14 +16,14 @@ Or you can also get started by cloning the repo using
 
 - Once you have the repo on your system, install all the dependencies using:
 
-  npm install
+      npm install
 
 - After that is completed, you can open our app using:
 
-  npm run dev
+      npm run dev
 
-To get started, Jest, Enzyme, and Enzyme Adapter for React 16 must be installed.
-To do this, enter the following line in the command line interface of your project directory:
+Prior to running exported tests, Jest, Enzyme, and Enzyme Adapter for React 16 must be installed.
+To do this, enter the following line in the command line interface of your project's directory:
 
     npm install --save-dev jest enzyme enzyme-adapter-react-16
 
@@ -33,23 +33,25 @@ To do this, enter the following line in the command line interface of your proje
 
 ![](https://i.imgur.com/o1EVl5B.gif)
 
-  Opitonally, You can select which file you want to generate tests and preview the component of choice on the right.
+  Opitonally, you can select which file you want to generate tests for and preview the component of choice on the right.
 
 ![](https://i.imgur.com/XV6acqK.gif)
 
-2. Using our interactive GUI, choose from Enzyme's matcher API and fill in their respective selectors. Once completed, click the 'Generate Tests' button to preview your test code.
+2. Using our interactive GUI, choose from Enzyme's matcher API and fill in their respective selectors. If the selected matcher does not require a selector input, leave blank. Additionally, selector input box can be your value of choosing. Once completed, click the 'Generate Tests' button to preview your test code.
 
 ![](https://i.imgur.com/Yze4a98.gif)
 
 3.  If satisfied, click the 'Export Test Code' button, name your 
-file, and select the save button to create the test in your project.
+file, and select the save button to save the generated code in your project.
 
 ![](https://i.imgur.com/bCiQj4O.gif)
 
+4. Icons located in the right corner of application open additional windows with links to Catalyst's Github, Enzyme's official documentation, and a Enzyme Cheat Sheet.
+
 ## Contributing
 
-This project is still very early in development, so please inform our team know of any issues found in the application.
-Feel free to reach out to the development team if you'd like to make a PR to add new features to this project.
+This project is still very early in development, so please inform our team of any issues found in the application or if you have any suggestions. 
+Feel free to reach out to the development team if you'd like to make a pull requrest to add new features to this project.
 
 ## License
 Distributed under the MIT License. See LICENSE for more information.
